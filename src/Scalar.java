@@ -17,7 +17,7 @@ public class Scalar extends Maob implements Serializable {
     }
     public Scalar(Function f, boolean positive){
         this();
-        terms.add(new Term(f,positive));
+        add(new Term(f,positive));
     }
     public Scalar(String s, boolean positive){
         this();
@@ -25,6 +25,11 @@ public class Scalar extends Maob implements Serializable {
     }
     public Scalar(String s){
         this(s, true);
+    }
+
+    public Scalar(Term t) {
+        this();
+        add(t);
     }
 
     //ADD
@@ -89,6 +94,14 @@ public class Scalar extends Maob implements Serializable {
         }else {
             throw new NonSenseException();
         }
+    }
+
+    public Scalar differentiate() throws NonSenseException {
+        Scalar r = new Scalar();
+        for (Term t:terms){
+            r.plus(t.differentiate());
+        }
+        return r;
     }
 
     @Override

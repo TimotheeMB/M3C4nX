@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public abstract class Function implements Serializable {
+public abstract class Function extends Elements implements Serializable {
 
     //ATTRIBUTES
     Variable variable;

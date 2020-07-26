@@ -79,6 +79,21 @@ public class Term implements Serializable {
         return result;
     }
 
+    public Scalar differentiate() throws NonSenseException {
+        Scalar r=new Scalar();
+        for (Variable v:variables) {
+            Term vBar = new Term();
+            for (Variable v1:variables){
+                if(!v1.equals(v)){
+                    vBar.add(v1);
+                }
+            }
+            Scalar vBarScalar = new Scalar(vBar);
+            r.plus(vBarScalar.dot(v.differentiate()));
+        }
+        return r;
+    }
+
     //USEFUL
     public Term copy(){
         Term copy = new Term();

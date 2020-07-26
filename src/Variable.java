@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Variable implements Serializable {
+public class Variable extends Elements implements Serializable {
 
     //ATTRIBUTES
     String value;

@@ -9,4 +9,11 @@ public class Cos extends Function {
     public String toString() {
         return "cos(" + variable + ')';
     }
+
+    @Override
+    public Scalar differentiate() throws NonSenseException {
+        Scalar diff = new Scalar(new Sin(variable),false);
+        diff = (Scalar) diff.dot(variable.differentiate());
+        return diff;
+    }
 }

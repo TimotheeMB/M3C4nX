@@ -34,6 +34,10 @@ public class SimpleVector implements Serializable {
         return (Vector) expression.dot(basisVector.expressIn(destination));
     }
 
+    public SimpleVector differentiate() throws NonSenseException {
+        return new SimpleVector(expression.differentiate(),basisVector);
+    }
+
     //USEFUL
     public SimpleVector opposite(){
         return new SimpleVector(expression.opposite(),basisVector);

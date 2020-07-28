@@ -121,6 +121,15 @@ public class Vector extends Maob implements Serializable {
         return r;
     }
 
+    public Vector differentiate(Basis wrt) throws NonSenseException {
+        Vector inWrt = this.expressIn(wrt);
+        Vector r = new Vector();
+        for (SimpleVector v : inWrt.expression) {
+            r.add(v.differentiate());
+        }
+        return r;
+    }
+
 
     //TESTS
     public boolean isNull(){

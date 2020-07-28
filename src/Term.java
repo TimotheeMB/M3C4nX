@@ -4,27 +4,29 @@ import java.util.LinkedList;
 public class Term implements Serializable {
 
     //ATTRIBUTES
-    LinkedList<Variable> variables;
-    LinkedList<Function> functions;
+    //LinkedList<Element> elements;
+    //LinkedList<Function> functions;
+    LinkedList<Element> elements;
     boolean positive;
     boolean one;
     boolean zero;
 
     //CONSTRUCTORS
     public Term() {
-        variables = new LinkedList<Variable>();
-        functions = new LinkedList<Function>();
+        //elements = new LinkedList<Element>();
+        //functions = new LinkedList<Function>();
+        elements = new LinkedList<>();
         positive =true;
         one=false;
         zero=false;
     }
-    public Term(Function f, boolean positive){
+    public Term(Element e, boolean positive){
         this();
         this.positive = positive;
-        functions.add(f);
+        elements.add(e);
     }
-    public Term(Function f){
-        this(f,true);
+    public Term(Element e){
+        this(e,true);
     }
     public Term(String s){
         this();
@@ -33,7 +35,7 @@ public class Term implements Serializable {
         }else if(s.equals("0")) {
             zero = true;
         }
-        variables.add(new Variable(s));
+        elements.add(new Variable(s));
     }
     public Term(String s, boolean positive){
         this(s);
@@ -41,11 +43,8 @@ public class Term implements Serializable {
     }
 
     //ADD
-    public void add(Variable v){
-        this.variables.add(v);
-    }
-    public void add(Function f){
-        this.functions.add(f);
+    public void add(Element e){
+        this.elements.add(e);
     }
 
     //OPERATIONS
@@ -53,19 +52,13 @@ public class Term implements Serializable {
         Term result = new Term();
 
         if (!this.isOne()) {
-            for (Variable v : this.variables) {
+            for (Element v : this.elements) {
                 result.add(v);
-            }
-            for (Function f : this.functions) {
-                result.add(f);
             }
         }
         if (!b.isOne()){
-            for (Variable v : b.variables) {
+            for (Element v : b.elements) {
                 result.add(v);
-            }
-            for (Function f : b.functions) {
-                result.add(f);
             }
         }
 
@@ -81,9 +74,9 @@ public class Term implements Serializable {
 
     public Scalar differentiate() throws NonSenseException {
         Scalar r=new Scalar();
-        for (Variable v:variables) {
+        for (Element v:elements) {
             Term vBar = new Term();
-            for (Variable v1:variables){
+            for (Element v1:elements){
                 if(!v1.equals(v)){
                     vBar.add(v1);
                 }
@@ -97,15 +90,13 @@ public class Term implements Serializable {
     //USEFUL
     public Term copy(){
         Term copy = new Term();
-        copy.variables=this.variables;
-        copy.functions=this.functions;
+        copy.elements=this.elements;
         copy.positive=this.positive;
         return copy;
     }
     public Term opposite(){
         Term r= new Term();
-        r.functions=functions;
-        r.variables=variables;
+        r.elements=elements;
         r.positive=!positive;
         return r;
     }
@@ -124,11 +115,8 @@ public class Term implements Serializable {
     //TOSTRING
     public String toString() {
         String r="";
-        for (Variable v: variables) {
+        for (Element v: elements) {
             r+=v;
-        }
-        for (Function f:functions) {
-            r+=f;
         }
         return r;
     }

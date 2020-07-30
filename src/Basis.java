@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Basis implements Serializable  {
 
@@ -68,6 +69,14 @@ public class Basis implements Serializable  {
         }
         return r;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Basis basis = (Basis) o;
+        return Objects.equals(name, basis.name);
+ }
 
     //TOSTRING
     public String toString() {

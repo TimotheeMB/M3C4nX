@@ -153,6 +153,9 @@ public class UI {
         String[] tmp;
         if (maobs.containsKey(s)) {
             return maobs.get(s);
+        }else if(s.contains("dwrt")){
+            tmp = s.split("dwrt");
+            return ((Vector)compute(tmp[0])).differentiate(basis.get(tmp[1]));
         }else if(s.contains("in")){
             tmp = s.split("in");
             return (compute(tmp[0])).expressIn(basis.get(tmp[1]));

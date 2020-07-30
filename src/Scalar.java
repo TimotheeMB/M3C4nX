@@ -43,7 +43,6 @@ public class Scalar extends Maob implements Serializable {
     //OPERATIONS
     public Maob dot(Maob b) throws NonSenseException {
         if (b instanceof Scalar) {
-
             Scalar result = new Scalar();
             for (Term myTerm : this.terms) {
                 for (Term hisTerm : ((Scalar) b).terms) {

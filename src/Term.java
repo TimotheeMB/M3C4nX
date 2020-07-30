@@ -82,7 +82,7 @@ public class Term implements Serializable {
                 }
             }
             Scalar vBarScalar = new Scalar(vBar);
-            r.plus(vBarScalar.dot(v.differentiate()));
+            r= (Scalar) r.plus(vBarScalar.dot(v.differentiate()));
         }
         return r;
     }

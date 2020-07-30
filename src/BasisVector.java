@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class BasisVector implements Serializable {
@@ -65,7 +66,7 @@ public class BasisVector implements Serializable {
         for (Basis b : basis) {
             boolean pred = destination.equals(b.predecessor);
             Variable angle=(pred ? b.angle:destination.angle);
-            if (destination.x.equals(b.x)) {
+            if ((destination.x).equals(b.x)) {
                 if (name.equals("y")) {
                     return new Vector(new Scalar("0"), new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), destination);
                 } else if (name.equals("z")) {
@@ -73,7 +74,7 @@ public class BasisVector implements Serializable {
                 } else {
                     return new Vector("1", "0", "0", destination);
                 }
-            } else if (destination.y.equals(b.y)) {
+            } else if ((destination.y).equals(b.y)) {
                 if (name == "z") {
                     return new Vector(new Scalar(new Sin(angle),pred), new Scalar("0"), new Scalar(new Cos(angle)), destination);
                 } else if (name == "x") {
@@ -81,7 +82,7 @@ public class BasisVector implements Serializable {
                 } else {
                     return new Vector("0", "1", "0", destination);
                 }
-            } else if (destination.z.equals(b.z)) {
+            } else if ((destination.z).equals(b.z)) {
                 if (name == "x") {
                     return new Vector(new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), new Scalar("0"), destination);
                 } else if (name == "y") {
@@ -156,6 +157,23 @@ public class BasisVector implements Serializable {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BasisVector that = (BasisVector) o;
+        if (!name.equals(that.name)){
+            return false;
+        }
+        for (Basis b:basis) {
+            if(!that.basis.contains(b)){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     //TOSTRING
     public String toString() {

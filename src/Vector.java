@@ -141,7 +141,7 @@ public class Vector extends Maob implements Serializable {
     public String toString() {
         String r = "";
         if(this.isNull()){
-            return "VectorNull";
+            return "-0->";
         }else {
             for (int i = 0; i < expression.size(); i++) {
                 SimpleVector v = expression.get(i);

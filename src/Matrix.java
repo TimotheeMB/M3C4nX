@@ -1,6 +1,6 @@
 public class Matrix extends Maob {
     Scalar A,B,C,D,E,F;
-    
+    Basis basis;
 
     @Override
     public Maob dot(Maob b) throws NonSenseException {

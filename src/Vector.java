@@ -125,7 +125,8 @@ public class Vector extends Maob implements Serializable {
         Vector inWrt = this.expressIn(wrt);
         Vector r = new Vector();
         for (SimpleVector v : inWrt.expression) {
-            r.add(v.differentiate());
+            SimpleVector diff=v.differentiate();
+            r.add(diff);
         }
         return r;
     }
@@ -136,9 +137,14 @@ public class Vector extends Maob implements Serializable {
         return expression.isEmpty();
     }
 
+    public void clear(){
+        expression.removeIf(SimpleVector::isNull);
+    }
+
 
     //TOSTRING
     public String toString() {
+        clear();
         String r = "";
         if(this.isNull()){
             return "-0->";

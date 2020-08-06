@@ -16,4 +16,12 @@ public class Sin extends Function {
         diff = (Scalar) diff.dot(variable.differentiate());
         return diff;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        return variable==((Sin) obj).variable;
+
+    }
 }

@@ -1,11 +1,10 @@
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Term implements Serializable {
 
     //ATTRIBUTES
-    //LinkedList<Element> elements;
-    //LinkedList<Function> functions;
     LinkedList<Element> elements;
     boolean positive;
     boolean one;
@@ -13,8 +12,6 @@ public class Term implements Serializable {
 
     //CONSTRUCTORS
     public Term() {
-        //elements = new LinkedList<Element>();
-        //functions = new LinkedList<Function>();
         elements = new LinkedList<>();
         positive =true;
         one=false;
@@ -92,11 +89,15 @@ public class Term implements Serializable {
         Term copy = new Term();
         copy.elements=this.elements;
         copy.positive=this.positive;
+        copy.one=one;
+        copy.zero=zero;
         return copy;
     }
     public Term opposite(){
         Term r= new Term();
         r.elements=elements;
+        r.one=one;
+        r.zero=zero;
         r.positive=!positive;
         return r;
     }
@@ -119,5 +120,26 @@ public class Term implements Serializable {
             r+=v;
         }
         return r;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Term term = (Term) o;
+        if(!(positive == term.positive && one == term.one && zero == term.zero)){
+            return false;
+        }
+        for(Element e : elements){
+            if(!term.elements.contains(e)){
+                return false;
+            }
+        }
+        for(Element e : term.elements){
+            if(!elements.contains(e)){
+                return false;
+            }
+        }
+        return true;
     }
 }

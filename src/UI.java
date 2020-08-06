@@ -85,6 +85,10 @@ public class UI {
                 case "list":
                     System.out.println("------------------------ Variables -------------------------------");
                     maobs.forEach((variableName, value) -> System.out.println(variableName + " = " + value));
+                    System.out.println("------------------------ toBeVar -------------------------------");
+                    for (String s:Variable.toBeVar) {
+                        System.out.println(s);
+                    }
                     System.out.println("-------------------------  Basis  --------------------------------");
                     basis.forEach((basisName,basis)->System.out.println(basisName));
                     System.out.println("------------------------------------------------------------------");
@@ -153,9 +157,12 @@ public class UI {
         String[] tmp;
         if (maobs.containsKey(s)) {
             return maobs.get(s);
-        }else if(s.contains("dwrt")){
-            tmp = s.split("dwrt");
-            return ((Vector)compute(tmp[0])).differentiate(basis.get(tmp[1]));
+        }else if(s.contains("diff")){
+            tmp = s.split("diff");
+            if(tmp.length==1){
+                return (compute(tmp[0])).differentiate(basis.get("0"));
+            }
+            return (compute(tmp[0])).differentiate(basis.get(tmp[1]));
         }else if(s.contains("in")){
             tmp = s.split("in");
             return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
@@ -187,7 +194,11 @@ public class UI {
             return new Wrench((Vector)compute(tmp[0]),(Vector)compute(tmp[1]));
         }else if(s.contains(",")){
             tmp = s.split(",");
-            return new Vector(tmp[0],tmp[1],tmp[2],basis.get(tmp[3]));
+            return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
+        }else if(s.contains("var")){
+            s = s.replace("var","");
+            Variable.toBeVar.add(s);
+            return new Scalar(s);
         }else {
             return new Scalar(s);
         }

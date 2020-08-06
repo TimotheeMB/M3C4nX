@@ -44,6 +44,11 @@ public class Wrench extends Maob implements Serializable {
         return new Wrench(sum.expressIn(basis),moment.expressIn(basis));
     }
 
+    @Override
+    public Maob differentiate(Basis basis) throws NonSenseException {
+        return new Wrench(sum.differentiate(basis),moment.differentiate(basis));
+    }
+
     public Wrench shift(Vector v) throws  NonSenseException {
         return new Wrench(sum,(Vector)moment.plus(v.cross(sum)));
     }

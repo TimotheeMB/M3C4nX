@@ -34,7 +34,10 @@ public class Scalar extends Maob implements Serializable {
 
     //ADD
     public void add(Term t){
-        if(!t.isNull()) {
+        if(t.isNull()) {
+        }else if(terms.contains(t.opposite())) {
+            terms.remove(t.opposite());
+        }else{
             terms.add(t);
         }
     }
@@ -98,9 +101,12 @@ public class Scalar extends Maob implements Serializable {
     public Scalar differentiate() throws NonSenseException {
         Scalar r = new Scalar();
         for (Term t:terms){
-            r.plus(t.differentiate());
+            r= (Scalar) r.plus(t.differentiate());
         }
         return r;
+    }
+    public Scalar differentiate(Basis useless) throws NonSenseException {
+        return differentiate();
     }
 
     @Override

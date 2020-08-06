@@ -1,4 +1,5 @@
 public class Matrix extends Maob {
+    Scalar A,B,C,D,E,F;
     
 
     @Override
@@ -18,6 +19,11 @@ public class Matrix extends Maob {
 
     @Override
     public Maob expressIn(Basis basis) throws NonSenseException {
+        return null;
+    }
+
+    @Override
+    public Maob differentiate(Basis basis) throws NonSenseException {
         return null;
     }
 }

@@ -9,4 +9,6 @@ public abstract class Maob implements Serializable {
     public abstract Maob minus(Maob b) throws NonSenseException;
 
     public abstract Maob expressIn(Basis basis) throws NonSenseException;
+
+    public abstract Maob differentiate(Basis basis) throws NonSenseException;
 }

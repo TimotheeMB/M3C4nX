@@ -14,6 +14,9 @@ public class Matrix extends Maob {
 
     @Override
     public Maob dot(Maob b) throws NonSenseException {
+        if (b instanceof Vector){
+            Vector v=((Vector)b).expressIn(basis);
+        }
         return null;
     }
 

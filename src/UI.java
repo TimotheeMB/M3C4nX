@@ -82,6 +82,26 @@ public class UI {
                     basis.put(name, new Basis(name, basis.get(namePred), axis, angle));
                     System.out.println("\n                            new basis created");
                     break;
+                case "newmatrix":
+                    System.out.print("name: ");
+                    String nameMatrix = sc.nextLine();
+                    System.out.print("A= ");
+                    Scalar A=new Scalar(sc.nextLine());
+                    System.out.print("B= ");
+                    Scalar B=new Scalar(sc.nextLine());
+                    System.out.print("C= ");
+                    Scalar C=new Scalar(sc.nextLine());
+                    System.out.print("D= ");
+                    Scalar D=new Scalar(sc.nextLine());
+                    System.out.print("E= ");
+                    Scalar E=new Scalar(sc.nextLine());
+                    System.out.print("F= ");
+                    Scalar F=new Scalar(sc.nextLine());
+                    System.out.print("basis: ");
+                    Basis b = basis.get(sc.nextLine());
+                    maobs.put(nameMatrix, new Matrix(A,B,C,D,E,F,b));
+                    System.out.println("\n                            new matrix created");
+                    break;
                 case "list":
                     System.out.println("------------------------ Variables -------------------------------");
                     maobs.forEach((variableName, value) -> System.out.println(variableName + " = " + value));

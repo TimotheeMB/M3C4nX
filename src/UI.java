@@ -20,7 +20,8 @@ public class UI extends JFrame {
         this.setTitle("M3C4nX");
         this.setLocationRelativeTo(null);
         JPanel total = new JPanel();
-        total.setBackground(Color.DARK_GRAY);
+        Color veryDarkGrey = new Color(40,40, 50);
+        total.setBackground(veryDarkGrey);
         this.add(total);
 
         GridBagLayout gblTot = new GridBagLayout();
@@ -29,50 +30,41 @@ public class UI extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.ipady = gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.weightx = 0.8;
-        gbc.weighty = 1;
-        gbc.gridx = 0;
-        gbc.gridy=0;
-        Color veryDarkGrey = new Color(40,40, 50);
-        JPanel commandPan = new JPanel();
-        commandPan.setBackground(veryDarkGrey);
-        total.add(commandPan, gbc);
 
-        GridBagLayout gblCom = new GridBagLayout();
-        commandPan.setLayout(gblCom);
-        gbc.weightx = 0.2;
+
+        gbc.weightx = 0.1;
         gbc.weighty = 0.1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
         gbc.gridy=0;
         JButton helpBut = new JButton("Help");
-        commandPan.add(helpBut, gbc);
+        total.add(helpBut, gbc);
 
         gbc.gridx = 1;
         gbc.gridy= 0;
         JButton quitBut = new JButton("Quit");
-        commandPan.add(quitBut,gbc);
+        total.add(quitBut,gbc);
 
         gbc.gridx = 2;
         gbc.gridy= 0;
         JButton saveBut = new JButton("Save");
-        commandPan.add(saveBut,gbc);
+        total.add(saveBut,gbc);
 
         gbc.gridx = 3;
         gbc.gridy= 0;
         JButton loadBut = new JButton("Load");
-        commandPan.add(loadBut,gbc);
+        total.add(loadBut,gbc);
 
-        gbc.weightx = 1;
+        gbc.weightx = 0.6;
         gbc.weighty = 0.9;
         gbc.gridwidth = 4;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        TextArea terminal = new TextArea();
-        Font f = new Font ("Calibri", Font. BOLD, 16);
+        TextArea terminal = new TextArea(10,1);
         terminal.setForeground(Color.PINK);
         terminal.setBackground(Color.DARK_GRAY);
+        Font f = new Font ("Calibri", Font. BOLD, 16);
         terminal.setFont(f);
         String intro = "";
         intro += "-----------------------------------\n";
@@ -80,29 +72,21 @@ public class UI extends JFrame {
         intro += "-----------------------------------\n";
         intro += "For more info try the command \"help\"";
         terminal.setText(intro);
-        commandPan.add(terminal, gbc);
+        total.add(terminal, gbc);
 
-        gbc.weightx = 0.2;
-        gbc.weighty = 1;
-        gbc.gridx = 1;
-        gbc.gridy =0;
-        JPanel summaryPan = new JPanel();
-        total.add(summaryPan, gbc);
-
-        GridBagLayout gblSum = new GridBagLayout();
-        summaryPan.setLayout(gblSum);
-        gbc.weightx = 0.2;
-        gbc.weighty = 0.2;
+        gbc.weightx = 0.4;
+        gbc.weighty = 0.9;
         gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        TextArea summary = new TextArea();
+        gbc.gridheight = 2;
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        TextArea summary = new TextArea(10,1);
         summary.setEditable(false);
         summary.setFont(f);
         summary.setForeground(Color.CYAN);
         summary.setBackground(Color.GRAY);
         summary.setText ("This will be \n the summary of all the basis,\n variable and stuff you'll use \n during your computation");
-        summaryPan.add(summary,gbc);
+        total.add(summary,gbc);
 
 
 

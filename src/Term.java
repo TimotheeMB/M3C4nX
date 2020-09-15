@@ -45,7 +45,7 @@ public class Term implements Serializable {
     }
 
     //OPERATIONS
-    public Term dot(Term b) {
+    public Term dot(Term two) {
         Term result = new Term();
 
         if (!this.isOne()) {
@@ -53,16 +53,16 @@ public class Term implements Serializable {
                 result.add(v);
             }
         }
-        if (!b.isOne()){
-            for (Element v : b.elements) {
+        if (!two.isOne()){
+            for (Element v : two.elements) {
                 result.add(v);
             }
         }
 
-        if (this.isNull() ||  b.isNull()) {
+        if (this.isNull() ||  two.isNull()) {
             result.zero=true;
         }
-        if(this.positive!=b.positive){
+        if(this.positive!=two.positive){
             result.positive=false;
         }
 

@@ -17,42 +17,42 @@ public class BasisVector implements Serializable {
     }
 
     //ADD
-    public void add(Basis b){
-        basis.add(b);
+    public void add(Basis two){
+        basis.add(two);
     }
 
     //OPERATIONS
-    public Scalar dot(BasisVector b) throws NonSenseException {
-        if(this.equals(b)){
+    public Scalar dot(BasisVector two) throws NonSenseException {
+        if(this.equals(two)){
             return new Scalar("1");
-        }else if (this.sameBasis(b)){
+        }else if (this.sameBasis(two)){
             return new Scalar("0");
         }else{
             throw new NonSenseException();
         }
     }
 
-    public Vector cross(BasisVector b) throws NonSenseException {
-        if(this.equals(b)){
+    public Vector cross(BasisVector two) throws NonSenseException {
+        if(this.equals(two)){
             return new Vector ();
-        }else if (this.sameBasis(b)){
-            Basis bas = basisInCommonWith(b);
+        }else if (this.sameBasis(two)){
+            Basis bas = basisInCommonWith(two);
             if(this.equals(bas.x)){
-                if(b.equals(bas.y)){
+                if(two.equals(bas.y)){
                     return new Vector(new SimpleVector(new Scalar("1"),bas.z));
-                }else if(b.equals(bas.z)){
+                }else if(two.equals(bas.z)){
                     return new Vector(new SimpleVector(new Scalar("1",false),bas.y));
                 }
             }else if (this.equals(bas.y)){
-                if(b.equals(bas.x)){
+                if(two.equals(bas.x)){
                     return new Vector(new SimpleVector(new Scalar("1",false),bas.z));
-                }else if(b.equals(bas.z)){
+                }else if(two.equals(bas.z)){
                     return new Vector(new SimpleVector(new Scalar("1"),bas.x));
                 }
             }else{
-                if(b.equals(bas.x)){
+                if(two.equals(bas.x)){
                     return new Vector(new SimpleVector(new Scalar("1"),bas.y));
-                }else if(b.equals(bas.y)){
+                }else if(two.equals(bas.y)){
                     return new Vector(new SimpleVector(new Scalar("1",false),bas.x));
                 }
             }
@@ -63,10 +63,10 @@ public class BasisVector implements Serializable {
     }
 
     public Vector expressInNeighbor(Basis destination) throws NonSenseException {
-        for (Basis b : basis) {
-            boolean pred = destination.equals(b.predecessor);
-            Variable angle=(pred ? b.angle:destination.angle);
-            if ((destination.x).equals(b.x)) {
+        for (Basis two : basis) {
+            boolean pred = destination.equals(two.predecessor);
+            Variable angle=(pred ? two.angle:destination.angle);
+            if ((destination.x).equals(two.x)) {
                 if (name.equals("y")) {
                     return new Vector(new Scalar("0"), new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), destination);
                 } else if (name.equals("z")) {
@@ -74,7 +74,7 @@ public class BasisVector implements Serializable {
                 } else {
                     return new Vector("1", "0", "0", destination);
                 }
-            } else if ((destination.y).equals(b.y)) {
+            } else if ((destination.y).equals(two.y)) {
                 if (name == "z") {
                     return new Vector(new Scalar(new Sin(angle),pred), new Scalar("0"), new Scalar(new Cos(angle)), destination);
                 } else if (name == "x") {
@@ -82,7 +82,7 @@ public class BasisVector implements Serializable {
                 } else {
                     return new Vector("0", "1", "0", destination);
                 }
-            } else if ((destination.z).equals(b.z)) {
+            } else if ((destination.z).equals(two.z)) {
                 if (name == "x") {
                     return new Vector(new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), new Scalar("0"), destination);
                 } else if (name == "y") {
@@ -139,9 +139,9 @@ public class BasisVector implements Serializable {
     }
 
     //USEFUL
-    public Basis basisInCommonWith(BasisVector b) throws NonSenseException {
+    public Basis basisInCommonWith(BasisVector two) throws NonSenseException {
         for (Basis b1: this.basis) {
-            for (Basis b2: b.basis) {
+            for (Basis b2: two.basis) {
                 if (b1.equals(b2)) return b1;
             }
         }
@@ -166,8 +166,8 @@ public class BasisVector implements Serializable {
         if (!name.equals(that.name)){
             return false;
         }
-        for (Basis b:basis) {
-            if(!that.basis.contains(b)){
+        for (Basis two:basis) {
+            if(!that.basis.contains(two)){
                 return false;
             }
         }
@@ -178,8 +178,8 @@ public class BasisVector implements Serializable {
     //TOSTRING
     public String toString() {
         String r= name;
-        for(Basis b:basis){
-           r+=b.toString();
+        for(Basis two:basis){
+           r+=two.toString();
         }
         return r;
     }

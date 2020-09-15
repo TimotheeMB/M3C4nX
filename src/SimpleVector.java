@@ -13,21 +13,21 @@ public class SimpleVector implements Serializable {
 
 
     //OPERATIONS
-    public Scalar dot(SimpleVector b) throws NonSenseException {
-        Scalar vectorMultiplication=this.basisVector.dot(b.basisVector);
+    public Scalar dot(SimpleVector two) throws NonSenseException {
+        Scalar vectorMultiplication=this.basisVector.dot(two.basisVector);
         if (vectorMultiplication.isOne()) {
-            return  (Scalar) this.expression.dot(b.expression);
+            return  (Scalar) this.expression.dot(two.expression);
         } else if (vectorMultiplication.isNull()) {
             return new Scalar("0");
         }else{
             throw new NonSenseException();
         }
     }
-    public SimpleVector dot(Scalar b) throws NonSenseException {
-        return new SimpleVector((Scalar) expression.dot(b),basisVector);
+    public SimpleVector dot(Scalar two) throws NonSenseException {
+        return new SimpleVector((Scalar) expression.dot(two),basisVector);
     }
-    public Vector cross(SimpleVector b) throws NonSenseException {
-        return (Vector) this.expression.dot(b.expression).dot(this.basisVector.cross(b.basisVector));
+    public Vector cross(SimpleVector two) throws NonSenseException {
+        return (Vector) this.expression.dot(two.expression).dot(this.basisVector.cross(two.basisVector));
     }
 
     public Vector expressIn(Basis destination) throws NonSenseException {
@@ -47,8 +47,8 @@ public class SimpleVector implements Serializable {
     }
 
     //TESTS
-    public boolean sameBasis(SimpleVector b){
-        return this.basisVector.sameBasis(b.basisVector);
+    public boolean sameBasis(SimpleVector two){
+        return this.basisVector.sameBasis(two.basisVector);
     }
     public boolean isNull(){
         return expression.isNull();

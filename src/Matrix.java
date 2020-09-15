@@ -13,11 +13,32 @@ public class Matrix extends Maob {
     }
 
     @Override
-    public Maob dot(Maob b) throws NonSenseException {
-        if (b instanceof Vector){
-            Vector v=((Vector)b).expressIn(basis);
+    public Maob dot(Maob two) throws NonSenseException {
+        if (two instanceof Vector){
+            Vector result=new Vector();
+            Vector v=((Vector)two).expressIn(basis);
+            Scalar a = null,b=null,c=null;
+            for (SimpleVector sv:v.expression) {
+                if(sv.basisVector.equals(basis.x)){
+                    a = sv.expression;
+                }
+                if(sv.basisVector.equals(basis.y)){
+                    b = sv.expression;
+                }
+                if(sv.basisVector.equals(basis.z)){
+                    c = sv.expression;
+                }
+            }
+            Scalar resultX = (Scalar) a.dot(A).minus(b.dot(F)).minus(c.dot(E));
+            Scalar resultY = (Scalar) b.dot(B).minus(a.dot(F)).minus(c.dot(D));
+            Scalar resultZ = (Scalar) c.dot(D).minus(a.dot(E)).minus(b.dot(D));
+            result.add(new SimpleVector(resultX, basis.x));
+            result.add(new SimpleVector(resultY, basis.y));
+            result.add(new SimpleVector(resultZ, basis.z));
+            return result;
+        }else{
+            throw new NonSenseException();
         }
-        return null;
     }
 
     @Override

@@ -10,9 +10,9 @@ public class Wrench extends Maob implements Serializable {
     }
 
     @Override
-    public Maob dot(Maob bt) throws  NonSenseException {
-        if(bt instanceof Scalar){
-            Scalar b = (Scalar) bt;
+    public Maob dot(Maob two) throws  NonSenseException {
+        if(two instanceof Scalar){
+            Scalar b = (Scalar) two;
             return new Wrench((Vector)this.sum.dot(b),(Vector)this.moment.dot(b));
         }else {
             throw new NonSenseException();
@@ -20,9 +20,9 @@ public class Wrench extends Maob implements Serializable {
     }
 
     @Override
-    public Maob plus(Maob bt) throws  NonSenseException {
-        if(bt instanceof Wrench){
-            Wrench b = (Wrench) bt;
+    public Maob plus(Maob two) throws  NonSenseException {
+        if(two instanceof Wrench){
+            Wrench b = (Wrench) two;
             return new Wrench((Vector)this.sum.plus(b.sum),(Vector)this.moment.plus(b.moment));
         }else {
             throw new NonSenseException();
@@ -30,9 +30,9 @@ public class Wrench extends Maob implements Serializable {
     }
 
     @Override
-    public Maob minus(Maob bt) throws  NonSenseException {
-        if(bt instanceof Wrench){
-            Wrench b = (Wrench) bt;
+    public Maob minus(Maob two) throws  NonSenseException {
+        if(two instanceof Wrench){
+            Wrench b = (Wrench) two;
             return new Wrench((Vector)this.sum.minus(b.sum),(Vector)this.moment.minus(b.moment));
         }else {
             throw new NonSenseException();

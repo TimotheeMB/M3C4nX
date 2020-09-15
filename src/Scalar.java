@@ -44,36 +44,36 @@ public class Scalar extends Maob implements Serializable {
 
 
     //OPERATIONS
-    public Maob dot(Maob b) throws NonSenseException {
-        if (b instanceof Scalar) {
+    public Maob dot(Maob two) throws NonSenseException {
+        if (two instanceof Scalar) {
             Scalar result = new Scalar();
             for (Term myTerm : this.terms) {
-                for (Term hisTerm : ((Scalar) b).terms) {
+                for (Term hisTerm : ((Scalar) two).terms) {
                     result.add(myTerm.dot(hisTerm));
                 }
             }
             return result;
 
-        }else if(b instanceof Vector){
-            return b.dot(this);
-        }else if(b instanceof Wrench){
-            return b.dot(this);
+        }else if(two instanceof Vector){
+            return two.dot(this);
+        }else if(two instanceof Wrench){
+            return two.dot(this);
         }else {
             throw new NonSenseException();
         }
     }
 
-    public SimpleVector dot(SimpleVector b) throws NonSenseException {
-        return b.dot(this);
+    public SimpleVector dot(SimpleVector two) throws NonSenseException {
+        return two.dot(this);
     }
 
-    public Maob plus(Maob b) throws NonSenseException {
-        if (b instanceof Scalar){
+    public Maob plus(Maob two) throws NonSenseException {
+        if (two instanceof Scalar){
             Scalar result = new Scalar();
             for (Term t:this.terms) {
                 result.add(t);
             }
-            for (Term t:((Scalar) b).terms) {
+            for (Term t:((Scalar) two).terms) {
                 result.add(t);
             }
             return result;
@@ -82,13 +82,13 @@ public class Scalar extends Maob implements Serializable {
         }
     }
 
-    public Maob minus(Maob b) throws NonSenseException {
-        if (b instanceof Scalar){
+    public Maob minus(Maob two) throws NonSenseException {
+        if (two instanceof Scalar){
             Scalar result = new Scalar();
             for (Term t:this.terms) {
                 result.add(t);
             }
-            for (Term t:((Scalar) b).terms) {
+            for (Term t:((Scalar) two).terms) {
                 t.positive=false;
                 result.add(t);
             }

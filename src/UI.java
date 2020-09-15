@@ -1,9 +1,11 @@
 import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.awt.*;
+import javax.swing.*;
 
 
-public class UI {
+public class UI extends JFrame {
 
     //ATTRIBUTES
     HashMap<String,Maob> maobs = new HashMap<>();
@@ -12,11 +14,83 @@ public class UI {
     Scanner sc = new Scanner(System.in);
 
     public UI () {
+
+        this.setSize(1000,700);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("M3C4nX");
+        this.setLocationRelativeTo(null);
+        JPanel total = new JPanel();
+        Color veryDarkGrey = new Color(40,40, 50);
+        total.setBackground(veryDarkGrey);
+        this.add(total);
+
+        GridBagLayout gblTot = new GridBagLayout();
+        total.setLayout(gblTot);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.ipady = gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+
+        gbc.weightx = 0.1;
+        gbc.weighty = 0.1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.gridx = 0;
+        gbc.gridy=0;
+        JButton helpBut = new JButton("Help");
+        total.add(helpBut, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy= 0;
+        JButton quitBut = new JButton("Quit");
+        total.add(quitBut,gbc);
+
+        gbc.gridx = 2;
+        gbc.gridy= 0;
+        JButton saveBut = new JButton("Save");
+        total.add(saveBut,gbc);
+
+        gbc.gridx = 3;
+        gbc.gridy= 0;
+        JButton loadBut = new JButton("Load");
+        total.add(loadBut,gbc);
+
+        gbc.weightx = 0.6;
+        gbc.weighty = 0.9;
+        gbc.gridwidth = 4;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        TextArea terminal = new TextArea(10,1);
+        terminal.setForeground(Color.PINK);
+        terminal.setBackground(Color.DARK_GRAY);
+        Font f = new Font ("Calibri", Font. BOLD, 16);
+        terminal.setFont(f);
         String intro = "";
         intro += "-----------------------------------\n";
         intro += "|             M3C4n'X             |\n";
         intro += "-----------------------------------\n";
         intro += "For more info try the command \"help\"";
+        terminal.setText(intro);
+        total.add(terminal, gbc);
+
+        gbc.weightx = 0.4;
+        gbc.weighty = 0.9;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 2;
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        TextArea summary = new TextArea(10,1);
+        summary.setEditable(false);
+        summary.setFont(f);
+        summary.setForeground(Color.CYAN);
+        summary.setBackground(Color.GRAY);
+        summary.setText ("This will be \n the summary of all the basis,\n variable and stuff you'll use \n during your computation");
+        total.add(summary,gbc);
+
+
+
+        this.setVisible(true);
 
         String help = "";
         help += "----------------------------------------------------------------------------------------\n";

@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -5,22 +7,23 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class UI extends JFrame {
+public class UI extends JFrame implements KeyListener {
 
     //ATTRIBUTES
     HashMap<String,Maob> maobs = new HashMap<>();
     HashMap<String,Basis> basis = new HashMap<>();
 
     Scanner sc = new Scanner(System.in);
-
+    TextArea terminal;
     public UI () {
 
-        this.setSize(1000,700);
+        //this.addKeyListener(this);
+        this.setSize(1000, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("M3C4nX");
         this.setLocationRelativeTo(null);
         JPanel total = new JPanel();
-        Color veryDarkGrey = new Color(40,40, 50);
+        Color veryDarkGrey = new Color(40, 40, 50);
         total.setBackground(veryDarkGrey);
         this.add(total);
 
@@ -37,42 +40,43 @@ public class UI extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
-        gbc.gridy=0;
+        gbc.gridy = 0;
         JButton helpBut = new JButton("Help");
         total.add(helpBut, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy= 0;
+        gbc.gridy = 0;
         JButton quitBut = new JButton("Quit");
-        total.add(quitBut,gbc);
+        total.add(quitBut, gbc);
 
         gbc.gridx = 2;
-        gbc.gridy= 0;
+        gbc.gridy = 0;
         JButton saveBut = new JButton("Save");
-        total.add(saveBut,gbc);
+        total.add(saveBut, gbc);
 
         gbc.gridx = 3;
-        gbc.gridy= 0;
+        gbc.gridy = 0;
         JButton loadBut = new JButton("Load");
-        total.add(loadBut,gbc);
+        total.add(loadBut, gbc);
 
         gbc.weightx = 0.6;
         gbc.weighty = 0.9;
         gbc.gridwidth = 4;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        TextArea terminal = new TextArea(10,1);
+        terminal = new TextArea(10, 1);
         terminal.setForeground(Color.PINK);
         terminal.setBackground(Color.DARK_GRAY);
-        Font f = new Font ("Calibri", Font. BOLD, 16);
+        Font f = new Font("Calibri", Font.BOLD, 16);
         terminal.setFont(f);
         String intro = "";
         intro += "-----------------------------------\n";
         intro += "|             M3C4n'X             |\n";
         intro += "-----------------------------------\n";
         intro += "For more info try the command \"help\"";
-        terminal.setText(intro);
+        terminal.setText(intro + "\n>>");
         total.add(terminal, gbc);
+        terminal.addKeyListener(this);
 
         gbc.weightx = 0.4;
         gbc.weighty = 0.9;
@@ -80,14 +84,13 @@ public class UI extends JFrame {
         gbc.gridheight = 2;
         gbc.gridx = 4;
         gbc.gridy = 0;
-        TextArea summary = new TextArea(10,1);
+        TextArea summary = new TextArea(10, 1);
         summary.setEditable(false);
         summary.setFont(f);
         summary.setForeground(Color.CYAN);
         summary.setBackground(Color.GRAY);
-        summary.setText ("This will be \n the summary of all the basis,\n variable and stuff you'll use \n during your computation");
-        total.add(summary,gbc);
-
+        summary.setText("This will be \n the summary of all the basis,\n variable and stuff you'll use \n during your computation");
+        total.add(summary, gbc);
 
 
         this.setVisible(true);
@@ -128,21 +131,90 @@ public class UI extends JFrame {
         help += "REMARK: You can use affectation, declaration and operation all together\n";
 
         boolean running = true;
-        basis.put("0",new Basis("0"));
+        basis.put("0", new Basis("0"));
+
+    }
 
 
-        System.out.println(intro);
-        while (running) {
+    public Maob compute(String s) throws NonSenseException {
+        String[] tmp;
+        if (maobs.containsKey(s)) {
+            return maobs.get(s);
+        }else if(s.contains("diff")){
+            tmp = s.split("diff");
+            if(tmp.length==1){
+                return (compute(tmp[0])).differentiate(basis.get("0"));
+            }
+            return (compute(tmp[0])).differentiate(basis.get(tmp[1]));
+        }else if(s.contains("in")){
+            tmp = s.split("in");
+            return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
+        }else if(s.contains("->")){
+            tmp = s.split("->");
+            return ((Wrench) compute(tmp[0])).shift((Vector) compute(tmp[1]));
+        }else if(s.contains("+")) {
+            tmp = s.split("\\+");
+            Maob result = compute(tmp[0]);
+            for (int i = 1; i <tmp.length ; i++) {
+                result=result.plus(compute(tmp[i]));
+            }
+            return result;
+        }else if(s.contains("-")){
+            tmp = s.split("\\-");
+            Maob result = compute(tmp[0]);
+            for (int i = 1; i <tmp.length ; i++) {
+                result=result.minus(compute(tmp[i]));
+            }
+            return result;
+        }else if(s.contains("*")){
+            tmp = s.split("\\*");
+            return ((Vector) compute(tmp[0])).cross((Vector) compute(tmp[1]));
+        }else if(s.contains(".")) {
+            tmp = s.split("\\.");
+            return (compute(tmp[0])).dot(compute(tmp[1]));
+        }else if(s.contains(";")){
+            tmp = s.split(";");
+            return new Wrench((Vector)compute(tmp[0]),(Vector)compute(tmp[1]));
+        }else if(s.contains(",")){
+            tmp = s.split(",");
+            return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
+        }else if(s.contains("var")){
+            s = s.replace("var","");
+            Variable.toBeVar.add(s);
+            return new Scalar(s);
+        }else {
+            return new Scalar(s);
+        }
+    }
 
-            System.out.print(">> ");
-            String input = sc.nextLine().replace(" ", "");
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode()==10){//if Enter
+            String text = terminal.getText();
+            int beginningInput =text.lastIndexOf(">>")+2;
+            String input="";
+            for (int i = beginningInput; i <text.length() ; i++) {
+                input += text.charAt(i);
+            }
+            input=input.replace(" ","");
+            //String input = sc.nextLine().replace(" ", "");
 
             switch (input) {
                 case "quit":
-                    running = false;
+                    //running = false;
                     break;
                 case "help":
-                    System.out.println(help);
+                    //System.out.println(help);
                     break;
                 case "newbasis":
                     System.out.print("name: ");
@@ -198,8 +270,8 @@ public class UI extends JFrame {
                         os.writeObject(basis); // 3
                         os.close();
                         System.out.println("                           saved");
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } catch (Exception e2) {
+                        e2.printStackTrace();
                     }
                     break;
                 case "load":
@@ -213,8 +285,8 @@ public class UI extends JFrame {
                         this.basis = ( HashMap<String,Basis>) ois.readObject();
                         ois.close();
                         System.out.println("                           loaded");
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } catch (Exception e3) {
+                        e3.printStackTrace();
                     }
 
                     break;
@@ -225,12 +297,12 @@ public class UI extends JFrame {
                     }
                     try {
                         Maob result = compute(affectation[1]);
-                        System.out.println(affectation[0] + " = \n");
-                        System.out.println("                           " + result);
+                        terminal.append(affectation[0] + " = \n");
+                        terminal.append("                           " + result);
                         maobs.put(affectation[0], result);
-                    } catch (Exception e) {
+                    } catch (Exception e4) {
                         System.out.println("Sorry I can not compute " + affectation[1] + " :");
-                        String s = e.toString();
+                        String s = e4.toString();
                         if ("java.lang.ArrayIndexOutOfBoundsException: 3".equals(s)) {
                             System.out.println("You have to specify the basis (" + s + ")");
                         } else if ("java.lang.NullPointerException".equals(s)) {
@@ -243,58 +315,7 @@ public class UI extends JFrame {
                     }
                     break;
             }
-        }
-    }
-
-
-    public Maob compute(String s) throws NonSenseException {
-        String[] tmp;
-        if (maobs.containsKey(s)) {
-            return maobs.get(s);
-        }else if(s.contains("diff")){
-            tmp = s.split("diff");
-            if(tmp.length==1){
-                return (compute(tmp[0])).differentiate(basis.get("0"));
-            }
-            return (compute(tmp[0])).differentiate(basis.get(tmp[1]));
-        }else if(s.contains("in")){
-            tmp = s.split("in");
-            return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
-        }else if(s.contains("->")){
-            tmp = s.split("->");
-            return ((Wrench) compute(tmp[0])).shift((Vector) compute(tmp[1]));
-        }else if(s.contains("+")) {
-            tmp = s.split("\\+");
-            Maob result = compute(tmp[0]);
-            for (int i = 1; i <tmp.length ; i++) {
-                result=result.plus(compute(tmp[i]));
-            }
-            return result;
-        }else if(s.contains("-")){
-            tmp = s.split("\\-");
-            Maob result = compute(tmp[0]);
-            for (int i = 1; i <tmp.length ; i++) {
-                result=result.minus(compute(tmp[i]));
-            }
-            return result;
-        }else if(s.contains("*")){
-            tmp = s.split("\\*");
-            return ((Vector) compute(tmp[0])).cross((Vector) compute(tmp[1]));
-        }else if(s.contains(".")) {
-            tmp = s.split("\\.");
-            return (compute(tmp[0])).dot(compute(tmp[1]));
-        }else if(s.contains(";")){
-            tmp = s.split(";");
-            return new Wrench((Vector)compute(tmp[0]),(Vector)compute(tmp[1]));
-        }else if(s.contains(",")){
-            tmp = s.split(",");
-            return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
-        }else if(s.contains("var")){
-            s = s.replace("var","");
-            Variable.toBeVar.add(s);
-            return new Scalar(s);
-        }else {
-            return new Scalar(s);
+            terminal.append(">>");
         }
     }
 }

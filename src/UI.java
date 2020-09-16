@@ -17,7 +17,6 @@ public class UI extends JFrame implements KeyListener {
     TextArea terminal;
     public UI () {
 
-        //this.addKeyListener(this);
         this.setSize(1000, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("M3C4nX");
@@ -207,8 +206,8 @@ public class UI extends JFrame implements KeyListener {
                 input += text.charAt(i);
             }
             input=input.replace(" ","");
-            //String input = sc.nextLine().replace(" ", "");
-
+            input=input.replace("\n","");
+            System.out.println(input);
             switch (input) {
                 case "quit":
                     //running = false;
@@ -315,7 +314,7 @@ public class UI extends JFrame implements KeyListener {
                     }
                     break;
             }
-            terminal.append(">>");
+            terminal.append("\n>>");
         }
     }
 }

@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.awt.*;
 import javax.swing.*;
@@ -22,6 +23,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
     Scanner sc = new Scanner(System.in);
     TextArea terminal;
+    TextArea summary;
+
     public UI () {
 
         this.setSize(1000, 700);
@@ -93,7 +96,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         gbc.gridheight = 2;
         gbc.gridx = 4;
         gbc.gridy = 0;
-        TextArea summary = new TextArea(10, 1);
+        summary = new TextArea(10, 1);
         summary.setEditable(false);
         summary.setFont(f);
         summary.setForeground(Color.CYAN);
@@ -103,7 +106,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         this.setVisible(true);
 
-        String help = "";
+        String help = "\n";
         help += "----------------------------------------------------------------------------------------\n";
         help += "                             # GENERAL DESCRIPTION                                     \n";
         help += "M3C4n'X is the perfect tool for mechanics.\n";
@@ -216,7 +219,6 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             }
             input=input.replace(" ","");
             input=input.replace("\n","");
-            System.out.println(input);
             switch (input) {
                 case "quit":
                     //running = false;
@@ -324,6 +326,25 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                     break;
             }
             terminal.append("\n>>");
+            String sumUp="";
+            sumUp+="------------------------ Variables -------------------------------\n";
+            for (Map.Entry<String, Maob> entry : maobs.entrySet()) {
+                String variableName = entry.getKey();
+                Maob value = entry.getValue();
+                sumUp += variableName + " = " + value+"\n";
+            }
+            sumUp+="------------------------ toBeVar -------------------------------\n";
+            for (String s:Variable.toBeVar) {
+                sumUp+=s+"\n";
+            }
+            sumUp+="-------------------------  Basis  --------------------------------\n";
+            for (Map.Entry<String, Basis> entry : basis.entrySet()) {
+                String basisName = entry.getKey();
+                Basis value = entry.getValue();
+                sumUp += basisName+"\n";
+            }
+            sumUp+="------------------------------------------------------------------\n";
+            summary.setText(sumUp);
         }
     }
 
@@ -331,7 +352,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()== helpBut) {
             String text = terminal.getText();
-            String help = "";
+            String help = "\n";
             help += "----------------------------------------------------------------------------------------\n";
             help += "                             # GENERAL DESCRIPTION                                     \n";
             help += "M3C4n'X is the perfect tool for mechanics.\n";

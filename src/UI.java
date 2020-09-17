@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
@@ -7,11 +9,16 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class UI extends JFrame implements KeyListener {
+public class UI extends JFrame implements KeyListener, ActionListener {
 
     //ATTRIBUTES
     HashMap<String,Maob> maobs = new HashMap<>();
     HashMap<String,Basis> basis = new HashMap<>();
+
+    JButton helpBut;
+    JButton quitBut;
+    JButton saveBut;
+    JButton loadBut;
 
     Scanner sc = new Scanner(System.in);
     TextArea terminal;
@@ -33,30 +40,33 @@ public class UI extends JFrame implements KeyListener {
         gbc.ipady = gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-
         gbc.weightx = 0.1;
         gbc.weighty = 0.1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        JButton helpBut = new JButton("Help");
+        helpBut = new JButton("Help");
         total.add(helpBut, gbc);
+        helpBut.addActionListener(this);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JButton quitBut = new JButton("Quit");
+        quitBut = new JButton("Quit");
         total.add(quitBut, gbc);
+        quitBut.addActionListener(this);
 
         gbc.gridx = 2;
         gbc.gridy = 0;
-        JButton saveBut = new JButton("Save");
+        saveBut = new JButton("Save");
         total.add(saveBut, gbc);
+        saveBut.addActionListener(this);
 
         gbc.gridx = 3;
         gbc.gridy = 0;
-        JButton loadBut = new JButton("Load");
+        loadBut = new JButton("Load");
         total.add(loadBut, gbc);
+        loadBut.addActionListener(this);
 
         gbc.weightx = 0.6;
         gbc.weighty = 0.9;
@@ -71,8 +81,8 @@ public class UI extends JFrame implements KeyListener {
         String intro = "";
         intro += "-----------------------------------\n";
         intro += "|             M3C4n'X             |\n";
-        intro += "-----------------------------------\n";
-        intro += "For more info try the command \"help\"";
+        intro += "-----------------------------------\n\n";
+        intro += "For more info try the command \"help\"\n";
         terminal.setText(intro + "\n>>");
         total.add(terminal, gbc);
         terminal.addKeyListener(this);
@@ -90,7 +100,6 @@ public class UI extends JFrame implements KeyListener {
         summary.setBackground(Color.GRAY);
         summary.setText("This will be \n the summary of all the basis,\n variable and stuff you'll use \n during your computation");
         total.add(summary, gbc);
-
 
         this.setVisible(true);
 
@@ -315,6 +324,50 @@ public class UI extends JFrame implements KeyListener {
                     break;
             }
             terminal.append("\n>>");
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()== helpBut) {
+            String text = terminal.getText();
+            String help = "";
+            help += "----------------------------------------------------------------------------------------\n";
+            help += "                             # GENERAL DESCRIPTION                                     \n";
+            help += "M3C4n'X is the perfect tool for mechanics.\n";
+            help += "You can do things like shift wrenches or inertia matrices, express maobs in any basis.\n";
+            help += "You'll see it's pretty cool...\n";
+            help += "----------------------------------------------------------------------------------------\n";
+            help += "                                  # COMMANDS                                            \n";
+            help += "\n";
+            help += "##SPECIAL COMMANDS\n";
+            help += "¤ help\n";
+            help += "¤ quit\n";
+            help += "¤ list\n";
+            help += "¤ save\n";
+            help += "¤ load\n";
+            help += "\n";
+            help += "##AFFECTATION\n";
+            help += "NameOfTheVariable = Whatever\n";
+            help += "\n";
+            help += "##DECLARATION\n";
+            help += "¤ Scalar:<nameOfScalar>\n";
+            help += "¤ Basis: newbasis (Then follow the instructions)\n";
+            help += "¤ Vector: <coef>,<coef>,<coef>,<basis>\n";
+            help += "¤ Wrench: <vector>;<vector>\n";
+            help += "\n";
+            help += "##OPERATION\n";
+            help += "¤ Plus: +\n";
+            help += "¤ Minus: -\n";
+            help += "¤ Dot product: .\n";
+            help += "¤ Cross product: *\n";
+            help += "¤ Shift: ->\n";
+            help += "¤ Express in a basis: in\n";
+            help += "\n";
+            help += "REMARK: You can use affectation, declaration and operation all together\n";
+
+            text += help;
+            terminal.setText(text);
         }
     }
 }

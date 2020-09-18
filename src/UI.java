@@ -17,7 +17,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     HashMap<String,Basis> basis = new HashMap<>();
 
     JButton helpBut;
-    JButton quitBut;
+    JButton newBasisBut;
     JButton saveBut;
     JButton loadBut;
 
@@ -55,9 +55,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        quitBut = new JButton("Quit");
-        total.add(quitBut, gbc);
-        quitBut.addActionListener(this);
+        newBasisBut = new JButton("New Basis");
+        total.add(newBasisBut, gbc);
+        newBasisBut.addActionListener(this);
 
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -101,48 +101,12 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         summary.setFont(f);
         summary.setForeground(Color.CYAN);
         summary.setBackground(Color.GRAY);
-        summary.setText("This will be \n the summary of all the basis,\n variable and stuff you'll use \n during your computation");
         total.add(summary, gbc);
 
         this.setVisible(true);
-
-        String help = "\n";
-        help += "----------------------------------------------------------------------------------------\n";
-        help += "                             # GENERAL DESCRIPTION                                     \n";
-        help += "M3C4n'X is the perfect tool for mechanics.\n";
-        help += "You can do things like shift wrenches or inertia matrices, express maobs in any basis.\n";
-        help += "You'll see it's pretty cool...\n";
-        help += "----------------------------------------------------------------------------------------\n";
-        help += "                                  # COMMANDS                                            \n";
-        help += "\n";
-        help += "##SPECIAL COMMANDS\n";
-        help += "¤ help\n";
-        help += "¤ quit\n";
-        help += "¤ list\n";
-        help += "¤ save\n";
-        help += "¤ load\n";
-        help += "\n";
-        help += "##AFFECTATION\n";
-        help += "NameOfTheVariable = Whatever\n";
-        help += "\n";
-        help += "##DECLARATION\n";
-        help += "¤ Scalar:<nameOfScalar>\n";
-        help += "¤ Basis: newbasis (Then follow the instructions)\n";
-        help += "¤ Vector: <coef>,<coef>,<coef>,<basis>\n";
-        help += "¤ Wrench: <vector>;<vector>\n";
-        help += "\n";
-        help += "##OPERATION\n";
-        help += "¤ Plus: +\n";
-        help += "¤ Minus: -\n";
-        help += "¤ Dot product: .\n";
-        help += "¤ Cross product: *\n";
-        help += "¤ Shift: ->\n";
-        help += "¤ Express in a basis: in\n";
-        help += "\n";
-        help += "REMARK: You can use affectation, declaration and operation all together\n";
-
         boolean running = true;
         basis.put("0", new Basis("0"));
+        refreshSummery();
 
     }
 
@@ -219,132 +183,30 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             }
             input=input.replace(" ","");
             input=input.replace("\n","");
-            switch (input) {
-                case "quit":
-                    //running = false;
-                    break;
-                case "help":
-                    //System.out.println(help);
-                    break;
-                case "newbasis":
-                    System.out.print("name: ");
-                    String name = sc.nextLine();
-                    System.out.print("name predecessor: ");
-                    String namePred = sc.nextLine();
-                    System.out.print("axis: ");
-                    String axis = sc.nextLine();
-                    System.out.print("angle: ");
-                    String angle = sc.nextLine();
-                    basis.put(name, new Basis(name, basis.get(namePred), axis, angle));
-                    System.out.println("\n                            new basis created");
-                    break;
-                case "newmatrix":
-                    System.out.print("name: ");
-                    String nameMatrix = sc.nextLine();
-                    System.out.print("A= ");
-                    Scalar A=new Scalar(sc.nextLine());
-                    System.out.print("B= ");
-                    Scalar B=new Scalar(sc.nextLine());
-                    System.out.print("C= ");
-                    Scalar C=new Scalar(sc.nextLine());
-                    System.out.print("D= ");
-                    Scalar D=new Scalar(sc.nextLine());
-                    System.out.print("E= ");
-                    Scalar E=new Scalar(sc.nextLine());
-                    System.out.print("F= ");
-                    Scalar F=new Scalar(sc.nextLine());
-                    System.out.print("basis: ");
-                    Basis b = basis.get(sc.nextLine());
-                    maobs.put(nameMatrix, new Matrix(A,B,C,D,E,F,b));
-                    System.out.println("\n                            new matrix created");
-                    break;
-                case "list":
-                    System.out.println("------------------------ Variables -------------------------------");
-                    maobs.forEach((variableName, value) -> System.out.println(variableName + " = " + value));
-                    System.out.println("------------------------ toBeVar -------------------------------");
-                    for (String s:Variable.toBeVar) {
-                        System.out.println(s);
-                    }
-                    System.out.println("-------------------------  Basis  --------------------------------");
-                    basis.forEach((basisName,basis)->System.out.println(basisName));
-                    System.out.println("------------------------------------------------------------------");
-                    break;
-                case "save":
-                    try {
-                        FileOutputStream fs = new FileOutputStream("variables.ser");
-                        ObjectOutputStream os = new ObjectOutputStream(fs);
-                        os.writeObject(maobs); // 3
-                        os.close();
-                        fs = new FileOutputStream("basis.ser");
-                        os = new ObjectOutputStream(fs);
-                        os.writeObject(basis); // 3
-                        os.close();
-                        System.out.println("                           saved");
-                    } catch (Exception e2) {
-                        e2.printStackTrace();
-                    }
-                    break;
-                case "load":
-                    try {
-                        FileInputStream fis = new FileInputStream("variables.ser");
-                        ObjectInputStream ois = new ObjectInputStream(fis);
-                        this.maobs = ( HashMap<String,Maob>) ois.readObject();
-                        ois.close();
-                        fis = new FileInputStream("basis.ser");
-                        ois = new ObjectInputStream(fis);
-                        this.basis = ( HashMap<String,Basis>) ois.readObject();
-                        ois.close();
-                        System.out.println("                           loaded");
-                    } catch (Exception e3) {
-                        e3.printStackTrace();
-                    }
-
-                    break;
-                default:
-                    String[] affectation = input.split("=");
-                    if (affectation.length == 1) {
-                        affectation = new String[]{"ans", affectation[0]};
-                    }
-                    try {
-                        Maob result = compute(affectation[1]);
-                        terminal.append(affectation[0] + " = \n");
-                        terminal.append("                           " + result);
-                        maobs.put(affectation[0], result);
-                    } catch (Exception e4) {
-                        System.out.println("Sorry I can not compute " + affectation[1] + " :");
-                        String s = e4.toString();
-                        if ("java.lang.ArrayIndexOutOfBoundsException: 3".equals(s)) {
-                            System.out.println("You have to specify the basis (" + s + ")");
-                        } else if ("java.lang.NullPointerException".equals(s)) {
-                            System.out.println("This basis does not exist (" + s + ")");
-                        } else if ("NonSenseException".equals(s)) {
-                            System.out.println("This doesn't mean anything (" + s + ")");
-                        } else {
-                            System.out.println(e.toString());
-                        }
-                    }
-                    break;
+            String[] affectation = input.split("=");
+            if (affectation.length == 1) {
+                affectation = new String[]{"ans", affectation[0]};
+            }
+            try {
+                Maob result = compute(affectation[1]);
+                terminal.append(affectation[0] + " = \n");
+                terminal.append("                           " + result);
+                maobs.put(affectation[0], result);
+            } catch (Exception e4) {
+                System.out.println("Sorry I can not compute " + affectation[1] + " :");
+                String s = e4.toString();
+                if ("java.lang.ArrayIndexOutOfBoundsException: 3".equals(s)) {
+                    System.out.println("You have to specify the basis (" + s + ")");
+                } else if ("java.lang.NullPointerException".equals(s)) {
+                    System.out.println("This basis does not exist (" + s + ")");
+                } else if ("NonSenseException".equals(s)) {
+                    System.out.println("This doesn't mean anything (" + s + ")");
+                } else {
+                    System.out.println(e.toString());
+                }
             }
             terminal.append("\n>>");
-            String sumUp="";
-            sumUp+="------------------------ Variables -------------------------------\n";
-            for (Map.Entry<String, Maob> entry : maobs.entrySet()) {
-                String variableName = entry.getKey();
-                Maob value = entry.getValue();
-                sumUp += variableName + " = " + value+"\n";
-            }
-            sumUp+="------------------------ toBeVar -------------------------------\n";
-            for (String s:Variable.toBeVar) {
-                sumUp+=s+"\n";
-            }
-            sumUp+="-------------------------  Basis  --------------------------------\n";
-            for (Map.Entry<String, Basis> entry : basis.entrySet()) {
-                String basisName = entry.getKey();
-                Basis value = entry.getValue();
-                sumUp += basisName+"\n";
-            }
-            sumUp+="------------------------------------------------------------------\n";
-            summary.setText(sumUp);
+            refreshSummery();
         }
     }
 
@@ -389,6 +251,58 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
             text += help;
             terminal.setText(text);
+        } else if( e.getSource()==saveBut){
+            try {
+                FileOutputStream fs = new FileOutputStream("variables.ser");
+                ObjectOutputStream os = new ObjectOutputStream(fs);
+                os.writeObject(maobs); // 3
+                os.close();
+                fs = new FileOutputStream("basis.ser");
+                os = new ObjectOutputStream(fs);
+                os.writeObject(basis); // 3
+                os.close();
+                terminal.append("\n                           saved\n>>");
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        } else if(e.getSource()==loadBut){
+            try {
+                FileInputStream fis = new FileInputStream("variables.ser");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                this.maobs = ( HashMap<String,Maob>) ois.readObject();
+                ois.close();
+                fis = new FileInputStream("basis.ser");
+                ois = new ObjectInputStream(fis);
+                this.basis = ( HashMap<String,Basis>) ois.readObject();
+                ois.close();
+                terminal.append("\n                           loaded\n>>");
+                refreshSummery();
+            } catch (Exception e3) {
+                e3.printStackTrace();
+            }
+
         }
+    }
+
+    void refreshSummery(){
+        String sumUp="";
+        sumUp+="------------------------ Variables -------------------------------\n";
+        for (Map.Entry<String, Maob> entry : maobs.entrySet()) {
+            String variableName = entry.getKey();
+            Maob value = entry.getValue();
+            sumUp += variableName + " = " + value+"\n";
+        }
+        sumUp+="------------------------ toBeVar -------------------------------\n";
+        for (String s:Variable.toBeVar) {
+            sumUp+=s+"\n";
+        }
+        sumUp+="-------------------------  Basis  --------------------------------\n";
+        for (Map.Entry<String, Basis> entry : basis.entrySet()) {
+            String basisName = entry.getKey();
+            Basis value = entry.getValue();
+            sumUp += basisName+"\n";
+        }
+        sumUp+="------------------------------------------------------------------\n";
+        summary.setText(sumUp);
     }
 }

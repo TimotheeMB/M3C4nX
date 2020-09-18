@@ -155,8 +155,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
         }else if(s.contains("var")){
             s = s.replace("var","");
-            Variable.toBeVar.add(s);
-            return new Scalar(s);
+            return new Scalar(new Term(new Variable(s,false)));
         }else {
             return new Scalar(s);
         }

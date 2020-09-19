@@ -76,17 +76,12 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         gbc.gridwidth = 4;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        terminal = new TextArea(10, 1);
+        terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
         terminal.setForeground(Color.PINK);
         terminal.setBackground(Color.DARK_GRAY);
         Font f = new Font("Calibri", Font.BOLD, 16);
         terminal.setFont(f);
-        String intro = "";
-        intro += "-----------------------------------\n";
-        intro += "|             M3C4n'X             |\n";
-        intro += "-----------------------------------\n\n";
-        intro += "For more info try the command \"help\"\n";
-        terminal.setText(intro + "\n>>");
+        terminal.setText(">>");
         total.add(terminal, gbc);
         terminal.addKeyListener(this);
 
@@ -96,11 +91,11 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         gbc.gridheight = 2;
         gbc.gridx = 4;
         gbc.gridy = 0;
-        summary = new TextArea(10, 1);
+        summary = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
         summary.setEditable(false);
         summary.setFont(f);
         summary.setForeground(Color.CYAN);
-        summary.setBackground(Color.GRAY);
+        summary.setBackground(Color.DARK_GRAY);
         total.add(summary, gbc);
 
         this.setVisible(true);
@@ -287,23 +282,22 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
     void refreshSummery(){
         String sumUp="";
-        sumUp+="------------------------ Variables -------------------------------\n";
+        sumUp+="            ===OBJECTS===\n";
         for (Map.Entry<String, Maob> entry : maobs.entrySet()) {
             String variableName = entry.getKey();
             Maob value = entry.getValue();
             sumUp += variableName + " = " + value+"\n";
         }
-        sumUp+="------------------------ toBeVar -------------------------------\n";
+        sumUp+="\n\n          ===VARIABLES===\n";
         for (String s:Variable.toBeVar) {
             sumUp+=s+"\n";
         }
-        sumUp+="-------------------------  Basis  --------------------------------\n";
+        sumUp+="\n\n              ===BASIS===\n";
         for (Map.Entry<String, Basis> entry : basis.entrySet()) {
             String basisName = entry.getKey();
             Basis value = entry.getValue();
             sumUp += basisName+"\n";
         }
-        sumUp+="------------------------------------------------------------------\n";
         summary.setText(sumUp);
     }
 }

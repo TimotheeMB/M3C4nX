@@ -29,7 +29,7 @@ public class Term implements Serializable {
         this();
         if(s.equals("1")){
             one=true;
-        }else if(s.equals("0")) {
+        }else if(s.equals("0")||s.equals("")) {
             zero = true;
         }
         elements.add(new Variable(s));

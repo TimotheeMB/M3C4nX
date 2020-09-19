@@ -29,7 +29,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         this.setSize(1000, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("M3C4nX");
+        this.setTitle("M3C4n'X");
         this.setLocationRelativeTo(null);
         JPanel total = new JPanel();
         Color veryDarkGrey = new Color(40, 40, 50);
@@ -216,14 +216,6 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             help += "You'll see it's pretty cool...\n";
             help += "----------------------------------------------------------------------------------------\n";
             help += "                                  # COMMANDS                                            \n";
-            help += "\n";
-            help += "##SPECIAL COMMANDS\n";
-            help += "¤ help\n";
-            help += "¤ quit\n";
-            help += "¤ list\n";
-            help += "¤ save\n";
-            help += "¤ load\n";
-            help += "\n";
             help += "##AFFECTATION\n";
             help += "NameOfTheVariable = Whatever\n";
             help += "\n";

@@ -18,6 +18,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
     JButton helpBut;
     JButton newBasisBut;
+    JButton newMatrixBut;
+    JButton variablesBut;
     JButton saveBut;
     JButton loadBut;
 
@@ -43,7 +45,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         gbc.ipady = gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        gbc.weightx = 0.1;
+        gbc.weightx = 0.05;
         gbc.weighty = 0.1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
@@ -61,11 +63,23 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         gbc.gridx = 2;
         gbc.gridy = 0;
+        newMatrixBut = new JButton("New Matrix");
+        total.add(newMatrixBut, gbc);
+        newMatrixBut.addActionListener(this);
+
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        variablesBut = new JButton("Variables");
+        total.add(variablesBut, gbc);
+        variablesBut.addActionListener(this);
+
+        gbc.gridx = 4;
+        gbc.gridy = 0;
         saveBut = new JButton("Save");
         total.add(saveBut, gbc);
         saveBut.addActionListener(this);
 
-        gbc.gridx = 3;
+        gbc.gridx = 5;
         gbc.gridy = 0;
         loadBut = new JButton("Load");
         total.add(loadBut, gbc);
@@ -73,7 +87,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         gbc.weightx = 0.6;
         gbc.weighty = 0.9;
-        gbc.gridwidth = 4;
+        gbc.gridwidth = 6;
         gbc.gridx = 0;
         gbc.gridy = 1;
         terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
@@ -89,7 +103,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         gbc.weighty = 0.9;
         gbc.gridwidth = 1;
         gbc.gridheight = 2;
-        gbc.gridx = 4;
+        gbc.gridx = 6;
         gbc.gridy = 0;
         summary = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
         summary.setEditable(false);

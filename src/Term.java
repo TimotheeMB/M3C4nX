@@ -25,18 +25,19 @@ public class Term implements Serializable {
     public Term(Element e){
         this(e,true);
     }
-    public Term(String s){
+
+    public Term(String s, boolean positive, boolean constant){
         this();
         if(s.equals("1")){
             one=true;
-        }else if(s.equals("0")||s.equals("")) {
+        }else if(s.equals("0")) {
             zero = true;
         }
-        elements.add(new Variable(s));
-    }
-    public Term(String s, boolean positive){
-        this(s);
+        elements.add(new Variable(s,constant));
         this.positive=positive;
+    }
+    public Term(String s) {
+        this(s,true,true);
     }
 
     //ADD

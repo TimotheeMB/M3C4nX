@@ -129,11 +129,11 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 result=result.plus(compute(tmp[i]));
             }
             return result;
-        }else if(s.contains("-")){
-            tmp = s.split("\\-");
+        }else if(s.contains("~")){ //Minus the operation
+            tmp = s.split("~");
             Maob result = compute(tmp[0]);
-            for (int i = 1; i <tmp.length ; i++) {
-                result=result.minus(compute(tmp[i]));
+            for (int i = 1; i < tmp.length; i++) {
+                result = result.minus(compute(tmp[i]));
             }
             return result;
         }else if(s.contains("*")){
@@ -150,9 +150,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
         }else if(s.contains("var")){
             s = s.replace("var","");
-            return new Scalar(new Term(new Variable(s,false)));
+            return new Scalar(s.replace("-",""),!s.contains("-"),false);
         }else {
-            return new Scalar(s);
+            return new Scalar(s.replace("-",""),!s.contains("-"));
         }
     }
 
@@ -177,11 +177,28 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             }
             input=input.replace(" ","");
             input=input.replace("\n","");
+            input=input.replace("\r","");
+
             String[] affectation = input.split("=");
+
+
             if (affectation.length == 1) {
                 affectation = new String[]{"ans", affectation[0]};
             }
             try {
+                char[] tmpArray = affectation[1].toCharArray();
+                for (int i = 1; i < tmpArray.length; i++) {
+                    if(i<3) {
+                        if (tmpArray[i] == '-' && tmpArray[i-1] != ',') {
+                            tmpArray[i]='~';
+                        }
+                    }else{
+                        if (tmpArray[i] == '-' && tmpArray[i-1] != ',' && (tmpArray[i-3]!='v' || tmpArray[i-3]!='a' || tmpArray[i-3]!='r')) {
+                            tmpArray[i]='~';
+                        }
+                    }
+                }
+                affectation[1]=new String(tmpArray);
                 Maob result = compute(affectation[1]);
                 terminal.append(affectation[0] + " = \n");
                 terminal.append("                           " + result);

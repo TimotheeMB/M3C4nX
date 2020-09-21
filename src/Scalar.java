@@ -19,12 +19,15 @@ public class Scalar extends Maob implements Serializable {
         this();
         add(new Term(f,positive));
     }
-    public Scalar(String s, boolean positive){
+    public Scalar(String s, boolean positive, boolean constant){
         this();
-        add(new Term(s,positive));
+        add(new Term(s,positive,constant));
+    }
+    public Scalar(String s,boolean positive){
+        this(s, positive,true);
     }
     public Scalar(String s){
-        this(s, true);
+        this(s, true,true);
     }
 
     public Scalar(Term t) {
@@ -89,7 +92,7 @@ public class Scalar extends Maob implements Serializable {
                 result.add(t);
             }
             for (Term t:((Scalar) two).terms) {
-                t.positive=false;
+                t.positive=!t.positive;
                 result.add(t);
             }
             return result;

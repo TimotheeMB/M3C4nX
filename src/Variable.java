@@ -14,10 +14,10 @@ public class Variable extends Element implements Serializable {
 
     public Variable(String value, Boolean constant) {
         this.value = value;
+        this.constant = constant;
         if(!constant) {
             toBeVar.add(value);
         }
-        this.constant = constant;
     }
     public Variable(String value){
         this(value,!toBeVar.contains(value));

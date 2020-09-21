@@ -7,6 +7,7 @@ public class NewBasisWindow extends JFrame implements ActionListener {
     UI ui;
 
     public NewBasisWindow(UI ui) {
+        this.setResizable(false);
         this.setTitle("New Basis");
         this.nbp = new NewBasisPanel(ui,this);
         this.ui=ui;

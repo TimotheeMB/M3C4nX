@@ -11,6 +11,9 @@ public class Matrix extends Maob {
         F = f;
         this.basis = basis;
     }
+    public Matrix(String a, String b, String c, String d, String e, String f, Basis basis){
+        this(new Scalar ( a), new Scalar ( b), new Scalar ( c), new Scalar ( d), new Scalar ( e), new Scalar ( f), basis);
+    }
 
     @Override
     public Maob dot(Maob two) throws NonSenseException {

@@ -3,15 +3,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NewBasisWindow extends JFrame implements ActionListener {
-    NewBasisPanel nbp;
+    NewBasisPanel panel;
     UI ui;
 
     public NewBasisWindow(UI ui) {
         this.setResizable(false);
         this.setTitle("New Basis");
-        this.nbp = new NewBasisPanel(ui,this);
+        this.panel = new NewBasisPanel(ui,this);
         this.ui=ui;
-        this.getContentPane().add(nbp);
+        this.getContentPane().add(panel);
         this.pack();
         this.setVisible(true);
     }
@@ -19,14 +19,14 @@ public class NewBasisWindow extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==nbp.OK){
+        if(e.getSource()== panel.OK){
             String axis="x";
-            if(nbp.y.isSelected()){
+            if(panel.y.isSelected()){
                 axis="y";
-            }else if(nbp.z.isSelected()){
+            }else if(panel.z.isSelected()){
                 axis="z";
             }
-            ui.basis.put(nbp.name.getText(),new Basis(nbp.name.getText(),ui.basis.get(nbp.predecessor.getSelectedItem()),axis,nbp.angle.getText()));
+            ui.basis.put(panel.name.getText(),new Basis(panel.name.getText(),ui.basis.get(panel.predecessor.getSelectedItem()),axis, panel.angle.getText()));
             ui.refreshSummery();
             this.setVisible(false);
         }

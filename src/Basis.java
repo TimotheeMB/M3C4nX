@@ -32,7 +32,7 @@ public class Basis implements Serializable  {
         this.name = name;
         this.predecessor= predecessor;
         predecessor.successors.add(this);
-        this.angle=new Variable(angle,false);
+        this.angle=new Variable(angle);
         switch (axisInCommon) {
             case "x":
                 x = predecessor.x;

@@ -301,6 +301,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             new NewBasisWindow(this);
         }else if(e.getSource()==newMatrixBut){
             new NewMatrixWindow(this);
+        }else if(e.getSource()==variablesBut){
+            new VariablesWindow(this);
         }
     }
 

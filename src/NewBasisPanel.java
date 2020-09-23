@@ -2,7 +2,6 @@
 //Home Page http://guigenie.cjb.net - Check often for new versions!
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Map;
 import javax.swing.*;
 
@@ -22,7 +21,7 @@ public class NewBasisPanel extends JPanel{
 
     static int nameByDefault=1;
 
-    public NewBasisPanel(UI ui,NewBasisWindow nbw) {
+    public NewBasisPanel(UI ui,NewBasisWindow window) {
         this.ui=ui;
 
         //construct components
@@ -45,7 +44,7 @@ public class NewBasisPanel extends JPanel{
         jcomp9 = new JLabel (" Angle");
         angle = new JTextField (5);
         OK = new JButton ("OK");
-        OK.addActionListener(nbw);
+        OK.addActionListener(window);
 
         //adjust size and set layout
         setPreferredSize (new Dimension (379, 231));

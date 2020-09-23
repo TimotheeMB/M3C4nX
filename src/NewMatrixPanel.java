@@ -22,7 +22,7 @@ public class NewMatrixPanel extends JPanel {
     public JButton OK;
     UI ui;
 
-    public NewMatrixPanel(UI ui,NewMatrixWindow nmw) {
+    public NewMatrixPanel(UI ui,NewMatrixWindow window) {
         this.ui =ui;
 
         //construct preComponents
@@ -50,7 +50,7 @@ public class NewMatrixPanel extends JPanel {
         Ebis = new JLabel ("- E");
         Dbis = new JLabel ("- D");
         OK = new JButton ("OK");
-        OK.addActionListener(nmw);
+        OK.addActionListener(window);
         //adjust size and set layout
         setPreferredSize (new Dimension (307, 302));
         setLayout (null);

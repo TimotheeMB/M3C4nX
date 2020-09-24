@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     //ATTRIBUTES
     HashMap<String,Maob> maobs = new HashMap<>();
     HashMap<String,Basis> basis = new HashMap<>();
+    static LinkedList<String> toBeVar=new LinkedList<>();
 
     JButton helpBut;
     JButton newBasisBut;
@@ -164,7 +166,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
         }else if(s.contains("var")){
             s = s.replace("var","");
-            return new Scalar(s.replace("-",""),!s.contains("-"),false);
+            addVar(s);
+            return new Scalar(s.replace("-",""),!s.contains("-"));
         }else {
             return new Scalar(s.replace("-",""),!s.contains("-"));
         }
@@ -263,6 +266,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             help += "¤ Cross product: *\n";
             help += "¤ Shift: ->\n";
             help += "¤ Express in a basis: in\n";
+            help += "¤ Differentiate with respect to: diff\n";
             help += "\n";
             help += "REMARK: You can use affectation, declaration and operation all together\n";
 
@@ -278,6 +282,10 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 os = new ObjectOutputStream(fs);
                 os.writeObject(basis); // 3
                 os.close();
+                fs = new FileOutputStream("var.ser");
+                os = new ObjectOutputStream(fs);
+                os.writeObject(toBeVar); // 3
+                os.close();
                 terminal.append("\n                           saved\n>>");
             } catch (Exception e2) {
                 e2.printStackTrace();
@@ -291,6 +299,10 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 fis = new FileInputStream("basis.ser");
                 ois = new ObjectInputStream(fis);
                 this.basis = ( HashMap<String,Basis>) ois.readObject();
+                ois.close();
+                fis = new FileInputStream("var.ser");
+                ois = new ObjectInputStream(fis);
+                this.toBeVar = (LinkedList<String>) ois.readObject();
                 ois.close();
                 terminal.append("\n                           loaded\n>>");
                 refreshSummery();
@@ -315,7 +327,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             sumUp += variableName + " = " + value+"\n";
         }
         sumUp+="\n\n          ===VARIABLES===\n";
-        for (String s:Variable.toBeVar) {
+        for (String s:toBeVar) {
             sumUp+=s+"\n";
         }
         sumUp+="\n\n              ===BASIS===\n";
@@ -325,5 +337,11 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             sumUp += basisName+"\n";
         }
         summary.setText(sumUp);
+    }
+
+    static void addVar(String name){
+        if(!toBeVar.contains(name)){
+            toBeVar.add(name);
+        }
     }
 }

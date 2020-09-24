@@ -16,28 +16,29 @@ public class Term implements Serializable {
         positive =true;
         one=false;
         zero=false;
-    }
+    }//default
+
     public Term(Element e, boolean positive){
         this();
         this.positive = positive;
         elements.add(e);
-    }
+    }//simple
     public Term(Element e){
         this(e,true);
     }
 
-    public Term(String s, boolean positive, boolean constant){
+    public Term(String s, boolean positive){
         this();
         if(s.equals("1")){
             one=true;
         }else if(s.equals("0")) {
             zero = true;
         }
-        elements.add(new Variable(s,constant));
+        elements.add(new Variable(s));
         this.positive=positive;
-    }
+    }//useful
     public Term(String s) {
-        this(s,true,true);
+        this(s,true);
     }
 
     //ADD

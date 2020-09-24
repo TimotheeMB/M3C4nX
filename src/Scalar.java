@@ -11,29 +11,29 @@ public class Scalar extends Maob implements Serializable {
     public Scalar() {
         terms=new LinkedList<Term>();
 
-    }
-    public Scalar(Function f){
-        this(f,true);
-    }
-    public Scalar(Function f, boolean positive){
-        this();
-        add(new Term(f,positive));
-    }
-    public Scalar(String s, boolean positive, boolean constant){
-        this();
-        add(new Term(s,positive,constant));
-    }
-    public Scalar(String s,boolean positive){
-        this(s, positive,true);
-    }
-    public Scalar(String s){
-        this(s, true,true);
-    }
+    }//default
 
     public Scalar(Term t) {
         this();
         add(t);
+    }//simple
+
+    public Scalar(Function f, boolean positive){
+        this();
+        add(new Term(f,positive));
+    }//useful
+    public Scalar(Function f){
+        this(f,true);
     }
+
+    public Scalar(String s, boolean positive){
+        this();
+        add(new Term(s,positive));
+    }//best
+    public Scalar(String s){
+        this(s, true);
+    }
+
 
     //ADD
     public void add(Term t){
@@ -65,7 +65,6 @@ public class Scalar extends Maob implements Serializable {
             throw new NonSenseException();
         }
     }
-
     public SimpleVector dot(SimpleVector two) throws NonSenseException {
         return two.dot(this);
     }
@@ -100,6 +99,7 @@ public class Scalar extends Maob implements Serializable {
             throw new NonSenseException();
         }
     }
+
 
     public Scalar differentiate() throws NonSenseException {
         Scalar r = new Scalar();

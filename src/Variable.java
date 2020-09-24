@@ -1,36 +1,28 @@
 import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.Objects;
 
 public class Variable extends Element implements Serializable {
 
-    static LinkedList<String> toBeVar=new LinkedList<>();
-
     //ATTRIBUTES
     String value;
-    Boolean constant;
+    Boolean variable;
 
     //CONSTRUCTORS
-
-    public Variable(String value, Boolean constant) {
+    public Variable(String value) {
         this.value = value;
-        this.constant = constant;
-        if(!constant) {
-            toBeVar.add(value);
-        }
-    }
-    public Variable(String value){
-        this(value,!toBeVar.contains(value));
+        this.variable = UI.toBeVar.contains(value);
     }
 
 
     public Scalar differentiate(){
-        if(constant){
+        if(!variable){
             return new Scalar("0");
         }else{
             Scalar s =new Scalar();
             Term t= new Term();
-            Variable v=new Variable(value+"dot",false);
+            String nameDerivative = value+"dot";
+            UI.addVar(nameDerivative);
+            Variable v=new Variable(nameDerivative);
             t.add(v);
             s.add(t);
             return s;
@@ -48,7 +40,7 @@ public class Variable extends Element implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Variable variable = (Variable) o;
         return Objects.equals(value, variable.value) &&
-                Objects.equals(constant, variable.constant);
+                Objects.equals(this.variable, variable.variable);
     }
 
 }

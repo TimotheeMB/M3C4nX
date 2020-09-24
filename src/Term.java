@@ -23,9 +23,6 @@ public class Term implements Serializable {
         this.positive = positive;
         elements.add(e);
     }//simple
-    public Term(Element e){
-        this(e,true);
-    }
 
     public Term(String s, boolean positive){
         this();
@@ -37,9 +34,7 @@ public class Term implements Serializable {
         elements.add(new Variable(s));
         this.positive=positive;
     }//useful
-    public Term(String s) {
-        this(s,true);
-    }
+
 
     //ADD
     public void add(Element e){

@@ -135,8 +135,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         }else if(s.contains("in")){
             tmp = s.split("in");
             return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
-        }else if(s.contains("->")){
-            tmp = s.split("->");
+        }else if(s.contains("~>")){
+            tmp = s.split("~>");
             return ((Wrench) compute(tmp[0])).shift((Vector) compute(tmp[1]));
         }else if(s.contains("+")) {
             tmp = s.split("\\+");

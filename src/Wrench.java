@@ -50,7 +50,7 @@ public class Wrench extends Maob implements Serializable {
     }
 
     public Wrench shift(Vector v) throws  NonSenseException {
-        return new Wrench(sum,(Vector)moment.plus(v.cross(sum)));
+        return new Wrench(sum,(Vector)moment.plus(sum.cross(v)));
     }
 
     @Override

@@ -19,7 +19,7 @@ public class VariablesWindow extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==panel.OK){
             for( String name: panel.variables.getText().replace(" ","").split(",")){
-                ui.toBeVar.add(name);
+                ui.addVar(name);
             }
             ui.refreshSummery();
             this.setVisible(false);

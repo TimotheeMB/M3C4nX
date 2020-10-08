@@ -11,6 +11,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
+
 public class UI extends JFrame implements KeyListener, ActionListener {
 
     //ATTRIBUTES
@@ -26,7 +27,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     JButton loadBut;
 
     Scanner sc = new Scanner(System.in);
-    TextArea terminal;
+    public static TextArea terminal;
     TextArea summary;
 
     public UI () {
@@ -164,12 +165,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         }else if(s.contains(",")){
             tmp = s.split(",");
             return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
-        }else if(s.contains("var")){
-            s = s.replace("var","");
-            addVar(s);
-            return new Scalar(s.replace("~",""),!s.contains("~"));
         }else {
-            return new Scalar(s.replace("~",""),!s.contains("~"));
+            return new Scalar(s.replace("~",""),!s.contains("~")); // minus the sign
         }
     }
 
@@ -204,15 +201,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             }
             try {
                 char[] tmpArray = affectation[1].toCharArray();
-                for (int i = 1; i < tmpArray.length; i++) {
-                    if(i<3) {
-                        if (tmpArray[i] == '-' && tmpArray[i-1] == ',') {
-                            tmpArray[i]='~';
-                        }
-                    }else{
-                        if (tmpArray[i] == '-' && (tmpArray[i-1] == ',' || tmpArray[i-3]=='v' && tmpArray[i-2]=='a' && tmpArray[i-1]=='r')) {
-                            tmpArray[i]='~';
-                        }
+                for (int i = 0; i < tmpArray.length; i++) {
+                    if (tmpArray[i] == '-' && (i==0 || tmpArray[i-1] == ',' || tmpArray[i-1] == '+' || tmpArray[i-1] == '-')){
+                        tmpArray[i]='~';//minus the sign
                     }
                 }
                 affectation[1]=new String(tmpArray);
@@ -328,7 +319,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         }
         sumUp+="\n\n          ===VARIABLES===\n";
         for (String s:toBeVar) {
-            sumUp+=s+"\n";
+            if(!s.contains("dot")) {
+                sumUp += s + "\n";
+            }
         }
         sumUp+="\n\n              ===BASIS===\n";
         for (Map.Entry<String, Basis> entry : basis.entrySet()) {
@@ -342,6 +335,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     static void addVar(String name){
         if(!toBeVar.contains(name)){
             toBeVar.add(name);
+            toBeVar.add(name+"dot");
+            toBeVar.add(name+"dotdot");
         }
     }
 }

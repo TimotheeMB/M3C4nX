@@ -135,8 +135,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         }else if(s.contains("in")){
             tmp = s.split("in");
             return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
-        }else if(s.contains("~>")){
-            tmp = s.split("~>");
+        }else if(s.contains("->")){
+            tmp = s.split("->");
             return ((Wrench) compute(tmp[0])).shift((Vector) compute(tmp[1]));
         }else if(s.contains("+")) {
             tmp = s.split("\\+");
@@ -145,8 +145,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 result=result.plus(compute(tmp[i]));
             }
             return result;
-        }else if(s.contains("~")){ //Minus the operation
-            tmp = s.split("~");
+        }else if(s.contains("-")){ //Minus the operation
+            tmp = s.split("-");
             Maob result = compute(tmp[0]);
             for (int i = 1; i < tmp.length; i++) {
                 result = result.minus(compute(tmp[i]));
@@ -167,9 +167,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         }else if(s.contains("var")){
             s = s.replace("var","");
             addVar(s);
-            return new Scalar(s.replace("-",""),!s.contains("-"));
+            return new Scalar(s.replace("~",""),!s.contains("~"));
         }else {
-            return new Scalar(s.replace("-",""),!s.contains("-"));
+            return new Scalar(s.replace("~",""),!s.contains("~"));
         }
     }
 
@@ -206,11 +206,11 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 char[] tmpArray = affectation[1].toCharArray();
                 for (int i = 1; i < tmpArray.length; i++) {
                     if(i<3) {
-                        if (tmpArray[i] == '-' && tmpArray[i-1] != ',') {
+                        if (tmpArray[i] == '-' && tmpArray[i-1] == ',') {
                             tmpArray[i]='~';
                         }
                     }else{
-                        if (tmpArray[i] == '-' && tmpArray[i-1] != ',' && (tmpArray[i-3]!='v' || tmpArray[i-3]!='a' || tmpArray[i-3]!='r')) {
+                        if (tmpArray[i] == '-' && (tmpArray[i-1] == ',' || tmpArray[i-3]=='v' && tmpArray[i-2]=='a' && tmpArray[i-1]=='r')) {
                             tmpArray[i]='~';
                         }
                     }
@@ -221,16 +221,16 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 terminal.append("                           " + result);
                 maobs.put(affectation[0], result);
             } catch (Exception e4) {
-                System.out.println("Sorry I can not compute " + affectation[1] + " :");
+                terminal.append("Sorry I can not compute " + affectation[1] + " :  ");
                 String s = e4.toString();
                 if ("java.lang.ArrayIndexOutOfBoundsException: 3".equals(s)) {
-                    System.out.println("You have to specify the basis (" + s + ")");
+                    terminal.append("You have to specify the basis (" + s + ")");
                 } else if ("java.lang.NullPointerException".equals(s)) {
-                    System.out.println("This basis does not exist (" + s + ")");
+                    terminal.append("This basis does not exist (" + s + ")");
                 } else if ("NonSenseException".equals(s)) {
-                    System.out.println("This doesn't mean anything (" + s + ")");
+                    terminal.append("This doesn't mean anything (" + s + ")");
                 } else {
-                    System.out.println(e.toString());
+                    terminal.append(e.toString());
                 }
             }
             terminal.append("\n>>");

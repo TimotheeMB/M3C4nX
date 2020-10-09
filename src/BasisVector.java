@@ -102,31 +102,8 @@ public class BasisVector implements Serializable {
             return new Vector(new SimpleVector(new Scalar("1"),this));
         }else {
 
-            //Dijkstra
-            HashMap<Basis, Basis> came_from = new HashMap<Basis, Basis>();
-            HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
-            PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
-            Basis start = goal;
-            Basis source = null;
-
-            priority.add(new ValuedBasis(start, 0));
-            came_from.put(start, start);
-            cost_so_far.put(start, 0);
-
-            while (!priority.isEmpty()) {
-                source = priority.poll().basis;
-                if (this.basis.contains(source)) {
-                    break;
-                }
-                for (Basis destination : source.neighbors()) {
-                    int new_cost = 1 + cost_so_far.get(source);
-                    if (!cost_so_far.containsKey(destination) || new_cost < cost_so_far.get(destination)) {
-                        cost_so_far.put(destination, new_cost);
-                        came_from.put(destination, source);
-                        priority.offer(new ValuedBasis(destination, new_cost));
-                    }
-                }
-            }
+            HashMap<Basis, Basis> came_from = new HashMap<Basis,Basis>();
+            Basis source = dijkstra(goal,came_from);
 
             Basis actual = came_from.get(source);
             Vector result = this.expressInNeighbor(actual);
@@ -146,6 +123,33 @@ public class BasisVector implements Serializable {
             }
         }
         throw new NonSenseException();
+    }
+
+    public Basis dijkstra(Basis goal,HashMap<Basis, Basis> came_from){
+        HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
+        PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
+        Basis start = goal;
+        Basis source = null;
+
+        priority.add(new ValuedBasis(start, 0));
+        came_from.put(start, start);
+        cost_so_far.put(start, 0);
+
+        while (!priority.isEmpty()) {
+            source = priority.poll().basis;
+            if (this.basis.contains(source)) {
+                break;
+            }
+            for (Basis destination : source.neighbors()) {
+                int new_cost = 1 + cost_so_far.get(source);
+                if (!cost_so_far.containsKey(destination) || new_cost < cost_so_far.get(destination)) {
+                    cost_so_far.put(destination, new_cost);
+                    came_from.put(destination, source);
+                    priority.offer(new ValuedBasis(destination, new_cost));
+                }
+            }
+        }
+        return source;
     }
 
     //TESTS

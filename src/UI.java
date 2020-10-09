@@ -237,7 +237,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             help += "----------------------------------------------------------------------------------------\n";
             help += "                             # GENERAL DESCRIPTION                                     \n";
             help += "M3C4n'X is the perfect tool for mechanics.\n";
-            help += "You can do things like shift wrenches or inertia matrices, express maobs in any basis.\n";
+            help += "You can do things like shift wrenches or inertia matrices, express anything in any basis.\n";
             help += "You'll see it's pretty cool...\n";
             help += "----------------------------------------------------------------------------------------\n";
             help += "                                  # COMMANDS                                            \n";
@@ -246,9 +246,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             help += "\n";
             help += "##DECLARATION\n";
             help += "¤ Scalar:<nameOfScalar>\n";
-            help += "¤ Basis: newbasis (Then follow the instructions)\n";
             help += "¤ Vector: <coef>,<coef>,<coef>,<basis>\n";
             help += "¤ Wrench: <vector>;<vector>\n";
+            help += "¤ Basis/Matrix/Variables: look at the buttons\n";
             help += "\n";
             help += "##OPERATION\n";
             help += "¤ Plus: +\n";
@@ -260,6 +260,13 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             help += "¤ Differentiate with respect to: diff\n";
             help += "\n";
             help += "REMARK: You can use affectation, declaration and operation all together\n";
+            help += "----------------------------------------------------------------------------------------\n";
+            help += "                                     # TIPS                                             \n";
+            help += "You should proceed in the following order:\n";
+            help += "- Declare all your variables\n";
+            help += "- Create all the basis\n";
+            help += "- And THEN do all your computations\n";
+            help += "\n";
 
             text += help;
             terminal.setText(text);

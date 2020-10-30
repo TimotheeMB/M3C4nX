@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class BasisVector implements Serializable {
@@ -12,7 +11,7 @@ public class BasisVector implements Serializable {
 
     //CONSTRUCTORS
     public BasisVector(String name) {
-        basis = new LinkedList<Basis>();
+        basis = new LinkedList<>();
         this.name = name;
     }
 

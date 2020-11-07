@@ -34,7 +34,7 @@ public class Matrix extends Maob {
             }
             Scalar resultX = (Scalar) a.dot(A).minus(b.dot(F)).minus(c.dot(E));
             Scalar resultY = (Scalar) b.dot(B).minus(a.dot(F)).minus(c.dot(D));
-            Scalar resultZ = (Scalar) c.dot(D).minus(a.dot(E)).minus(b.dot(D));
+            Scalar resultZ = (Scalar) c.dot(C).minus(a.dot(E)).minus(b.dot(D));
             result.add(new SimpleVector(resultX, basis.x));
             result.add(new SimpleVector(resultY, basis.y));
             result.add(new SimpleVector(resultZ, basis.z));

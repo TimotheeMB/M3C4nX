@@ -152,7 +152,7 @@ public class Vector extends Maob implements Serializable {
             for (int i = 0; i < expression.size(); i++) {
                 SimpleVector v = expression.get(i);
                 r += v.toString();
-                if ((i != expression.size() - 1)&&(expression.get(i+1).expression.terms.getFirst().positive)) {//si c'est pas le dernier et que le premier term du suivant est positif
+                if ((i != expression.size() - 1)&&(expression.get(i+1).expression.terms.getFirst().positive||expression.get(i+1).expression.terms.size()>1)) {//si c'est pas le dernier et que le premier term du suivant est positif
                     r += " + ";
                 }
             }

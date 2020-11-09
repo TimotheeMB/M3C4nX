@@ -60,8 +60,14 @@ public class Basis implements Serializable  {
         z.add(this);
     }
 
+    //Omega
+    public Vector omega(Basis reference){
+        return new Vector();
+    }
+
     //DIJKSTRA
-    public Basis dijkstra(HashMap<Basis, Basis> came_from){
+    public HashMap<Basis, Basis> dijkstra(Basis stop){
+        HashMap<Basis, Basis> came_from = new HashMap<Basis, Basis>();
         HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
         PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
         Basis start = this;
@@ -73,6 +79,9 @@ public class Basis implements Serializable  {
 
         while (!priority.isEmpty()) {
             source = priority.poll().basis;
+            if (source.equals(stop)) {
+                break;
+            }
             for (Basis destination : source.neighbors()) {
                 int new_cost = 1 + cost_so_far.get(source);
                 if (!cost_so_far.containsKey(destination) || new_cost < cost_so_far.get(destination)) {
@@ -82,7 +91,7 @@ public class Basis implements Serializable  {
                 }
             }
         }
-        return source;
+        return came_from;
     }
 
     //USEFUL

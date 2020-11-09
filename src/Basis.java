@@ -1,6 +1,8 @@
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.PriorityQueue;
 
 public class Basis implements Serializable  {
 
@@ -56,6 +58,31 @@ public class Basis implements Serializable  {
         x.add(this);
         y.add(this);
         z.add(this);
+    }
+
+    //DIJKSTRA
+    public Basis dijkstra(HashMap<Basis, Basis> came_from){
+        HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
+        PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
+        Basis start = this;
+        Basis source = null;
+
+        priority.add(new ValuedBasis(start, 0));
+        came_from.put(start, start);
+        cost_so_far.put(start, 0);
+
+        while (!priority.isEmpty()) {
+            source = priority.poll().basis;
+            for (Basis destination : source.neighbors()) {
+                int new_cost = 1 + cost_so_far.get(source);
+                if (!cost_so_far.containsKey(destination) || new_cost < cost_so_far.get(destination)) {
+                    cost_so_far.put(destination, new_cost);
+                    came_from.put(destination, source);
+                    priority.offer(new ValuedBasis(destination, new_cost));
+                }
+            }
+        }
+        return source;
     }
 
     //USEFUL

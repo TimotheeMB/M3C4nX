@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 
 public class BasisVector implements Serializable {
 
@@ -102,7 +101,7 @@ public class BasisVector implements Serializable {
         }else {
 
             HashMap<Basis, Basis> came_from = new HashMap<Basis,Basis>();
-            Basis source = dijkstra(goal,came_from);
+            Basis source = goal.dijkstra(came_from);
 
             Basis actual = came_from.get(source);
             Vector result = this.expressInNeighbor(actual);
@@ -124,6 +123,7 @@ public class BasisVector implements Serializable {
         throw new NonSenseException();
     }
 
+    /*
     public Basis dijkstra(Basis goal,HashMap<Basis, Basis> came_from){
         HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
         PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
@@ -150,6 +150,7 @@ public class BasisVector implements Serializable {
         }
         return source;
     }
+     */
 
     //TESTS
     public boolean sameBasis(BasisVector v){

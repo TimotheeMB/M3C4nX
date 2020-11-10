@@ -61,8 +61,42 @@ public class Basis implements Serializable  {
     }
 
     //Omega
-    public Vector omega(Basis reference){
-        return new Vector();
+    public Vector omega(Basis reference) throws NonSenseException {
+        HashMap<Basis,Basis> cameFrom = reference.dijkstra(this);
+
+        Basis current = this;
+        Basis tmpRef = cameFrom.get(this);
+        Vector omega = new Vector();
+        while(!current.equals(reference)){
+            boolean pred = tmpRef.equals(current.predecessor);
+            Variable angle=(pred ? current.angle:tmpRef.angle);
+            if ((tmpRef.x).equals(current.x)) {
+                if (name.equals("y")) {
+                    omega= (Vector) omega.plus( new Vector(new Scalar("0"), new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), tmpRef));
+                } else if (name.equals("z")) {
+                    omega= (Vector) omega.plus( new Vector(new Scalar("0"), new Scalar(new Sin(angle), !pred), new Scalar(new Cos(angle)), tmpRef));
+                } else {
+                    omega= (Vector) omega.plus( new Vector("1", "0", "0", tmpRef));
+                }
+            } else if ((tmpRef.y).equals(current.y)) {
+                if (name == "z") {
+                    omega= (Vector) omega.plus( new Vector(new Scalar(new Sin(angle),pred), new Scalar("0"), new Scalar(new Cos(angle)), tmpRef));
+                } else if (name == "x") {
+                    omega= (Vector) omega.plus( new Vector(new Scalar(new Cos(angle)), new Scalar("0"), new Scalar(new Sin(angle), !pred), tmpRef));
+                } else {
+                    omega= (Vector) omega.plus( new Vector("0", "1", "0", tmpRef));
+                }
+            } else if ((tmpRef.z).equals(current.z)) {
+                if (name == "x") {
+                    omega= (Vector) omega.plus( new Vector(new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), new Scalar("0"), tmpRef));
+                } else if (name == "y") {
+                    omega= (Vector) omega.plus( new Vector(new Scalar(new Sin(angle), !pred), new Scalar(new Cos(angle)), new Scalar("0"), tmpRef));
+                } else {
+                    omega= (Vector) omega.plus( new Vector("0", "0", "1", tmpRef));
+                }
+            }
+        }
+        return omega;
     }
 
     //DIJKSTRA

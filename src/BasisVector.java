@@ -102,11 +102,11 @@ public class BasisVector implements Serializable {
 
             HashMap<Basis, Basis> came_from = goal.dijkstra(basis.getFirst());
 
-            Basis actual = came_from.get(basis.getFirst());
-            Vector result = this.expressInNeighbor(actual);
-            while (!actual.equals(goal)) {
-                actual = came_from.get(actual);
-                result = result.expressIn(actual);
+            Basis current = came_from.get(basis.getFirst());
+            Vector result = this.expressInNeighbor(current);
+            while (!current.equals(goal)) {
+                current = came_from.get(current);
+                result = result.expressIn(current);
             }
             return result;
         }

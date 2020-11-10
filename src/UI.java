@@ -165,6 +165,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         }else if(s.contains(",")){
             tmp = s.split(",");
             return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
+        }else if(s.contains("omega")){
+            tmp = s.split("omega");
+            return (basis.get(tmp[0])).omega(basis.get(tmp[1]));
         }else {
             return new Scalar(s.replace("~",""),!s.contains("~")); // minus the sign
         }

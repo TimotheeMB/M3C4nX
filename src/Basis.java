@@ -68,33 +68,9 @@ public class Basis implements Serializable  {
         Basis tmpRef = cameFrom.get(this);
         Vector omega = new Vector();
         while(!current.equals(reference)){
-            boolean pred = tmpRef.equals(current.predecessor);
-            Variable angle=(pred ? current.angle:tmpRef.angle);
-            if ((tmpRef.x).equals(current.x)) {
-                if (name.equals("y")) {
-                    omega= (Vector) omega.plus( new Vector(new Scalar("0"), new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), tmpRef));
-                } else if (name.equals("z")) {
-                    omega= (Vector) omega.plus( new Vector(new Scalar("0"), new Scalar(new Sin(angle), !pred), new Scalar(new Cos(angle)), tmpRef));
-                } else {
-                    omega= (Vector) omega.plus( new Vector("1", "0", "0", tmpRef));
-                }
-            } else if ((tmpRef.y).equals(current.y)) {
-                if (name == "z") {
-                    omega= (Vector) omega.plus( new Vector(new Scalar(new Sin(angle),pred), new Scalar("0"), new Scalar(new Cos(angle)), tmpRef));
-                } else if (name == "x") {
-                    omega= (Vector) omega.plus( new Vector(new Scalar(new Cos(angle)), new Scalar("0"), new Scalar(new Sin(angle), !pred), tmpRef));
-                } else {
-                    omega= (Vector) omega.plus( new Vector("0", "1", "0", tmpRef));
-                }
-            } else if ((tmpRef.z).equals(current.z)) {
-                if (name == "x") {
-                    omega= (Vector) omega.plus( new Vector(new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), new Scalar("0"), tmpRef));
-                } else if (name == "y") {
-                    omega= (Vector) omega.plus( new Vector(new Scalar(new Sin(angle), !pred), new Scalar(new Cos(angle)), new Scalar("0"), tmpRef));
-                } else {
-                    omega= (Vector) omega.plus( new Vector("0", "0", "1", tmpRef));
-                }
-            }
+            omega= (Vector) omega.plus(new Vector(new SimpleVector(new Scalar(new Term(current.angle)).differentiate(),current.axisInCommonWith(tmpRef))));
+            current = tmpRef;
+            tmpRef = cameFrom.get(current);
         }
         return omega;
     }
@@ -138,6 +114,18 @@ public class Basis implements Serializable  {
             r.add(suc);
         }
         return r;
+    }
+
+    public BasisVector axisInCommonWith(Basis otherBasis) throws NonSenseException {
+        if(this.x.equals(otherBasis.x)){
+            return this.x;
+        }else if(this.y.equals(otherBasis.y)){
+            return this.y;
+        }else if(this.z.equals(otherBasis.z)){
+            return this.z;
+        }else{
+            throw new NonSenseException();
+        }
     }
 
     @Override

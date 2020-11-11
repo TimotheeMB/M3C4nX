@@ -25,6 +25,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     JButton variablesBut;
     JButton saveBut;
     JButton loadBut;
+    JButton newSolidBut;
 
     Scanner sc = new Scanner(System.in);
     public static TextArea terminal;
@@ -78,19 +79,26 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         gbc.gridx = 4;
         gbc.gridy = 0;
+        newSolidBut = new JButton("New Solid");
+        total.add(newSolidBut, gbc);
+        newSolidBut.addActionListener(this);
+
+        gbc.gridx = 5;
+        gbc.gridy = 0;
         saveBut = new JButton("Save");
         total.add(saveBut, gbc);
         saveBut.addActionListener(this);
 
-        gbc.gridx = 5;
+        gbc.gridx = 6;
         gbc.gridy = 0;
         loadBut = new JButton("Load");
         total.add(loadBut, gbc);
         loadBut.addActionListener(this);
 
+
         gbc.weightx = 0.6;
         gbc.weighty = 0.9;
-        gbc.gridwidth = 6;
+        gbc.gridwidth = 7;
         gbc.gridx = 0;
         gbc.gridy = 1;
         terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
@@ -106,7 +114,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         gbc.weighty = 0.9;
         gbc.gridwidth = 1;
         gbc.gridheight = 2;
-        gbc.gridx = 6;
+        gbc.gridx = 7;
         gbc.gridy = 0;
         summary = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
         summary.setEditable(false);
@@ -316,6 +324,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             new NewMatrixWindow(this);
         }else if(e.getSource()==variablesBut){
             new VariablesWindow(this);
+        }else if(e.getSource()==newSolidBut){
+            new NewSolidWindow(this);
         }
     }
 

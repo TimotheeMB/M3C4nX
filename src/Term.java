@@ -23,7 +23,9 @@ public class Term implements Serializable {
         this.positive = positive;
         elements.add(e);
     }//simple
-
+    public Term(Element e){
+        this(e,true);
+    }
     public Term(String s, boolean positive){
         this();
         if(s.equals("1")){

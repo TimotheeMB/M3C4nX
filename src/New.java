@@ -43,6 +43,8 @@ public class New extends JFrame implements ActionListener {
     private void doYourThing() {
         switch (type){
             case "solid":
+                SolidPanel sp = (SolidPanel) panel;
+                ui.solids.put(sp.name.getText(),new Solid(ui.basis.get(sp.basisChoice.getSelectedIndex()),new Scalar(sp.masse.getText()), (Matrix) ui.maobs.get(sp.nameMatrix.getText()),new Vector()));
                 break;
             case "matrix":
                 MatrixPanel mp = (MatrixPanel) panel;
@@ -61,7 +63,7 @@ public class New extends JFrame implements ActionListener {
             case "variables":
                 VariablesPanel vp = (VariablesPanel) panel;
                 for( String name: vp.variables.getText().replace(" ","").split(",")){
-                    ui.addVar(name);
+                    UI.addVar(name);
                 }
                 break;
         }

@@ -43,6 +43,7 @@ public class BasisPanel extends JPanel{
         jcomp8 = new JLabel (" Predecessor");
         jcomp9 = new JLabel (" Angle");
         angle = new JTextField (5);
+        angle.addActionListener(window);
         OK = new JButton ("OK");
         OK.addActionListener(window);
 

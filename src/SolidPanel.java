@@ -2,9 +2,10 @@
 //Home Page http://guigenie.cjb.net - Check often for new versions!
 
 import java.awt.*;
+import java.util.Map;
 import javax.swing.*;
 
-public class NewSolidPanel extends JPanel {
+public class SolidPanel extends JPanel {
     private JLabel jcomp1;
     private JComboBox basisChoice;
     private JLabel jcomp3;
@@ -16,13 +17,21 @@ public class NewSolidPanel extends JPanel {
     private JLabel jcomp9;
     private JTextField pointOfMatrix;
 
-    public NewSolidPanel(UI ui,NewSolidWindow window) {
+    public SolidPanel(UI ui, New window) {
         //construct preComponents
         String[] basisChoiceItems = {"item 1"};
 
         //construct components
         jcomp1 = new JLabel ("Basis : ");
-        basisChoice = new JComboBox (basisChoiceItems);
+        String[] items=new String[ui.basis.size()];
+        int i=0;
+        for (Map.Entry<String, Basis> entry : ui.basis.entrySet()) {
+            String basisName = entry.getKey();
+            Basis value = entry.getValue();
+            items[i]=basisName;
+            i++;
+        }
+        basisChoice = new JComboBox (items);
         jcomp3 = new JLabel ("Mass :");
         jcomp4 = new JTextField (5);
         jcomp5 = new JLabel ("Matrix :");

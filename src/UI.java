@@ -17,6 +17,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     //ATTRIBUTES
     HashMap<String,Maob> maobs = new HashMap<>();
     HashMap<String,Basis> basis = new HashMap<>();
+    HashMap<String,Solid> solids = new HashMap<>();
     static LinkedList<String> toBeVar=new LinkedList<>();
 
     JButton helpBut;
@@ -319,13 +320,13 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 e3.printStackTrace();
             }
         }else if(e.getSource()==newBasisBut){
-            new NewBasisWindow(this);
+            new New("basis",this);
         }else if(e.getSource()==newMatrixBut){
-            new NewMatrixWindow(this);
+            new New("matrix",this);
         }else if(e.getSource()==variablesBut){
-            new VariablesWindow(this);
+            new New("variables",this);
         }else if(e.getSource()==newSolidBut){
-            new NewSolidWindow(this);
+            new New("solid",this);
         }
     }
 

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.Map;
 import javax.swing.*;
 
-public class NewBasisPanel extends JPanel{
+public class BasisPanel extends JPanel{
     public JTextField name;
     public JLabel jcomp2;
     public JRadioButton x;
@@ -21,7 +21,7 @@ public class NewBasisPanel extends JPanel{
 
     static int nameByDefault=1;
 
-    public NewBasisPanel(UI ui,NewBasisWindow window) {
+    public BasisPanel(UI ui, New window) {
         this.ui=ui;
 
         //construct components

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.Map;
 import javax.swing.*;
 
-public class NewMatrixPanel extends JPanel {
+public class MatrixPanel extends JPanel {
     public JLabel jcomp1;
     public JTextField Name;
     public JLabel jcomp3;
@@ -22,7 +22,7 @@ public class NewMatrixPanel extends JPanel {
     public JButton OK;
     UI ui;
 
-    public NewMatrixPanel(UI ui,NewMatrixWindow window) {
+    public MatrixPanel(UI ui, New window) {
         this.ui =ui;
 
         //construct preComponents

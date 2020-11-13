@@ -11,15 +11,8 @@ import java.awt.*;
 import javax.swing.*;
 
 
-
 public class UI extends JFrame implements KeyListener, ActionListener {
-
-    //ATTRIBUTES
-    HashMap<String,Maob> maobs = new HashMap<>();
-    HashMap<String,Basis> basis = new HashMap<>();
-    HashMap<String,Solid> solids = new HashMap<>();
-    static LinkedList<String> toBeVar=new LinkedList<>();
-
+    
     JButton helpBut;
     JButton newBasisBut;
     JButton newMatrixBut;
@@ -28,8 +21,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     JButton loadBut;
     JButton newSolidBut;
 
-    Scanner sc = new Scanner(System.in);
-    public static TextArea terminal;
+    static TextArea terminal;
     TextArea summary;
 
     public UI () {
@@ -126,60 +118,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         this.setVisible(true);
         boolean running = true;
-        basis.put("0", new Basis("0"));
+        Kernel.basis.put("0", new Basis("0"));
         refreshSummery();
 
-    }
-
-
-    public Maob compute(String s) throws NonSenseException {
-        String[] tmp;
-        if (maobs.containsKey(s)) {
-            return maobs.get(s);
-        }else if(s.contains("diff")){
-            tmp = s.split("diff");
-            if(tmp.length==1){
-                return (compute(tmp[0])).differentiate(basis.get("0"));
-            }
-            return (compute(tmp[0])).differentiate(basis.get(tmp[1]));
-        }else if(s.contains("in")){
-            tmp = s.split("in");
-            return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
-        }else if(s.contains("->")){
-            tmp = s.split("->");
-            return ((Wrench) compute(tmp[0])).shift((Vector) compute(tmp[1]));
-        }else if(s.contains("+")) {
-            tmp = s.split("\\+");
-            Maob result = compute(tmp[0]);
-            for (int i = 1; i <tmp.length ; i++) {
-                result=result.plus(compute(tmp[i]));
-            }
-            return result;
-        }else if(s.contains("-")){ //Minus the operation
-            tmp = s.split("-");
-            Maob result = compute(tmp[0]);
-            for (int i = 1; i < tmp.length; i++) {
-                result = result.minus(compute(tmp[i]));
-            }
-            return result;
-        }else if(s.contains("*")){
-            tmp = s.split("\\*");
-            return ((Vector) compute(tmp[0])).cross((Vector) compute(tmp[1]));
-        }else if(s.contains(".")) {
-            tmp = s.split("\\.");
-            return (compute(tmp[0])).dot(compute(tmp[1]));
-        }else if(s.contains(";")){
-            tmp = s.split(";");
-            return new Wrench((Vector)compute(tmp[0]),(Vector)compute(tmp[1]));
-        }else if(s.contains(",")){
-            tmp = s.split(",");
-            return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
-        }else if(s.contains("omega")){
-            tmp = s.split("omega");
-            return (basis.get(tmp[0])).omega(basis.get(tmp[1]));
-        }else {
-            return new Scalar(s.replace("~",""),!s.contains("~")); // minus the sign
-        }
     }
 
     @Override
@@ -219,10 +160,10 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                     }
                 }
                 affectation[1]=new String(tmpArray);
-                Maob result = compute(affectation[1]);
+                Maob result = Kernel.compute(affectation[1]);
                 terminal.append(affectation[0] + " = \n");
                 terminal.append("                           " + result);
-                maobs.put(affectation[0], result);
+                Kernel.maobs.put(affectation[0], result);
             } catch (Exception e4) {
                 terminal.append("Sorry I can not compute " + affectation[1] + " :  ");
                 String s = e4.toString();
@@ -286,15 +227,15 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             try {
                 FileOutputStream fs = new FileOutputStream("variables.ser");
                 ObjectOutputStream os = new ObjectOutputStream(fs);
-                os.writeObject(maobs); // 3
+                os.writeObject(Kernel.maobs); // 3
                 os.close();
                 fs = new FileOutputStream("basis.ser");
                 os = new ObjectOutputStream(fs);
-                os.writeObject(basis); // 3
+                os.writeObject(Kernel.basis); // 3
                 os.close();
                 fs = new FileOutputStream("var.ser");
                 os = new ObjectOutputStream(fs);
-                os.writeObject(toBeVar); // 3
+                os.writeObject(Kernel.toBeVar); // 3
                 os.close();
                 terminal.append("\n                           saved\n>>");
             } catch (Exception e2) {
@@ -304,15 +245,15 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             try {
                 FileInputStream fis = new FileInputStream("variables.ser");
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                this.maobs = ( HashMap<String,Maob>) ois.readObject();
+                Kernel.maobs = ( HashMap<String,Maob>) ois.readObject();
                 ois.close();
                 fis = new FileInputStream("basis.ser");
                 ois = new ObjectInputStream(fis);
-                this.basis = ( HashMap<String,Basis>) ois.readObject();
+                Kernel.basis = ( HashMap<String,Basis>) ois.readObject();
                 ois.close();
                 fis = new FileInputStream("var.ser");
                 ois = new ObjectInputStream(fis);
-                this.toBeVar = (LinkedList<String>) ois.readObject();
+                Kernel.toBeVar = (LinkedList<String>) ois.readObject();
                 ois.close();
                 terminal.append("\n                           loaded\n>>");
                 refreshSummery();
@@ -333,19 +274,19 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     void refreshSummery(){
         String sumUp="";
         sumUp+="            ===OBJECTS===\n";
-        for (Map.Entry<String, Maob> entry : maobs.entrySet()) {
+        for (Map.Entry<String, Maob> entry : Kernel.maobs.entrySet()) {
             String variableName = entry.getKey();
             Maob value = entry.getValue();
             sumUp += variableName + " = " + value+"\n";
         }
         sumUp+="\n\n          ===VARIABLES===\n";
-        for (String s:toBeVar) {
+        for (String s:Kernel.toBeVar) {
             if(!s.contains("dot")) {
                 sumUp += s + "\n";
             }
         }
         sumUp+="\n\n              ===BASIS===\n";
-        for (Map.Entry<String, Basis> entry : basis.entrySet()) {
+        for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
             Basis value = entry.getValue();
             sumUp += basisName+"\n";
@@ -354,10 +295,17 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     }
 
     static void addVar(String name){
-        if(!toBeVar.contains(name)){
-            toBeVar.add(name);
-            toBeVar.add(name+"dot");
-            toBeVar.add(name+"dotdot");
+        if(!Kernel.toBeVar.contains(name)){
+            Kernel.toBeVar.add(name);
+            Kernel.toBeVar.add(name+"dot");
+            Kernel.toBeVar.add(name+"dotdot");
         }
     }
+
+
+    public static void print(String s) {
+        terminal.append(s);
+    }
+
+
 }

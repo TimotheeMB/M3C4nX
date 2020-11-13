@@ -44,11 +44,11 @@ public class New extends JFrame implements ActionListener {
         switch (type){
             case "solid":
                 SolidPanel sp = (SolidPanel) panel;
-                ui.solids.put(sp.name.getText(),new Solid(ui.basis.get(sp.basisChoice.getSelectedIndex()),new Scalar(sp.masse.getText()), (Matrix) ui.maobs.get(sp.nameMatrix.getText()),new Vector()));
+                Kernel.solids.put(sp.name.getText(),new Solid(Kernel.basis.get(sp.basisChoice.getSelectedIndex()),new Scalar(sp.masse.getText()), (Matrix) Kernel.maobs.get(sp.nameMatrix.getText()),new Vector()));
                 break;
             case "matrix":
                 MatrixPanel mp = (MatrixPanel) panel;
-                ui.maobs.put(mp.Name.getText(),new Matrix(mp.A.getText(), mp.B.getText(), mp.C.getText(), mp.D.getText(), mp.E.getText(), mp.F.getText(),ui.basis.get(mp.jcomp4.getSelectedItem())));
+                Kernel.maobs.put(mp.Name.getText(),new Matrix(mp.A.getText(), mp.B.getText(), mp.C.getText(), mp.D.getText(), mp.E.getText(), mp.F.getText(),Kernel.basis.get(mp.jcomp4.getSelectedItem())));
                 break;
             case "basis":
                 BasisPanel bp = (BasisPanel) panel;
@@ -58,7 +58,7 @@ public class New extends JFrame implements ActionListener {
                 }else if(bp.z.isSelected()){
                     axis="z";
                 }
-                ui.basis.put(bp.name.getText(),new Basis(bp.name.getText(),ui.basis.get(bp.predecessor.getSelectedItem()),axis, bp.angle.getText()));
+                Kernel.basis.put(bp.name.getText(),new Basis(bp.name.getText(),Kernel.basis.get(bp.predecessor.getSelectedItem()),axis, bp.angle.getText()));
                 break;
             case "variables":
                 VariablesPanel vp = (VariablesPanel) panel;

@@ -10,7 +10,7 @@ public class Variable extends Element implements Serializable {
     //CONSTRUCTORS
     public Variable(String value) {
         this.value = value;
-        this.variable = UI.toBeVar.contains(value);
+        this.variable = Kernel.toBeVar.contains(value);
     }
 
 

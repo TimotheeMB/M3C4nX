@@ -31,9 +31,9 @@ public class BasisPanel extends JPanel{
         y = new JRadioButton ("y");
         z = new JRadioButton ("z");
         jcomp6 = new JLabel (" Axis in common");
-        String[] items=new String[ui.basis.size()];
+        String[] items=new String[Kernel.basis.size()];
         int i=0;
-        for (Map.Entry<String, Basis> entry : ui.basis.entrySet()) {
+        for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
             Basis value = entry.getValue();
             items[i]=basisName;

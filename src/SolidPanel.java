@@ -23,9 +23,9 @@ public class SolidPanel extends JPanel {
 
     public SolidPanel(UI ui, New window) {
         //construct preComponents
-        String[] items=new String[ui.basis.size()];
+        String[] items=new String[Kernel.basis.size()];
         int i=0;
-        for (Map.Entry<String, Basis> entry : ui.basis.entrySet()) {
+        for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
             Basis value = entry.getValue();
             items[i]=basisName;

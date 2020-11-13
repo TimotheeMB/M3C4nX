@@ -50,7 +50,7 @@ public class Wrench extends Maob implements Serializable {
     }
 
     public Wrench shift(Vector v) throws  NonSenseException {
-        UI.terminal.append("\n              M(A) = M(B) + S x BA\n\n");
+        UI.print("\n              M(A) = M(B) + S x BA\n\n");
         return new Wrench(sum,(Vector)moment.plus(sum.cross(v)));
     }
 

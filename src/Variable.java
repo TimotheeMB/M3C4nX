@@ -21,7 +21,7 @@ public class Variable extends Element implements Serializable {
             Scalar s =new Scalar();
             Term t= new Term();
             String nameDerivative = value+"dot";
-            UI.addVar(nameDerivative);
+            Kernel.addVar(nameDerivative);
             Variable v=new Variable(nameDerivative);
             t.add(v);
             s.add(t);

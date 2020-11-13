@@ -120,72 +120,17 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         boolean running = true;
         Kernel.basis.put("0", new Basis("0"));
         refreshSummery();
-
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode()==10){//if Enter
-            String text = terminal.getText();
-            int beginningInput =text.lastIndexOf(">>")+2;
-            String input="";
-            for (int i = beginningInput; i <text.length() ; i++) {
-                input += text.charAt(i);
-            }
-            input=input.replace(" ","");
-            input=input.replace("\n","");
-            input=input.replace("\r","");
-
-            String[] affectation = input.split("=");
-
-
-            if (affectation.length == 1) {
-                affectation = new String[]{"ans", affectation[0]};
-            }
-            try {
-                char[] tmpArray = affectation[1].toCharArray();
-                for (int i = 0; i < tmpArray.length; i++) {
-                    if (tmpArray[i] == '-' && (i==0 || tmpArray[i-1] == ',' || tmpArray[i-1] == '+' || tmpArray[i-1] == '-')){
-                        tmpArray[i]='~';//minus the sign
-                    }
-                }
-                affectation[1]=new String(tmpArray);
-                Maob result = Kernel.compute(affectation[1]);
-                terminal.append(affectation[0] + " = \n");
-                terminal.append("                           " + result);
-                Kernel.maobs.put(affectation[0], result);
-            } catch (Exception e4) {
-                terminal.append("Sorry I can not compute " + affectation[1] + " :  ");
-                String s = e4.toString();
-                if ("java.lang.ArrayIndexOutOfBoundsException: 3".equals(s)) {
-                    terminal.append("You have to specify the basis (" + s + ")");
-                } else if ("java.lang.NullPointerException".equals(s)) {
-                    terminal.append("This basis does not exist (" + s + ")");
-                } else if ("NonSenseException".equals(s)) {
-                    terminal.append("This doesn't mean anything (" + s + ")");
-                } else {
-                    terminal.append(e.toString());
-                }
-            }
-            terminal.append("\n>>");
+            Kernel.input(read());
             refreshSummery();
         }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()== helpBut) {
-            String text = terminal.getText();
             String help = "\n";
             help += "----------------------------------------------------------------------------------------\n";
             help += "                             # GENERAL DESCRIPTION                                     \n";
@@ -221,45 +166,12 @@ public class UI extends JFrame implements KeyListener, ActionListener {
             help += "- And THEN do all your computations\n";
             help += "\n";
 
-            text += help;
-            terminal.setText(text);
+            print(help);
         } else if( e.getSource()==saveBut){
-            try {
-                FileOutputStream fs = new FileOutputStream("variables.ser");
-                ObjectOutputStream os = new ObjectOutputStream(fs);
-                os.writeObject(Kernel.maobs); // 3
-                os.close();
-                fs = new FileOutputStream("basis.ser");
-                os = new ObjectOutputStream(fs);
-                os.writeObject(Kernel.basis); // 3
-                os.close();
-                fs = new FileOutputStream("var.ser");
-                os = new ObjectOutputStream(fs);
-                os.writeObject(Kernel.toBeVar); // 3
-                os.close();
-                terminal.append("\n                           saved\n>>");
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+            Kernel.save();
         } else if(e.getSource()==loadBut){
-            try {
-                FileInputStream fis = new FileInputStream("variables.ser");
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                Kernel.maobs = ( HashMap<String,Maob>) ois.readObject();
-                ois.close();
-                fis = new FileInputStream("basis.ser");
-                ois = new ObjectInputStream(fis);
-                Kernel.basis = ( HashMap<String,Basis>) ois.readObject();
-                ois.close();
-                fis = new FileInputStream("var.ser");
-                ois = new ObjectInputStream(fis);
-                Kernel.toBeVar = (LinkedList<String>) ois.readObject();
-                ois.close();
-                terminal.append("\n                           loaded\n>>");
-                refreshSummery();
-            } catch (Exception e3) {
-                e3.printStackTrace();
-            }
+            Kernel.load();
+            refreshSummery();
         }else if(e.getSource()==newBasisBut){
             new New("basis",this);
         }else if(e.getSource()==newMatrixBut){
@@ -294,18 +206,15 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         summary.setText(sumUp);
     }
 
-    static void addVar(String name){
-        if(!Kernel.toBeVar.contains(name)){
-            Kernel.toBeVar.add(name);
-            Kernel.toBeVar.add(name+"dot");
-            Kernel.toBeVar.add(name+"dotdot");
-        }
-    }
-
-
     public static void print(String s) {
         terminal.append(s);
     }
 
+    public static String read() {
+        return terminal.getText();
+    }
 
+
+    public void keyTyped(KeyEvent e) {}
+    public void keyPressed(KeyEvent e) {}
 }

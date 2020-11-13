@@ -63,7 +63,7 @@ public class New extends JFrame implements ActionListener {
             case "variables":
                 VariablesPanel vp = (VariablesPanel) panel;
                 for( String name: vp.variables.getText().replace(" ","").split(",")){
-                    UI.addVar(name);
+                    Kernel.addVar(name);
                 }
                 break;
         }

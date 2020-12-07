@@ -105,7 +105,8 @@ public class Vector extends Maob implements Serializable {
                 if (v1.sameBasis(v2)) {
                     toAdd = v1.cross(v2);
                 } else {
-                    toAdd = v1.expressIn(v2.basisVector.basis.getFirst()).cross(new Vector(v2));
+                    Vector v1InBasisOfV2 =v1.expressIn(v2.basisVector.basis.getFirst());
+                    toAdd = v1InBasisOfV2.cross(new Vector(v2));
                 }
                 result = (Vector) result.plus(toAdd);
             }
@@ -132,7 +133,7 @@ public class Vector extends Maob implements Serializable {
     }
 
     public Vector newDiff(Basis wrt) throws NonSenseException {
-        UI.print("MVB");
+        UI.print("\n              Moving basis formulae:\n        di/dt(u) = dk/dt(u) + Omega(i/k) * u\n\n");
         Vector r = new Vector();
         for (SimpleVector v : this.expression) {
             Vector diff = v.newDiff(wrt);

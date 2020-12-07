@@ -60,6 +60,27 @@ public class BasisVector implements Serializable {
         return null;
     }
 
+    public Vector expressIn(Basis goal) throws NonSenseException {
+
+        if(this.belongsTo(goal)){
+            return new Vector(new SimpleVector(new Scalar("1"),this));
+        }else if(this.neighbors().contains(goal)) {
+            return this.expressInNeighbor(goal);
+        }else{
+
+            HashMap<Basis, Basis> came_from = goal.dijkstra(basis.getFirst());
+
+            Basis current = came_from.get(basis.getFirst());
+            Vector result = this.expressInNeighbor(current);
+            while (!current.equals(goal)) {
+                current = came_from.get(current);
+                result = result.expressIn(current);
+            }
+            return result;
+        }
+    }
+
+
     public Vector expressInNeighbor(Basis destination) throws NonSenseException {
         for (Basis two : basis) {
             boolean pred = destination.equals(two.predecessor);
@@ -94,24 +115,6 @@ public class BasisVector implements Serializable {
         return null;
     }
 
-    public Vector expressIn(Basis goal) throws NonSenseException {
-
-        if(basis.contains(goal)){
-            return new Vector(new SimpleVector(new Scalar("1"),this));
-        }else {
-
-            HashMap<Basis, Basis> came_from = goal.dijkstra(basis.getFirst());
-
-            Basis current = came_from.get(basis.getFirst());
-            Vector result = this.expressInNeighbor(current);
-            while (!current.equals(goal)) {
-                current = came_from.get(current);
-                result = result.expressIn(current);
-            }
-            return result;
-        }
-    }
-
     //USEFUL
     public Basis basisInCommonWith(BasisVector two) throws NonSenseException {
         for (Basis b1: this.basis) {
@@ -120,6 +123,18 @@ public class BasisVector implements Serializable {
             }
         }
         throw new NonSenseException();
+    }
+
+    public LinkedList<Basis> neighbors(){
+        LinkedList<Basis> r=new LinkedList<Basis>();
+        for(Basis b:basis){
+            for(Basis neighbor: b.neighbors()){
+                if(!r.contains(neighbor)){
+                    r.add(neighbor);
+                }
+            }
+        }
+        return r;
     }
 
     /*

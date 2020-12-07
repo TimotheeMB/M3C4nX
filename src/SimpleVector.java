@@ -46,7 +46,8 @@ public class SimpleVector implements Serializable {
             Basis b =this.basisVector.basis.get(0);
             Vector omega = b.omega(wrt);
             new Vector(this);
-            return (Vector) one.plus(omega.cross(new Vector(this)));
+            Vector crossProduct=omega.cross(new Vector(this));
+            return (Vector) one.plus(crossProduct);
         }
     }
 

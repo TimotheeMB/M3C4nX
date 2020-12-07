@@ -38,6 +38,18 @@ public class SimpleVector implements Serializable {
         return new SimpleVector(expression.differentiate(),basisVector);
     }
 
+    public Vector newDiff(Basis wrt) throws NonSenseException {
+        if(this.basisVector.belongsTo(wrt)){
+            return new Vector(new SimpleVector(expression.differentiate(),basisVector));
+        }else{
+            Vector one=new Vector(new SimpleVector(expression.differentiate(),basisVector));
+            Basis b =this.basisVector.basis.get(0);
+            Vector omega = b.omega(wrt);
+            new Vector(this);
+            return (Vector) one.plus(omega.cross(new Vector(this)));
+        }
+    }
+
     //USEFUL
     public SimpleVector opposite(){
         return new SimpleVector(expression.opposite(),basisVector);
@@ -65,4 +77,5 @@ public class SimpleVector implements Serializable {
         r+="." + basisVector;
         return r;
     }
+
 }

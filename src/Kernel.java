@@ -62,6 +62,12 @@ public final class Kernel {
         String[] tmp;
         if (maobs.containsKey(s)) {
             return maobs.get(s);
+        }else if(s.contains("newdiff")){
+            tmp = s.split("newdiff");
+            if(tmp.length==1){
+                return ((Vector) compute(tmp[0])).newDiff(basis.get("0"));
+            }
+            return (compute(tmp[0])).differentiate(basis.get(tmp[1]));
         }else if(s.contains("diff")){
             tmp = s.split("diff");
             if(tmp.length==1){

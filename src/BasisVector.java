@@ -161,6 +161,10 @@ public class BasisVector implements Serializable {
         return false;
     }
 
+    public boolean belongsTo(Basis b2){
+        return this.basis.contains(b2);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

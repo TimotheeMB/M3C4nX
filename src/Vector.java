@@ -131,6 +131,16 @@ public class Vector extends Maob implements Serializable {
         return r;
     }
 
+    public Vector newDiff(Basis wrt) throws NonSenseException {
+        UI.print("MVB");
+        Vector r = new Vector();
+        for (SimpleVector v : this.expression) {
+            Vector diff = v.newDiff(wrt);
+            r= (Vector) r.plus(diff);
+        }
+        return r;
+    }
+
 
     //TESTS
     public boolean isNull(){

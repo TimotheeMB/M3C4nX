@@ -1,7 +1,10 @@
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -125,15 +128,19 @@ public final class Kernel {
 
     static void save(){
         try {
-            FileOutputStream fs = new FileOutputStream("variables.ser");
+            String nameSave =  JOptionPane.showInputDialog(null, "Choose a name for this save : ", "Save", JOptionPane.QUESTION_MESSAGE);
+            String directory = "./saves/"+nameSave+"/";
+            Files.createDirectories(Paths.get(directory));
+
+            FileOutputStream fs = new FileOutputStream(directory+"moabs.ser");
             ObjectOutputStream os = new ObjectOutputStream(fs);
             os.writeObject(maobs); // 3
             os.close();
-            fs = new FileOutputStream("basis.ser");
+            fs = new FileOutputStream(directory+"basis.ser");
             os = new ObjectOutputStream(fs);
             os.writeObject(basis); // 3
             os.close();
-            fs = new FileOutputStream("var.ser");
+            fs = new FileOutputStream(directory+"var.ser");
             os = new ObjectOutputStream(fs);
             os.writeObject(toBeVar); // 3
             os.close();
@@ -145,21 +152,29 @@ public final class Kernel {
 
     static void load(){
         try {
-            FileInputStream fis = new FileInputStream("variables.ser");
+            String nameSave =  JOptionPane.showInputDialog(null, "Enter the name of the save you want to load: ", "Load", JOptionPane.QUESTION_MESSAGE);
+            String directory = "./saves/"+nameSave+"/";
+            FileInputStream fis = new FileInputStream(directory+"moabs.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
             maobs = ( HashMap<String,Maob>) ois.readObject();
             ois.close();
-            fis = new FileInputStream("basis.ser");
+            fis = new FileInputStream(directory+"basis.ser");
             ois = new ObjectInputStream(fis);
             basis = ( HashMap<String,Basis>) ois.readObject();
             ois.close();
-            fis = new FileInputStream("var.ser");
+            fis = new FileInputStream(directory+"var.ser");
             ois = new ObjectInputStream(fis);
             toBeVar = (LinkedList<String>) ois.readObject();
             ois.close();
             UI.print("\n                           loaded\n>>");
         } catch (Exception e3) {
-            UI.print("\n               I was unable to load (probably because the save is from an older version) :(\n");
+            UI.print("\n               I was unable to load :( ");
+            if(e3.toString().contains("FileNotFoundException")){
+                UI.print("(this save does not exist)");
+            }else{
+                UI.print("(it's probably because the save is from an older version)");
+            }
+
         }
     }
 

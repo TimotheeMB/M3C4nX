@@ -52,37 +52,37 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         total.add(helpBut, gbc);
         helpBut.addActionListener(this);
 
-        gbc.gridx = 1;
+        gbc.gridx = 3;
         gbc.gridy = 0;
         newBasisBut = new JButton("New Basis");
         total.add(newBasisBut, gbc);
         newBasisBut.addActionListener(this);
 
-        gbc.gridx = 2;
+        gbc.gridx = 4;
         gbc.gridy = 0;
         newMatrixBut = new JButton("New Matrix");
         total.add(newMatrixBut, gbc);
         newMatrixBut.addActionListener(this);
 
-        gbc.gridx = 3;
+        gbc.gridx = 2;
         gbc.gridy = 0;
         variablesBut = new JButton("Variables");
         total.add(variablesBut, gbc);
         variablesBut.addActionListener(this);
 
-        gbc.gridx = 4;
+        gbc.gridx = 5;
         gbc.gridy = 0;
         newSolidBut = new JButton("New Solid");
         total.add(newSolidBut, gbc);
         newSolidBut.addActionListener(this);
 
-        gbc.gridx = 5;
+        gbc.gridx = 6;
         gbc.gridy = 0;
         saveBut = new JButton("Save");
         total.add(saveBut, gbc);
         saveBut.addActionListener(this);
 
-        gbc.gridx = 6;
+        gbc.gridx = 1;
         gbc.gridy = 0;
         loadBut = new JButton("Load");
         total.add(loadBut, gbc);

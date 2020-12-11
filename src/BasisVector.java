@@ -180,6 +180,7 @@ public class BasisVector implements Serializable {
         return this.basis.contains(b2);
     }
 
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -188,14 +189,14 @@ public class BasisVector implements Serializable {
         if (!name.equals(that.name)){
             return false;
         }
-        for (Basis two:basis) {
-            if(!that.basis.contains(two)){
+        for (Basis b :basis) {
+            if(!that.basis.contains(b)){
                 return false;
             }
         }
         return true;
     }
-
+*/
 
     //TOSTRING
     public String toString() {

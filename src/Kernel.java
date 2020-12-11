@@ -1,14 +1,10 @@
 import javax.swing.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public final class Kernel {
+
 
     //ATTRIBUTES
     static HashMap<String,Maob> maobs = new HashMap<>();
@@ -129,20 +125,12 @@ public final class Kernel {
     static void save(){
         try {
             String nameSave =  JOptionPane.showInputDialog(null, "Choose a name for this save : ", "Save", JOptionPane.QUESTION_MESSAGE);
-            String directory = "./saves/"+nameSave+"/";
-            Files.createDirectories(Paths.get(directory));
 
-            FileOutputStream fs = new FileOutputStream(directory+"moabs.ser");
+            Object[] thingsToSave = {toBeVar,basis,maobs};
+
+            FileOutputStream fs = new FileOutputStream("./saves/"+nameSave+".ser");
             ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(maobs); // 3
-            os.close();
-            fs = new FileOutputStream(directory+"basis.ser");
-            os = new ObjectOutputStream(fs);
-            os.writeObject(basis); // 3
-            os.close();
-            fs = new FileOutputStream(directory+"var.ser");
-            os = new ObjectOutputStream(fs);
-            os.writeObject(toBeVar); // 3
+            os.writeObject(thingsToSave); // 3
             os.close();
             UI.print("\n                           saved\n>>");
         } catch (Exception e2) {
@@ -153,18 +141,13 @@ public final class Kernel {
     static void load(){
         try {
             String nameSave =  JOptionPane.showInputDialog(null, "Enter the name of the save you want to load: ", "Load", JOptionPane.QUESTION_MESSAGE);
-            String directory = "./saves/"+nameSave+"/";
-            FileInputStream fis = new FileInputStream(directory+"moabs.ser");
+
+            FileInputStream fis = new FileInputStream("./saves/"+nameSave+".ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            maobs = ( HashMap<String,Maob>) ois.readObject();
-            ois.close();
-            fis = new FileInputStream(directory+"basis.ser");
-            ois = new ObjectInputStream(fis);
-            basis = ( HashMap<String,Basis>) ois.readObject();
-            ois.close();
-            fis = new FileInputStream(directory+"var.ser");
-            ois = new ObjectInputStream(fis);
-            toBeVar = (LinkedList<String>) ois.readObject();
+            Object[] thingsToLoad = (Object[]) ois.readObject();
+            toBeVar= (LinkedList<String>) thingsToLoad[0];
+            basis= (HashMap<String, Basis>) thingsToLoad[1];
+            maobs= (HashMap<String, Maob>) thingsToLoad[2];
             ois.close();
             UI.print("\n                           loaded\n>>");
         } catch (Exception e3) {

@@ -127,15 +127,15 @@ public class Basis implements Serializable  {
             throw new NonSenseException();
         }
     }
-
+/*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Basis basis = (Basis) o;
-        return Objects.equals(name, basis.name);
+        return Objects.equals(this.name, basis.name);
  }
-
+*/
     //TOSTRING
     public String toString() {
         return name;

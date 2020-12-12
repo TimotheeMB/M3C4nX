@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -123,42 +122,26 @@ public final class Kernel {
     }
 
     static void save(){
-        try {
-            String nameSave =  JOptionPane.showInputDialog(null, "Choose a name for this save : ", "Save", JOptionPane.QUESTION_MESSAGE);
-
-            Object[] thingsToSave = {toBeVar,basis,maobs};
-
-            FileOutputStream fs = new FileOutputStream("./saves/"+nameSave+".ser");
-            ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(thingsToSave); // 3
-            os.close();
-            UI.print("\n                           saved\n>>");
-        } catch (Exception e2) {
-            UI.print("\n               I was unable to save :(\n");
-        }
+        UI.print("\n               Not yet available\n");
     }
 
     static void load(){
-        try {
-            String nameSave =  JOptionPane.showInputDialog(null, "Enter the name of the save you want to load: ", "Load", JOptionPane.QUESTION_MESSAGE);
 
-            FileInputStream fis = new FileInputStream("./saves/"+nameSave+".ser");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Object[] thingsToLoad = (Object[]) ois.readObject();
-            toBeVar= (LinkedList<String>) thingsToLoad[0];
-            basis= (HashMap<String, Basis>) thingsToLoad[1];
-            maobs= (HashMap<String, Maob>) thingsToLoad[2];
-            ois.close();
-            UI.print("\n                           loaded\n>>");
-        } catch (Exception e3) {
-            UI.print("\n               I was unable to load :( ");
-            if(e3.toString().contains("FileNotFoundException")){
-                UI.print("(this save does not exist)");
-            }else{
-                UI.print("(it's probably because the save is from an older version)");
-            }
+        String[] models={"double pendulum","banane"};
+        int chosenModel = JOptionPane.showOptionDialog(null, "Chose your model", "load", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, models, models[0]);
 
+        if(chosenModel==0){
+            toBeVar.add("theta");
+            toBeVar.add("psi");
+            basis.put("1",new Basis("1",basis.get("0"),"x","theta"));
+            basis.put("2",new Basis("2",basis.get("1"),"x","psi"));
+
+            UI.print("\n           done ;)\n");
+        }else{
+            UI.print("\n                           This model doesn't exist\n>>");
         }
+
+
     }
 
 

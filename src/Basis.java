@@ -1,7 +1,11 @@
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class Basis implements Serializable  {
@@ -29,7 +33,7 @@ public class Basis implements Serializable  {
         z = new BasisVector("z");
         init();
     }
-    public Basis(String name, Basis predecessor, String axisInCommon, String angle) {
+    public Basis(String name, Basis predecessor, String axisInCommon, String angle){
         this();
         this.name = name;
         this.predecessor= predecessor;
@@ -53,6 +57,14 @@ public class Basis implements Serializable  {
                 break;
         }
         init();
+        try {
+            BufferedImage image = ImageIO.read(new File("./images/figure_changement_de_base.png"));
+            Graphics graphics = image.getGraphics();
+            graphics.setColor(Color.BLACK);
+            graphics.setFont(new Font("Arial Black", Font.BOLD, 20));
+            graphics.drawString("banana", 10, 25);
+            ImageIO.write(image, "png", new File("./images/done.png"));
+        }catch(Exception e){UI.print(e.toString());}
     }
     public void init(){
         x.add(this);

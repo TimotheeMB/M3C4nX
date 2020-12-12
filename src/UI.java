@@ -78,13 +78,13 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         gbc.gridx = 6;
         gbc.gridy = 0;
-        saveBut = new JButton("Save");
+        saveBut = new JButton("...");
         total.add(saveBut, gbc);
         saveBut.addActionListener(this);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        loadBut = new JButton("Load");
+        loadBut = new JButton("Load Model");
         total.add(loadBut, gbc);
         loadBut.addActionListener(this);
 

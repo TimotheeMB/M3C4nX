@@ -35,35 +35,40 @@ public class Basis implements Serializable  {
     }
     public Basis(String name, Basis predecessor, String axisInCommon, String angle){
         this();
-        this.name = name;
-        this.predecessor= predecessor;
-        predecessor.successors.add(this);
-        this.angle=new Variable(angle);
-        switch (axisInCommon) {
-            case "x":
-                x = predecessor.x;
-                y = new BasisVector("y");
-                z = new BasisVector("z");
-                break;
-            case "y":
-                y = predecessor.y;
-                x = new BasisVector("x");
-                z = new BasisVector("z");
-                break;
-            case "z":
-                z = predecessor.z;
-                x = new BasisVector("x");
-                y = new BasisVector("y");
-                break;
-        }
-        init();
         try {
-            BufferedImage image = ImageIO.read(new File("./images/figure_changement_de_base.png"));
+            BufferedImage image = ImageIO.read(new File("./images/blank_figure.png"));
             Graphics graphics = image.getGraphics();
             graphics.setColor(Color.BLACK);
             graphics.setFont(new Font("Arial Black", Font.BOLD, 20));
-            graphics.drawString("banana", 10, 25);
-            ImageIO.write(image, "png", new File("./images/done.png"));
+
+            this.name = name;
+            this.predecessor= predecessor;
+            predecessor.successors.add(this);
+            this.angle=new Variable(angle);
+
+            graphics.drawString(angle, 190, 400);
+            graphics.drawString(angle, 780, 720);
+            switch (axisInCommon) {
+                case "x":
+                    x = predecessor.x;
+                    y = new BasisVector("y");
+                    z = new BasisVector("z");
+                    break;
+                case "y":
+                    y = predecessor.y;
+                    x = new BasisVector("x");
+                    z = new BasisVector("z");
+                    break;
+                case "z":
+                    z = predecessor.z;
+                    x = new BasisVector("x");
+                    y = new BasisVector("y");
+                    break;
+            }
+            init();
+
+
+            ImageIO.write(image, "png", new File("./images/figure_"+name+".png"));
         }catch(Exception e){UI.print(e.toString());}
     }
     public void init(){

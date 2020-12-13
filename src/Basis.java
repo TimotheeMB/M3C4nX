@@ -35,19 +35,14 @@ public class Basis implements Serializable  {
     }
     public Basis(String name, Basis predecessor, String axisInCommon, String angle){
         this();
-        try {
-            BufferedImage image = ImageIO.read(new File("./images/blank_figure.png"));
-            Graphics graphics = image.getGraphics();
-            graphics.setColor(Color.BLACK);
-            graphics.setFont(new Font("Arial Black", Font.BOLD, 20));
+
 
             this.name = name;
             this.predecessor= predecessor;
             predecessor.successors.add(this);
             this.angle=new Variable(angle);
 
-            graphics.drawString(angle, 190, 400);
-            graphics.drawString(angle, 780, 720);
+
             switch (axisInCommon) {
                 case "x":
                     x = predecessor.x;
@@ -66,10 +61,6 @@ public class Basis implements Serializable  {
                     break;
             }
             init();
-
-
-            ImageIO.write(image, "png", new File("./images/figure_"+name+".png"));
-        }catch(Exception e){UI.print(e.toString());}
     }
     public void init(){
         x.add(this);
@@ -144,6 +135,47 @@ public class Basis implements Serializable  {
             throw new NonSenseException();
         }
     }
+
+    public void drawFigure(){
+        try {
+            BufferedImage image = ImageIO.read(new File("./images/blank_figure.png"));
+            Graphics graphics = image.getGraphics();
+            graphics.setColor(Color.BLACK);
+            graphics.setFont(new Font("Arial Black", Font.BOLD, 20));
+            graphics.drawString(angle.toString(), 190, 400);
+            graphics.drawString(angle.toString(), 780, 720);
+
+            String common = null,predRight = null,thisRight = null,predUp = null,thisUp = null;
+
+            if(this.z.equals(predecessor.z)){
+                common=z.toString();
+                predRight=predecessor.x.toString();
+                thisRight=x.toString();
+                predUp=predecessor.y.toString();
+                thisUp=y.toString();
+            }else if(this.y.equals(predecessor.y)){
+                common=y.toString();
+                predRight=predecessor.z.toString();
+                thisRight=z.toString();
+                predUp=predecessor.x.toString();
+                thisUp=x.toString();
+            }else{
+                common=x.toString();
+                predRight=predecessor.y.toString();
+                thisRight=y.toString();
+                predUp=predecessor.z.toString();
+                thisUp=z.toString();
+            }
+            graphics.drawString(common, 300, 800);
+            graphics.drawString(predRight, 1170, 800);
+            graphics.drawString(thisRight, 1150, 560);
+            graphics.drawString(predUp, 300, 40);
+            graphics.drawString(thisUp, 70, 90);
+
+            ImageIO.write(image, "png", new File("./images/figure_"+name+".png"));
+        }catch(Exception e){UI.print(e.toString());}
+    }
+
 /*
     @Override
     public boolean equals(Object o) {

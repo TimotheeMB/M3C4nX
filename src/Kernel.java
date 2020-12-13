@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public final class Kernel {
 
@@ -112,7 +113,6 @@ public final class Kernel {
         }
     }
 
-
     static void addVar(String name){
         if(!toBeVar.contains(name)){
             toBeVar.add(name);
@@ -121,8 +121,18 @@ public final class Kernel {
         }
     }
 
+    static void drawFigures(){
+        for (Map.Entry<String, Basis> entry : basis.entrySet()) {
+            String basisName = entry.getKey();
+            Basis basis = entry.getValue();
+            if(!basis.name.equals("0")) {
+                basis.drawFigure();
+            }
+        }
+    }
+
     static void save(){
-        UI.print("\n               Not yet available\n");
+        UI.print("\n               Not available yet\n");
     }
 
     static void load(){
@@ -135,7 +145,7 @@ public final class Kernel {
             toBeVar.add("psi");
             basis.put("1",new Basis("1",basis.get("0"),"x","theta"));
             basis.put("2",new Basis("2",basis.get("1"),"x","psi"));
-
+            Kernel.drawFigures();
             UI.print("\n           done ;)\n");
         }else{
             UI.print("\n                           This model doesn't exist\n>>");

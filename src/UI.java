@@ -1,7 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -28,6 +25,19 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         this.setSize(1000, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                File images = new File("./images");
+                for(File file:images.listFiles()){
+                    if(!file.getName().equals("blank_figure.png")) {
+                        file.delete();
+                    }
+                }
+                super.windowClosing(e);
+            }
+        });
+
         this.setTitle("M3C4n'X");
         this.setLocationRelativeTo(null);
         JPanel total = new JPanel();
@@ -118,6 +128,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
         this.setVisible(true);
         boolean running = true;
+
         Kernel.basis.put("0", new Basis("0"));
         refreshSummery();
     }
@@ -213,7 +224,6 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     public static String read() {
         return terminal.getText();
     }
-
 
     public void keyTyped(KeyEvent e) {}
     public void keyPressed(KeyEvent e) {}

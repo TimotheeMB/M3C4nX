@@ -59,6 +59,7 @@ public class New extends JFrame implements ActionListener {
                     axis="z";
                 }
                 Kernel.basis.put(bp.name.getText(),new Basis(bp.name.getText(),Kernel.basis.get(bp.predecessor.getSelectedItem()),axis, bp.angle.getText()));
+                Kernel.drawFigures();
                 break;
             case "variables":
                 VariablesPanel vp = (VariablesPanel) panel;

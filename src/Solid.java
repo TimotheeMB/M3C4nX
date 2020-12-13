@@ -11,7 +11,7 @@ public class Solid {
         this.pointOfTheMatrix = pointOfTheMatrix;
     }
 
-    Scalar kineticEnergy(){
-        return new Scalar();
+    Scalar kineticEnergy() throws NonSenseException {
+        return (Scalar) m.dot(pointOfTheMatrix.newDiff(Kernel.basis.get("0")).dot(pointOfTheMatrix.newDiff(Kernel.basis.get("0"))));
     }
 }

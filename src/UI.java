@@ -125,9 +125,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         summary.setForeground(Color.CYAN);
         summary.setBackground(Color.DARK_GRAY);
         total.add(summary, gbc);
-
         this.setVisible(true);
-        boolean running = true;
 
         Kernel.basis.put("0", new Basis("0"));
         refreshSummery();
@@ -195,20 +193,20 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     }
 
     void refreshSummery(){
-        String sumUp="";
-        sumUp+="            ===OBJECTS===\n";
+        String sumUp="### SUMMARY ###\n";
+        sumUp+="________________\n    ~ OBJECTS ~\n";
         for (Map.Entry<String, Maob> entry : Kernel.maobs.entrySet()) {
             String variableName = entry.getKey();
             Maob value = entry.getValue();
             sumUp += variableName + " = " + value+"\n";
         }
-        sumUp+="\n\n          ===VARIABLES===\n";
+        sumUp+="________________\n  ~ VARIABLES ~\n";
         for (String s:Kernel.toBeVar) {
             if(!s.contains("dot")) {
                 sumUp += s + "\n";
             }
         }
-        sumUp+="\n\n              ===BASIS===\n";
+        sumUp+="________________\n       ~ BASIS ~\n";
         for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
             Basis value = entry.getValue();
@@ -219,6 +217,9 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
     public static void print(String s) {
         terminal.append(s);
+    }
+    public static void println(String s) {
+        print("\n"+s+"\n>>");
     }
 
     public static String read() {

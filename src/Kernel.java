@@ -61,6 +61,9 @@ public final class Kernel {
         String[] tmp;
         if (maobs.containsKey(s)) {
             return maobs.get(s);
+        }else if(s.contains("KE")){
+            s = s.replace("KE","");
+            return (Kernel.solids.get(s).kineticEnergy());
         }else if(s.contains("newdiff")){
             tmp = s.split("newdiff");
             if(tmp.length==1){
@@ -132,7 +135,7 @@ public final class Kernel {
     }
 
     static void save(){
-        UI.print("\n               Not available yet\n");
+        UI.println("Not available yet");
     }
 
     static void load(){
@@ -146,9 +149,9 @@ public final class Kernel {
             basis.put("1",new Basis("1",basis.get("0"),"x","theta"));
             basis.put("2",new Basis("2",basis.get("1"),"x","psi"));
             Kernel.drawFigures();
-            UI.print("\n           done ;)\n");
+            UI.println("done ;)");
         }else{
-            UI.print("\n                           This model doesn't exist\n>>");
+            UI.println("This model doesn't exist");
         }
 
 

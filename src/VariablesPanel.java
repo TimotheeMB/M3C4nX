@@ -12,6 +12,7 @@ public class VariablesPanel extends JPanel {
     public VariablesPanel(UI ui, New window) {
         //construct components
         variables = new JTextField (5);
+        variables.addActionListener(window);
         OK = new JButton ("OK");
         OK.addActionListener(window);
         text = new JLabel ("Enter here the variables you wil use (separated with commas)");

@@ -14,7 +14,7 @@ public final class Kernel {
 
     public static void inputOutput(String input){
 
-        String[] affectation = affectation(input);
+        String[] affectation = affectation(simplify(input));
 
         try {
             Maob result = computePlus(affectation[1]);
@@ -43,6 +43,10 @@ public final class Kernel {
             affectation = new String[]{"ans", affectation[0]};
         }
         return affectation;
+    }
+
+    public static String simplify(String input){
+        return input.replace(" ","").replace("\n","").replace("\r","");
     }
 
     public static Maob computePlus (String s) throws NonSenseException {

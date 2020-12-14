@@ -226,7 +226,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         for (int i = beginningInput; i < totalText.length() ; i++) {
             input += totalText.charAt(i);
         }
-        return input.replace(" ","").replace("\n","").replace("\r","");
+        return input;
     }
 
     public void keyTyped(KeyEvent e) {}

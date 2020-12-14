@@ -37,6 +37,10 @@ public final class Kernel {
         UI.print("\n>>");
     }
 
+    public static Maob quickInput(String input) throws NonSenseException {
+        return computePlus(simplify(input));
+    }
+
     public static String[] affectation(String input){
         String[] affectation = input.split("=");
         if (affectation.length == 1) {
@@ -104,6 +108,20 @@ public final class Kernel {
         }else if(s.contains(",")){
             tmp = s.split(",");
             return new Vector((Scalar)compute(tmp[0]),(Scalar)compute(tmp[1]),(Scalar)compute(tmp[2]),basis.get(tmp[3]));
+        }else if(s.contains("/")){
+            tmp = s.split("/");
+            Basis basis = Kernel.basis.get(String.valueOf(tmp[1].charAt(1)));
+            BasisVector basisVector = null;
+            if(tmp[1].charAt(0)=='x'){
+                basisVector=basis.x;
+            }else if(tmp[1].charAt(0)=='y'){
+                basisVector=basis.y;
+            }else if(tmp[1].charAt(0)=='z'){
+                basisVector=basis.z;
+            }else{
+                throw new NonSenseException();
+            }
+            return new Vector(new SimpleVector((Scalar) compute(tmp[0]),basisVector));
         }else if(s.contains("omega")){
             tmp = s.split("omega");
             return (basis.get(tmp[0])).omega(basis.get(tmp[1]));

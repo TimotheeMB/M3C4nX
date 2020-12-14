@@ -40,11 +40,15 @@ public class New extends JFrame implements ActionListener {
 
 
 
-    private void doYourThing() {
+    private void doYourThing(){
         switch (type){
             case "solid":
                 SolidPanel sp = (SolidPanel) panel;
-                Kernel.solids.put(sp.name.getText(),new Solid(Kernel.basis.get(sp.basisChoice.getSelectedIndex()),new Scalar(sp.masse.getText()), (Matrix) Kernel.maobs.get(sp.nameMatrix.getText()),new Vector()));
+                try {
+                    Kernel.solids.put(sp.name.getText(),new Solid(Kernel.basis.get(sp.basisChoice.getSelectedItem()),new Scalar(sp.masse.getText()), (Matrix) Kernel.maobs.get(sp.nameMatrix.getText()),(Vector) Kernel.computePlus(sp.pointOfMatrix.getText())));
+                } catch (NonSenseException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "matrix":
                 MatrixPanel mp = (MatrixPanel) panel;

@@ -1,9 +1,6 @@
 import java.awt.event.*;
 import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Scanner;
 import java.awt.*;
 import javax.swing.*;
 
@@ -133,7 +130,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode()==10){//if Enter
-            Kernel.input(read());
+            Kernel.inputOutput(read());
             refreshSummery();
         }
     }
@@ -223,7 +220,13 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     }
 
     public static String read() {
-        return terminal.getText();
+        String totalText = terminal.getText();
+        int beginningInput = totalText.lastIndexOf(">>")+2;
+        String input ="";
+        for (int i = beginningInput; i < totalText.length() ; i++) {
+            input += totalText.charAt(i);
+        }
+        return input.replace(" ","").replace("\n","").replace("\r","");
     }
 
     public void keyTyped(KeyEvent e) {}

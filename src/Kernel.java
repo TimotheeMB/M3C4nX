@@ -12,31 +12,12 @@ public final class Kernel {
     static HashMap<String,Solid> solids = new HashMap<>();
     static LinkedList<String> toBeVar=new LinkedList<>();
 
-    public static void input(String input){
-        int beginningInput =input.lastIndexOf(">>")+2;
-        String inputSimplified ="";
-        for (int i = beginningInput; i <input.length() ; i++) {
-            inputSimplified += input.charAt(i);
-        }
-        inputSimplified = inputSimplified.replace(" ","");
-        inputSimplified = inputSimplified.replace("\n","");
-        inputSimplified = inputSimplified.replace("\r","");
+    public static void inputOutput(String input){
 
-        String[] affectation = inputSimplified.split("=");
+        String[] affectation = affectation(input);
 
-
-        if (affectation.length == 1) {
-            affectation = new String[]{"ans", affectation[0]};
-        }
         try {
-            char[] tmpArray = affectation[1].toCharArray();
-            for (int i = 0; i < tmpArray.length; i++) {
-                if (tmpArray[i] == '-' && (i==0 || tmpArray[i-1] == ',' || tmpArray[i-1] == '+' || tmpArray[i-1] == '-')){
-                    tmpArray[i]='~';//minus the sign
-                }
-            }
-            affectation[1]=new String(tmpArray);
-            Maob result = compute(affectation[1]);
+            Maob result = computePlus(affectation[1]);
             UI.print(affectation[0] + " = \n");
             UI.print("                           " + result);
             maobs.put(affectation[0], result);
@@ -56,6 +37,17 @@ public final class Kernel {
         UI.print("\n>>");
     }
 
+    public static String[] affectation(String input){
+        String[] affectation = input.split("=");
+        if (affectation.length == 1) {
+            affectation = new String[]{"ans", affectation[0]};
+        }
+        return affectation;
+    }
+
+    public static Maob computePlus (String s) throws NonSenseException {
+        return compute(manageMinusSign(s));
+    }
 
     public static Maob compute(String s) throws NonSenseException {
         String[] tmp;
@@ -114,6 +106,16 @@ public final class Kernel {
         }else {
             return new Scalar(s.replace("~",""),!s.contains("~")); // minus the sign
         }
+    }
+
+    public static String manageMinusSign(String input){
+        char[] tmpArray = input.toCharArray();
+        for (int i = 0; i < tmpArray.length; i++) {
+            if (tmpArray[i] == '-' && (i==0 || tmpArray[i-1] == ',' || tmpArray[i-1] == '+' || tmpArray[i-1] == '-')){
+                tmpArray[i]='~';//minus the sign
+            }
+        }
+        return new String(tmpArray);
     }
 
     static void addVar(String name){

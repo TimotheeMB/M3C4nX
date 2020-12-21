@@ -73,6 +73,7 @@ public class New extends JFrame implements ActionListener {
                 break;
         }
         ui.refreshSummery();
+        ui.figures.refresh();
         this.setVisible(false);
     }
 

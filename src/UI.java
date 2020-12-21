@@ -17,7 +17,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
 
     static TextArea terminal;
     TextArea summary;
-    JPanel figures;
+    FiguresPanel figures;
 
     public UI () {
 
@@ -77,7 +77,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
         summary.setBackground(Color.DARK_GRAY);
         total.add(summary);
 
-        figures = new JPanel();
+        figures = new FiguresPanel();
         total.add(figures);
         this.setVisible(true);
 

@@ -100,8 +100,6 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
     }
 
     public void placeComponents(){
-        int x = (int)(this.getWidth()*0.1);
-        int y = (int)(this.getHeight()*0.1);
 
              helpBut.setBounds(at(0,0,1,1));
              loadBut.setBounds(at(1,0,1,1));

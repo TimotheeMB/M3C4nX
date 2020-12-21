@@ -14,6 +14,8 @@ public class UI extends JFrame implements KeyListener, ActionListener {
     JButton saveBut;
     JButton loadBut;
     JButton newSolidBut;
+    JImagePanel imagePanel;
+    JImagePanel imagePanel1;
 
     static TextArea terminal;
     TextArea summary;
@@ -38,7 +40,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         this.setTitle("M3C4n'X");
         this.setLocationRelativeTo(null);
         JPanel total = new JPanel();
-        Color veryDarkGrey = new Color(40, 40, 50);
+        Color veryDarkGrey = new Color(100, 150, 150);
         total.setBackground(veryDarkGrey);
         this.add(total);
 
@@ -95,10 +97,10 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         total.add(loadBut, gbc);
         loadBut.addActionListener(this);
 
-
         gbc.weightx = 0.6;
         gbc.weighty = 0.9;
         gbc.gridwidth = 7;
+        gbc.gridheight = 3;
         gbc.gridx = 0;
         gbc.gridy = 1;
         terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
@@ -111,7 +113,7 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         terminal.addKeyListener(this);
 
         gbc.weightx = 0.4;
-        gbc.weighty = 0.9;
+        gbc.weighty = 0.3;
         gbc.gridwidth = 1;
         gbc.gridheight = 2;
         gbc.gridx = 7;
@@ -122,7 +124,30 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         summary.setForeground(Color.CYAN);
         summary.setBackground(Color.DARK_GRAY);
         total.add(summary, gbc);
+
+        gbc.weightx = 0.4;
+        gbc.weighty = 0.3;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 2;
+        gbc.gridx = 7;
+        gbc.gridy = 2;
+        JPanel test = new JPanel();
+        test.setBackground(veryDarkGrey);
+        total.add(test, gbc);
+
+        /*gbc.weightx = 0.4;
+        gbc.weighty = 0.3;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.gridx = 7;
+        gbc.gridy = 2;*/
+        imagePanel1 = new JImagePanel("./images/blank_figure.png");
+        imagePanel1.setStretch(false);
+        imagePanel1.setVisible(true);
+        test.add(imagePanel1);
+
         this.setVisible(true);
+        boolean running = true;
 
         Kernel.basis.put("0", new Basis("0"));
         refreshSummery();

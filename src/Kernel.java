@@ -181,5 +181,9 @@ public final class Kernel {
 
     }
 
+    static void initialize(){
+        basis.put("0", new Basis("0"));
+    }
+
 
 }

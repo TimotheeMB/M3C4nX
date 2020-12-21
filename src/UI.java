@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class UI extends JFrame implements KeyListener, ActionListener {
+public class UI extends JFrame implements KeyListener, ActionListener,ComponentListener {
     
     JButton helpBut;
     JButton newBasisBut;
@@ -17,11 +17,74 @@ public class UI extends JFrame implements KeyListener, ActionListener {
 
     static TextArea terminal;
     TextArea summary;
+    JPanel figures;
 
     public UI () {
 
         this.setSize(1000, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("M3C4n'X");
+        this.setLocationRelativeTo(null);
+        this.addComponentListener(this);
+
+        JPanel total = new JPanel();
+        Color veryDarkGrey = new Color(40, 40, 50);
+        total.setBackground(veryDarkGrey);
+        total.setLayout(null);
+        this.add(total);
+
+        helpBut = new JButton("Help");
+        total.add(helpBut);
+        helpBut.addActionListener(this);
+
+        loadBut = new JButton("Load Model");
+        total.add(loadBut);
+        loadBut.addActionListener(this);
+
+        variablesBut = new JButton("Variables");
+        total.add(variablesBut);
+        variablesBut.addActionListener(this);
+
+        newBasisBut = new JButton("New Basis");
+        total.add(newBasisBut);
+        newBasisBut.addActionListener(this);
+
+        newMatrixBut = new JButton("New Matrix");
+        total.add(newMatrixBut);
+        newMatrixBut.addActionListener(this);
+
+        newSolidBut = new JButton("New Solid");
+        total.add(newSolidBut);
+        newSolidBut.addActionListener(this);
+
+        saveBut = new JButton("...");
+        total.add(saveBut);
+        saveBut.addActionListener(this);
+
+        terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
+        terminal.setForeground(Color.PINK);
+        terminal.setBackground(Color.DARK_GRAY);
+        Font f = new Font("Calibri", Font.BOLD, 16);
+        terminal.setFont(f);
+        terminal.setText(">>");
+        total.add(terminal);
+        terminal.addKeyListener(this);
+
+        summary = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
+        summary.setEditable(false);
+        summary.setFont(f);
+        summary.setForeground(Color.CYAN);
+        summary.setBackground(Color.DARK_GRAY);
+        total.add(summary);
+
+        figures = new JPanel();
+        total.add(figures);
+        this.setVisible(true);
+
+        placeComponents();
+        Kernel.initialize();
+        this.refreshSummery();
+
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -34,99 +97,29 @@ public class UI extends JFrame implements KeyListener, ActionListener {
                 super.windowClosing(e);
             }
         });
-
-        this.setTitle("M3C4n'X");
-        this.setLocationRelativeTo(null);
-        JPanel total = new JPanel();
-        Color veryDarkGrey = new Color(40, 40, 50);
-        total.setBackground(veryDarkGrey);
-        this.add(total);
-
-        GridBagLayout gblTot = new GridBagLayout();
-        total.setLayout(gblTot);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.ipady = gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(5, 5, 5, 5);
-
-        gbc.weightx = 0.05;
-        gbc.weighty = 0.1;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        helpBut = new JButton("Help");
-        total.add(helpBut, gbc);
-        helpBut.addActionListener(this);
-
-        gbc.gridx = 3;
-        gbc.gridy = 0;
-        newBasisBut = new JButton("New Basis");
-        total.add(newBasisBut, gbc);
-        newBasisBut.addActionListener(this);
-
-        gbc.gridx = 4;
-        gbc.gridy = 0;
-        newMatrixBut = new JButton("New Matrix");
-        total.add(newMatrixBut, gbc);
-        newMatrixBut.addActionListener(this);
-
-        gbc.gridx = 2;
-        gbc.gridy = 0;
-        variablesBut = new JButton("Variables");
-        total.add(variablesBut, gbc);
-        variablesBut.addActionListener(this);
-
-        gbc.gridx = 5;
-        gbc.gridy = 0;
-        newSolidBut = new JButton("New Solid");
-        total.add(newSolidBut, gbc);
-        newSolidBut.addActionListener(this);
-
-        gbc.gridx = 6;
-        gbc.gridy = 0;
-        saveBut = new JButton("...");
-        total.add(saveBut, gbc);
-        saveBut.addActionListener(this);
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        loadBut = new JButton("Load Model");
-        total.add(loadBut, gbc);
-        loadBut.addActionListener(this);
-
-
-        gbc.weightx = 0.6;
-        gbc.weighty = 0.9;
-        gbc.gridwidth = 7;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
-        terminal.setForeground(Color.PINK);
-        terminal.setBackground(Color.DARK_GRAY);
-        Font f = new Font("Calibri", Font.BOLD, 16);
-        terminal.setFont(f);
-        terminal.setText(">>");
-        total.add(terminal, gbc);
-        terminal.addKeyListener(this);
-
-        gbc.weightx = 0.4;
-        gbc.weighty = 0.9;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 2;
-        gbc.gridx = 7;
-        gbc.gridy = 0;
-        summary = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
-        summary.setEditable(false);
-        summary.setFont(f);
-        summary.setForeground(Color.CYAN);
-        summary.setBackground(Color.DARK_GRAY);
-        total.add(summary, gbc);
-        this.setVisible(true);
-
-        Kernel.basis.put("0", new Basis("0"));
-        refreshSummery();
     }
+
+    public void placeComponents(){
+        int x = (int)(this.getWidth()*0.1);
+        int y = (int)(this.getHeight()*0.1);
+
+        helpBut.setBounds(0,0,x,y);
+        loadBut.setBounds(x,0,x,y);
+        variablesBut.setBounds(2*x,0,x,y);
+        newBasisBut.setBounds(3*x,0,x,y);
+        newMatrixBut.setBounds(4*x,0,x,y);
+        newSolidBut.setBounds(5*x,0,x,y);
+        saveBut.setBounds(6*x,0,x,y);
+
+        terminal.setBounds(0,y,7*x,9*y);
+
+        summary.setBounds(7*x,0,3*x,5*y);
+
+        figures.setBounds(7*x,5*y,3*x,5*y);
+
+    }
+
+
 
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode()==10){//if Enter
@@ -229,6 +222,14 @@ public class UI extends JFrame implements KeyListener, ActionListener {
         return input;
     }
 
+
+    public void componentResized(ComponentEvent e) {
+        placeComponents();
+    }
+
     public void keyTyped(KeyEvent e) {}
     public void keyPressed(KeyEvent e) {}
+    public void componentMoved(ComponentEvent e) {}
+    public void componentShown(ComponentEvent e) {}
+    public void componentHidden(ComponentEvent e) {}
 }

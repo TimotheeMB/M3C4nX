@@ -103,23 +103,25 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
         int x = (int)(this.getWidth()*0.1);
         int y = (int)(this.getHeight()*0.1);
 
-        helpBut.setBounds(0,0,x,y);
-        loadBut.setBounds(x,0,x,y);
-        variablesBut.setBounds(2*x,0,x,y);
-        newBasisBut.setBounds(3*x,0,x,y);
-        newMatrixBut.setBounds(4*x,0,x,y);
-        newSolidBut.setBounds(5*x,0,x,y);
-        saveBut.setBounds(6*x,0,x,y);
+             helpBut.setBounds(at(0,0,1,1));
+             loadBut.setBounds(at(1,0,1,1));
+        variablesBut.setBounds(at(2,0,1,1));
+         newBasisBut.setBounds(at(3,0,1,1));
+        newMatrixBut.setBounds(at(4,0,1,1));
+         newSolidBut.setBounds(at(5,0,1,1));
+             saveBut.setBounds(at(6,0,1,1));
 
-        terminal.setBounds(0,y,7*x,9*y);
+            terminal.setBounds(at(0,1,7,9));
 
-        summary.setBounds(7*x,0,3*x,5*y);
+             summary.setBounds(at(7,0,3,5));
 
-        figures.setBounds(7*x,5*y,3*x,5*y);
+             figures.setBounds(at(7,5,3,5));
 
     }
 
-
+    Rectangle at(int x, int y, int width, int height){
+        return new Rectangle((int) ((this.getWidth()-16)*x*0.1),(int) ((this.getHeight()-40)*y*0.1),(int) ((this.getWidth()-16)*width*0.1),(int) ((this.getHeight()-40)*height*0.1));
+    }
 
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode()==10){//if Enter

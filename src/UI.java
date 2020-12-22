@@ -7,7 +7,6 @@ import javax.swing.*;
 
 
 public class UI extends JFrame implements KeyListener, ActionListener,ComponentListener {
-    //bonjour
 
     JButton helpBut;
     JButton newBasisBut;

@@ -1,5 +1,6 @@
 import java.awt.event.*;
 import java.io.*;
+import java.net.URI;
 import java.util.Map;
 import java.awt.*;
 import javax.swing.*;
@@ -128,42 +129,12 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()== helpBut) {
-            String help = "\n";
-            help += "----------------------------------------------------------------------------------------\n";
-            help += "                             # GENERAL DESCRIPTION                                     \n";
-            help += "M3C4n'X is the perfect tool for mechanics.\n";
-            help += "You can do things like shift wrenches or inertia matrices, express anything in any basis.\n";
-            help += "You'll see it's pretty cool...\n";
-            help += "----------------------------------------------------------------------------------------\n";
-            help += "                                  # COMMANDS                                            \n";
-            help += "##AFFECTATION\n";
-            help += "NameOfTheVariable = Whatever\n";
-            help += "\n";
-            help += "##DECLARATION\n";
-            help += "¤ Scalar:<nameOfScalar>\n";
-            help += "¤ Vector: <coef>,<coef>,<coef>,<basis>\n";
-            help += "¤ Wrench: <vector>;<vector>\n";
-            help += "¤ Basis/Matrix/Variables: look at the buttons\n";
-            help += "\n";
-            help += "##OPERATION\n";
-            help += "¤ Plus: +\n";
-            help += "¤ Minus: -\n";
-            help += "¤ Dot product: .\n";
-            help += "¤ Cross product: *\n";
-            help += "¤ Shift: ->\n";
-            help += "¤ Express in a basis: in\n";
-            help += "¤ Differentiate with respect to: diff\n";
-            help += "\n";
-            help += "REMARK: You can use affectation, declaration and operation all together\n";
-            help += "----------------------------------------------------------------------------------------\n";
-            help += "                                     # TIPS                                             \n";
-            help += "You should proceed in the following order:\n";
-            help += "- Declare all your variables\n";
-            help += "- Create all the basis\n";
-            help += "- And THEN do all your computations\n";
-            help += "\n";
-
-            print(help);
+            try {
+                URI oURL = new URI("help.html");
+                Desktop.getDesktop().browse(oURL);
+            }catch(Exception e2){
+                e2.printStackTrace();
+            }
         } else if( e.getSource()==saveBut){
             Kernel.save();
         } else if(e.getSource()==loadBut){

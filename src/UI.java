@@ -130,7 +130,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()== helpBut) {
             try {
-                URI oURL = new URI("help.html");
+                URI oURL = new URI("README.html");
                 Desktop.getDesktop().browse(oURL);
             }catch(Exception e2){
                 e2.printStackTrace();

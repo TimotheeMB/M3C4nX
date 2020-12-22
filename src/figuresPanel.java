@@ -12,23 +12,20 @@ public class FiguresPanel extends JPanel{
         File[] figures = new File("./figures").listFiles();
         if (figures.length!=0) {
             int gridSize = (int) (Math.sqrt(figures.length) + 0.9);
-            int cx = (int) (this.getWidth() / gridSize);
-            int cy = (int) (this.getHeight() / gridSize);
+            int cx = (this.getWidth() / gridSize);
+            int cy = (this.getHeight() / gridSize);
             int x = 0;
             int y = 0;
 
             for (int i = 0; i < figures.length; i++) {
-                x = (int) (i % gridSize);
-                y = (int) (i / gridSize);
-                //if(!file.getName().equals("blank_figure.png")){
+                x = (i % gridSize);
+                y = (i / gridSize);
                 try {
                     BufferedImage img = ImageIO.read(figures[i]);
                     g.drawImage(img.getScaledInstance(cx, cy, Image.SCALE_SMOOTH), x * cx, y * cy, this); // see javadoc for more info on the parameters
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ;
-                //}
             }
         }
 

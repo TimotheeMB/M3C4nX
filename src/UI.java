@@ -79,20 +79,18 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
 
         figures = new FiguresPanel();
         total.add(figures);
-        this.setVisible(true);
+
 
         placeComponents();
         Kernel.initialize();
-        this.refreshSummery();
+        this.refresh();
 
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                File images = new File("./images");
-                for(File file:images.listFiles()){
-                    if(!file.getName().equals("blank_figure.png")) {
-                        file.delete();
-                    }
+                File figures = new File("./figures");
+                for(File file:figures.listFiles()){
+                    file.delete();
                 }
                 super.windowClosing(e);
             }
@@ -124,7 +122,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode()==10){//if Enter
             Kernel.inputOutput(read());
-            refreshSummery();
+            refresh();
         }
     }
 
@@ -170,7 +168,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
             Kernel.save();
         } else if(e.getSource()==loadBut){
             Kernel.load();
-            refreshSummery();
+            refresh();
         }else if(e.getSource()==newBasisBut){
             new New("basis",this);
         }else if(e.getSource()==newMatrixBut){
@@ -182,7 +180,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
         }
     }
 
-    void refreshSummery(){
+    void refresh(){
         String sumUp="### SUMMARY ###\n";
         sumUp+="________________\n    ~ OBJECTS ~\n";
         for (Map.Entry<String, Maob> entry : Kernel.maobs.entrySet()) {
@@ -203,6 +201,8 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
             sumUp += basisName+"\n";
         }
         summary.setText(sumUp);
+        figures.repaint();
+        this.setVisible(true);
     }
 
     public static void print(String s) {

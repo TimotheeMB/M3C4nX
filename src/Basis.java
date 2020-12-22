@@ -141,7 +141,7 @@ public class Basis implements Serializable  {
             BufferedImage image = ImageIO.read(new File("./images/blank_figure.png"));
             Graphics graphics = image.getGraphics();
             graphics.setColor(Color.BLACK);
-            graphics.setFont(new Font("Arial Black", Font.BOLD, 20));
+            graphics.setFont(new Font("Arial Black", Font.BOLD, 50));
             graphics.drawString(angle.toString(), 190, 400);
             graphics.drawString(angle.toString(), 780, 720);
 
@@ -172,7 +172,7 @@ public class Basis implements Serializable  {
             graphics.drawString(predUp, 300, 40);
             graphics.drawString(thisUp, 70, 90);
 
-            ImageIO.write(image, "png", new File("./images/figure_"+name+".png"));
+            ImageIO.write(image, "png", new File("./figures/figure_"+name+".png"));
         }catch(Exception e){UI.print(e.toString());}
     }
 

@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -10,7 +13,7 @@ public final class Kernel {
     static HashMap<String,Maob> maobs = new HashMap<>();
     static HashMap<String,Basis> basis = new HashMap<>();
     static HashMap<String,Solid> solids = new HashMap<>();
-    static LinkedList<String> toBeVar=new LinkedList<>();
+    static LinkedList<String> toBeVar = new LinkedList<>();
 
     public static void inputOutput(String input){
 
@@ -182,6 +185,14 @@ public final class Kernel {
     }
 
     static void initialize(){
+        Path figures = Paths.get("./figures");
+        try {
+            if(!Files.exists(figures)) {
+                Files.createDirectory(figures);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         basis.put("0", new Basis("0"));
     }
 

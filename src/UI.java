@@ -170,6 +170,11 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
             String basisName = entry.getKey();
             sumUp += basisName+"\n";
         }
+        sumUp+="________________\n       ~ SOLIDS ~\n";
+        for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
+            String solidName = entry.getKey();
+            sumUp += solidName +"\n";
+        }
         summary.setText(sumUp);
         figures.repaint();
         this.setVisible(true);

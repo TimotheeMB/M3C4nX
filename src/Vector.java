@@ -133,7 +133,6 @@ public class Vector extends Maob implements Serializable {
     }
 
     public Vector differentiate (Basis wrt) throws NonSenseException {
-        UI.print("\n              Moving basis formulae:\n        di/dt(u) = dk/dt(u) + Omega(i/k) * u\n\n");
         Vector r = new Vector();
         for (SimpleVector v : this.expression) {
             Vector diff = v.differentiate(wrt);

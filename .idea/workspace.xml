@@ -22,18 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="complete kinetic energy">
-      <change afterPath="$PROJECT_DIR$/images/angle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/axis.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/block.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/information.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/matrix.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/spring.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/support.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/upload.png" afterDir="false" />
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="icons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kernel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Visuel">
-      <created>1600534278660</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1600534278660</updated>
     </task>
     <task id="LOCAL-00022" summary="moins">
       <created>1600697092100</created>
@@ -447,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609159354018</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="icons">
+      <created>1609162259195</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1609162259195</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +454,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remaniment des fenteres&#10;creation de New" />
     <MESSAGE value="name and ok for new solid" />
     <MESSAGE value="creation du Kernel" />
     <MESSAGE value="Aaaaah a beautifull kernel" />
@@ -489,7 +478,8 @@
     <MESSAGE value="create figures directory" />
     <MESSAGE value=".idea is back in the game" />
     <MESSAGE value="complete kinetic energy" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete kinetic energy" />
+    <MESSAGE value="icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="icons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

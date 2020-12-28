@@ -22,9 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="powers">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="add workspace again" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,13 +91,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Variables">
-      <created>1600866819277</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1600866819277</updated>
     </task>
     <task id="LOCAL-00025" summary="Variables">
       <created>1600940987337</created>
@@ -437,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609180404247</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="add workspace again">
+      <created>1609180650121</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1609180650121</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,7 +452,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Aaaaah a beautifull kernel" />
     <MESSAGE value="MVB" />
     <MESSAGE value="Fix expressIn" />
     <MESSAGE value="Reorganize buttons" />
@@ -479,7 +476,8 @@
     <MESSAGE value="icons" />
     <MESSAGE value="summary update" />
     <MESSAGE value="powers" />
-    <option name="LAST_COMMIT_MESSAGE" value="powers" />
+    <MESSAGE value="add workspace again" />
+    <option name="LAST_COMMIT_MESSAGE" value="add workspace again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

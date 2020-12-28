@@ -20,7 +20,7 @@ public class Matrix extends Maob {
         if (two instanceof Vector){
             Vector result=new Vector();
             Vector v=((Vector)two).expressIn(basis);
-            Scalar a = null,b=null,c=null;
+            Scalar a = new Scalar("0"),b = new Scalar("0"),c = new Scalar("0");
             for (SimpleVector sv:v.expression) {
                 if(sv.basisVector.equals(basis.x)){
                     a = sv.expression;
@@ -68,14 +68,8 @@ public class Matrix extends Maob {
 
     @Override
     public String toString() {
-        return "Matrix{" +
-                "A=" + A +
-                ", B=" + B +
-                ", C=" + C +
-                ", D=" + D +
-                ", E=" + E +
-                ", F=" + F +
-                ", basis=" + basis +
-                '}';
+        return "[" + A + " " + F + " " + E + ";"+
+                     F + " " + B + " " + D + ";"+
+                     E + " " + D + " " + C + "] "+basis;
     }
 }

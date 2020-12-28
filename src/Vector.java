@@ -122,21 +122,21 @@ public class Vector extends Maob implements Serializable {
         return r;
     }
 
-    public Vector differentiate(Basis wrt) throws NonSenseException {
+    public Vector oldDifferentiate(Basis wrt) throws NonSenseException {
         Vector inWrt = this.expressIn(wrt);
         Vector r = new Vector();
         for (SimpleVector v : inWrt.expression) {
-            SimpleVector diff=v.differentiate();
+            SimpleVector diff=v.oldDifferentiate();
             r.add(diff);
         }
         return r;
     }
 
-    public Vector newDiff(Basis wrt) throws NonSenseException {
+    public Vector differentiate (Basis wrt) throws NonSenseException {
         UI.print("\n              Moving basis formulae:\n        di/dt(u) = dk/dt(u) + Omega(i/k) * u\n\n");
         Vector r = new Vector();
         for (SimpleVector v : this.expression) {
-            Vector diff = v.newDiff(wrt);
+            Vector diff = v.differentiate(wrt);
             r= (Vector) r.plus(diff);
         }
         return r;

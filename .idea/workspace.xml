@@ -22,7 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment=".idea is back in the game" />
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment=".idea is back in the game">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kernel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Solid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SolidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SolidPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +57,9 @@
         <option value="https://github.com/TimotheeMB/M3C4nX" />
       </set>
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../../../../../../Program Files/Java/jdk1.8.0_192/src.zip!/java/net/URLClassLoader.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1f0Ut2K7fZ9C4iFz3YFByV7fZUY" />
   <component name="ProjectLevelVcsManager">
@@ -88,13 +99,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Visuel">
-      <created>1600533863911</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1600533863912</updated>
     </task>
     <task id="LOCAL-00020" summary="Visuel">
       <created>1600534018255</created>
@@ -432,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608725903948</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary=".idea is back in the game">
+      <created>1608726250895</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1608726250895</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -491,117 +502,10 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="186" />
         </breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>184</line>
-          <properties class="BasisVector">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="164" />
-        </line-breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/Basis.java</url>
-          <line>180</line>
-          <properties class="Basis" method="toString">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="179" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="166" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>186</line>
-          <option name="timeStamp" value="167" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>187</line>
-          <option name="timeStamp" value="168" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>188</line>
-          <option name="timeStamp" value="169" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>189</line>
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>190</line>
-          <option name="timeStamp" value="171" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="172" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>192</line>
-          <option name="timeStamp" value="173" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>194</line>
-          <option name="timeStamp" value="174" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>193</line>
-          <option name="timeStamp" value="175" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="176" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>196</line>
-          <option name="timeStamp" value="177" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/BasisVector.java</url>
-          <line>197</line>
-          <option name="timeStamp" value="178" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Basis.java</url>
-          <line>181</line>
-          <option name="timeStamp" value="180" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Basis.java</url>
-          <line>182</line>
-          <option name="timeStamp" value="181" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Basis.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="182" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Basis.java</url>
-          <line>184</line>
-          <option name="timeStamp" value="183" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Basis.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="184" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Kernel.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="189" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

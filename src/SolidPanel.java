@@ -13,7 +13,7 @@ public class SolidPanel extends JPanel {
     public JLabel jcomp5;
     public JTextField nameMatrix;
     public JLabel jcomp7;
-    public JButton newMatrix;
+    //public JButton newMatrix;
     public JLabel jcomp9;
     public JTextField pointOfMatrix;
     public JButton OK;
@@ -40,8 +40,8 @@ public class SolidPanel extends JPanel {
         jcomp5 = new JLabel ("Matrix :");
         nameMatrix = new JTextField (5);
         jcomp7 = new JLabel ("or");
-        newMatrix = new JButton ("new");
-        jcomp9 = new JLabel ("Point of Matrix :");
+        //newMatrix = new JButton ("new");
+        jcomp9 = new JLabel ("Center of Gravity :");
         pointOfMatrix = new JTextField (5);
         pointOfMatrix.addActionListener(window);
         OK = new JButton ("OK");
@@ -61,7 +61,7 @@ public class SolidPanel extends JPanel {
         add (jcomp5);
         add (nameMatrix);
         add (jcomp7);
-        add (newMatrix);
+        //add (newMatrix);
         add (jcomp9);
         add (pointOfMatrix);
         add (OK);
@@ -74,9 +74,9 @@ public class SolidPanel extends JPanel {
         jcomp3.setBounds (20, 105, 100, 25);
         masse.setBounds (75, 100, 165, 25);
         jcomp5.setBounds (20, 140, 100, 25);
-        nameMatrix.setBounds (75, 135, 70, 25);
+        nameMatrix.setBounds (75, 135, 170, 25);
         jcomp7.setBounds (155, 135, 50, 25);
-        newMatrix.setBounds (180, 135, 75, 25);
+        //newMatrix.setBounds (180, 135, 75, 25);
         jcomp9.setBounds (15, 175, 100, 25);
         pointOfMatrix.setBounds (120, 170, 125, 25);
         OK.setBounds (85, 210, 100, 25);

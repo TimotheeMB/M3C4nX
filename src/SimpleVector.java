@@ -34,11 +34,11 @@ public class SimpleVector implements Serializable {
         return (Vector) expression.dot(basisVector.expressIn(destination));
     }
 
-    public SimpleVector differentiate() throws NonSenseException {
+    public SimpleVector oldDifferentiate() throws NonSenseException {
         return new SimpleVector(expression.differentiate(),basisVector);
     }
 
-    public Vector newDiff(Basis wrt) throws NonSenseException {
+    public Vector differentiate (Basis wrt) throws NonSenseException {
         if(this.basisVector.belongsTo(wrt)){
             return new Vector(new SimpleVector(expression.differentiate(),basisVector));
         }else{

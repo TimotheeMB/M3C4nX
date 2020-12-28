@@ -67,18 +67,12 @@ public final class Kernel {
         }else if(s.contains("KE")){
             s = s.replace("KE","");
             return (Kernel.solids.get(s).kineticEnergy());
-        }else if(s.contains("newdiff")){
-            tmp = s.split("newdiff");
-            if(tmp.length==1){
-                return ((Vector) compute(tmp[0])).newDiff(basis.get("0"));
-            }
-            return ((Vector)compute(tmp[0])).newDiff(basis.get(tmp[1]));
         }else if(s.contains("diff")){
             tmp = s.split("diff");
             if(tmp.length==1){
-                return (compute(tmp[0])).differentiate(basis.get("0"));
+                return ((Vector) compute(tmp[0])).differentiate(basis.get("0"));
             }
-            return (compute(tmp[0])).differentiate(basis.get(tmp[1]));
+            return ((Vector)compute(tmp[0])).differentiate(basis.get(tmp[1]));
         }else if(s.contains("in")){
             tmp = s.split("in");
             return (compute(tmp[0])).expressIn(basis.get(tmp[1]));
@@ -196,5 +190,8 @@ public final class Kernel {
         basis.put("0", new Basis("0"));
     }
 
+    static Basis get0(){
+        return basis.get("0");
+    }
 
 }

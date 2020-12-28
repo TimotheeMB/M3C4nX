@@ -2,16 +2,21 @@ public class Solid {
     Basis basis;
     Scalar m;
     Matrix I;
-    Vector pointOfTheMatrix;
+    Vector centreOfGravity;
 
-    public Solid(Basis basis, Scalar m, Matrix i, Vector pointOfTheMatrix) {
+    public Solid(Basis basis, Scalar m, Matrix i, Vector centreOfGravity) {
         this.basis = basis;
         this.m = m;
         I = i;
-        this.pointOfTheMatrix = pointOfTheMatrix;
+        this.centreOfGravity = centreOfGravity;
     }
 
     Scalar kineticEnergy() throws NonSenseException {
-        return (Scalar) m.dot(pointOfTheMatrix.newDiff(Kernel.basis.get("0")).dot(pointOfTheMatrix.newDiff(Kernel.basis.get("0"))));
+        Vector vOfG = centreOfGravity.differentiate(Kernel.get0());
+        Scalar translationalPart = (Scalar) m.dot(vOfG).dot(vOfG);
+        Vector omega = basis.omega(Kernel.get0());
+        Scalar rotationalPart = (Scalar) I.dot(omega).dot(omega);
+
+        return (Scalar) translationalPart.plus(rotationalPart);
     }
 }

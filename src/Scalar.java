@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Scalar extends Maob implements Serializable {
+public class Scalar extends Maob{
 
     //ATTRIBUTES
     LinkedList<Term> terms;

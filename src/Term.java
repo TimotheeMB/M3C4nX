@@ -1,8 +1,10 @@
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Objects;
 
-public class Term implements Serializable {
+public class Term {
 
     //ATTRIBUTES
     LinkedList<Element> elements;
@@ -113,13 +115,29 @@ public class Term implements Serializable {
     }
 
     //TOSTRING
+
     public String toString() {
+        HashMap<String,Integer> powers=new HashMap<>();
+        for (Element e: elements) {
+            if(powers.containsKey(e.toString())){
+                powers.put(e.toString(),powers.get(e.toString())+1);
+            }else{
+                powers.put(e.toString(),1);
+            }
+        }
+
         String r="";
-        for (Element v: elements) {
-            r+=v;
+        for(Map.Entry<String,Integer> entry: powers.entrySet()){
+            String element=entry.getKey();
+            int power=entry.getValue();
+            r=r+element;
+            if(power!=1) {
+                r = r + "^" + power;
+            }
         }
         return r;
     }
+
 
     @Override
     public boolean equals(Object o) {

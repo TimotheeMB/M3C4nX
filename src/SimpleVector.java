@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class SimpleVector implements Serializable {
+public class SimpleVector{
     //ATTRIBUTES
     Scalar expression;
     BasisVector basisVector;
@@ -78,5 +78,7 @@ public class SimpleVector implements Serializable {
         r+="." + basisVector;
         return r;
     }
+
+
 
 }

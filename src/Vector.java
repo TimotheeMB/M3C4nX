@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Vector extends Maob implements Serializable {
+public class Vector extends Maob{
 
     //ATTRIBUTES
     LinkedList<SimpleVector> expression;

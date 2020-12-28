@@ -22,14 +22,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment=".idea is back in the game">
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="complete kinetic energy">
+      <change afterPath="$PROJECT_DIR$/images/angle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/axis.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/block.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/information.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/matrix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/spring.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/support.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/upload.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kernel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SimpleVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleVector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Solid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SolidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SolidPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Visuel">
-      <created>1600534018255</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1600534018255</updated>
     </task>
     <task id="LOCAL-00021" summary="Visuel">
       <created>1600534278660</created>
@@ -443,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608726250895</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="complete kinetic energy">
+      <created>1609159354018</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1609159354018</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -460,7 +464,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="new solid" />
     <MESSAGE value="remaniment des fenteres&#10;creation de New" />
     <MESSAGE value="name and ok for new solid" />
     <MESSAGE value="creation du Kernel" />
@@ -485,7 +488,8 @@
     <MESSAGE value="removing .idea" />
     <MESSAGE value="create figures directory" />
     <MESSAGE value=".idea is back in the game" />
-    <option name="LAST_COMMIT_MESSAGE" value=".idea is back in the game" />
+    <MESSAGE value="complete kinetic energy" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete kinetic energy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

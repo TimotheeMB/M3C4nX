@@ -66,7 +66,11 @@ public final class Kernel {
             return maobs.get(s);
         }else if(s.contains("KE")){
             s = s.replace("KE","");
-            return (Kernel.solids.get(s).kineticEnergy());
+            if(s.equals("")){
+                return Kernel.kineticEnergy();
+            }else {
+                return (Kernel.solids.get(s).kineticEnergy());
+            }
         }else if(s.contains("diff")){
             tmp = s.split("diff");
             if(tmp.length==1){
@@ -155,13 +159,22 @@ public final class Kernel {
         }
     }
 
+    static Scalar kineticEnergy() throws NonSenseException {
+        Scalar sum=new Scalar("0");
+        for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
+            Solid solid = entry.getValue();
+            sum= (Scalar) sum.plus(solid.kineticEnergy());
+        }
+        return sum;
+    }
+
     static void save(){
         UI.println("Not available yet");
     }
 
     static void load(){
 
-        String[] models={"double pendulum","banane"};
+        String[] models={"double pendulum"};
         int chosenModel = JOptionPane.showOptionDialog(null, "Chose your model", "load", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, models, models[0]);
 
         if(chosenModel==0){

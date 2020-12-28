@@ -12,7 +12,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
     JButton newBasisBut;
     JButton newMatrixBut;
     JButton variablesBut;
-    JButton saveBut;
+    JButton newSpringBut;
     JButton loadBut;
     JButton newSolidBut;
 
@@ -34,33 +34,33 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
         total.setLayout(null);
         this.add(total);
 
-        helpBut = new JButton("Help");
+        helpBut = new JButton(new ImageIcon("./images/support.png"));
         total.add(helpBut);
         helpBut.addActionListener(this);
 
-        loadBut = new JButton("Load Model");
+        loadBut = new JButton(new ImageIcon("./images/upload.png"));
         total.add(loadBut);
         loadBut.addActionListener(this);
 
-        variablesBut = new JButton("Variables");
+        variablesBut = new JButton(new ImageIcon("./images/angle.png"));
         total.add(variablesBut);
         variablesBut.addActionListener(this);
 
-        newBasisBut = new JButton("New Basis");
+        newBasisBut = new JButton(new ImageIcon("./images/axis.png"));
         total.add(newBasisBut);
         newBasisBut.addActionListener(this);
 
-        newMatrixBut = new JButton("New Matrix");
+        newMatrixBut = new JButton(new ImageIcon("./images/matrix.png"));
         total.add(newMatrixBut);
         newMatrixBut.addActionListener(this);
 
-        newSolidBut = new JButton("New Solid");
+        newSolidBut = new JButton(new ImageIcon("./images/block.png"));
         total.add(newSolidBut);
         newSolidBut.addActionListener(this);
 
-        saveBut = new JButton("...");
-        total.add(saveBut);
-        saveBut.addActionListener(this);
+        newSpringBut = new JButton(new ImageIcon("./images/spring.png"));
+        total.add(newSpringBut);
+        newSpringBut.addActionListener(this);
 
         terminal = new TextArea("",10, 1,TextArea.SCROLLBARS_NONE);
         terminal.setForeground(Color.PINK);
@@ -106,7 +106,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
          newBasisBut.setBounds(at(3,0,1,1));
         newMatrixBut.setBounds(at(4,0,1,1));
          newSolidBut.setBounds(at(5,0,1,1));
-             saveBut.setBounds(at(6,0,1,1));
+             newSpringBut.setBounds(at(6,0,1,1));
 
             terminal.setBounds(at(0,1,7,9));
 
@@ -135,9 +135,9 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
             }catch(Exception e2){
                 e2.printStackTrace();
             }
-        } else if( e.getSource()==saveBut){
-            Kernel.save();
-        } else if(e.getSource()==loadBut){
+        }else if( e.getSource()==newSpringBut){
+            println("Not available yet");
+        }else if(e.getSource()==loadBut){
             Kernel.load();
             refresh();
         }else if(e.getSource()==newBasisBut){
@@ -168,7 +168,6 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
         sumUp+="________________\n       ~ BASIS ~\n";
         for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
-            Basis value = entry.getValue();
             sumUp += basisName+"\n";
         }
         summary.setText(sumUp);

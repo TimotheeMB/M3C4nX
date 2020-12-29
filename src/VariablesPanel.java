@@ -9,7 +9,7 @@ public class VariablesPanel extends JPanel {
     public JButton OK;
     public JLabel text;
 
-    public VariablesPanel(UI ui, New window) {
+    public VariablesPanel(New window) {
         //construct components
         variables = new JTextField (5);
         variables.addActionListener(window);

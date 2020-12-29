@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class New extends JFrame implements ActionListener {
     JPanel panel;
     UI ui;
@@ -25,7 +26,7 @@ public class New extends JFrame implements ActionListener {
                 break;
             case "variables":
                 this.setTitle("Declare Variables");
-                this.panel = new VariablesPanel(ui,this);
+                this.panel = new VariablesPanel(this);
                 break;
         }
 

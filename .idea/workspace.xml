@@ -22,11 +22,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="and modify gitignore">
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="new Matrix + u">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/timot.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/timot.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Basis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Basis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BasisPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BasisPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BasisVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BasisVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FiguresPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguresPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kernel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Solid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatrixPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatrixPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/New.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/New.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scalar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scalar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleVector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SolidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SolidPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Term.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Term.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VariablesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariablesPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,13 +110,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00027" summary="fix display negatif&#10;fix shift">
-      <created>1601914198216</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1601914198222</updated>
     </task>
     <task id="LOCAL-00028" summary="fix bugs">
       <created>1602167926925</created>
@@ -440,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609181384475</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="new Matrix + u">
+      <created>1609251017939</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1609251017939</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix expressIn" />
     <MESSAGE value="Reorganize buttons" />
     <MESSAGE value="better save and load" />
     <MESSAGE value="ca ne marche tjrs pas" />
@@ -482,7 +495,8 @@
     <MESSAGE value="powers" />
     <MESSAGE value="add workspace again" />
     <MESSAGE value="and modify gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="and modify gitignore" />
+    <MESSAGE value="new Matrix + u" />
+    <option name="LAST_COMMIT_MESSAGE" value="new Matrix + u" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

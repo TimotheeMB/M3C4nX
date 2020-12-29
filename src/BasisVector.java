@@ -94,17 +94,17 @@ public class BasisVector implements Serializable {
                     return new Vector("1", "0", "0", destination);
                 }
             } else if ((destination.y).equals(two.y)) {
-                if (name == "z") {
+                if (name.equals("z")) {
                     return new Vector(new Scalar(new Sin(angle),pred), new Scalar("0"), new Scalar(new Cos(angle)), destination);
-                } else if (name == "x") {
+                } else if (name.equals("x")) {
                     return new Vector(new Scalar(new Cos(angle)), new Scalar("0"), new Scalar(new Sin(angle), !pred), destination);
                 } else {
                     return new Vector("0", "1", "0", destination);
                 }
             } else if ((destination.z).equals(two.z)) {
-                if (name == "x") {
+                if (name.equals("x")) {
                     return new Vector(new Scalar(new Cos(angle)), new Scalar(new Sin(angle),pred), new Scalar("0"), destination);
-                } else if (name == "y") {
+                } else if (name.equals("y")) {
                     return new Vector(new Scalar(new Sin(angle), !pred), new Scalar(new Cos(angle)), new Scalar("0"), destination);
                 } else {
                     return new Vector("0", "0", "1", destination);
@@ -126,7 +126,7 @@ public class BasisVector implements Serializable {
     }
 
     public LinkedList<Basis> neighbors(){
-        LinkedList<Basis> r=new LinkedList<Basis>();
+        LinkedList<Basis> r= new LinkedList<>();
         for(Basis b:basis){
             for(Basis neighbor: b.neighbors()){
                 if(!r.contains(neighbor)){
@@ -136,35 +136,6 @@ public class BasisVector implements Serializable {
         }
         return r;
     }
-
-    /*
-    public Basis dijkstra(Basis goal,HashMap<Basis, Basis> came_from){
-        HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
-        PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
-        Basis start = goal;
-        Basis source = null;
-
-        priority.add(new ValuedBasis(start, 0));
-        came_from.put(start, start);
-        cost_so_far.put(start, 0);
-
-        while (!priority.isEmpty()) {
-            source = priority.poll().basis;
-            if (this.basis.contains(source)) {
-                break;
-            }
-            for (Basis destination : source.neighbors()) {
-                int new_cost = 1 + cost_so_far.get(source);
-                if (!cost_so_far.containsKey(destination) || new_cost < cost_so_far.get(destination)) {
-                    cost_so_far.put(destination, new_cost);
-                    came_from.put(destination, source);
-                    priority.offer(new ValuedBasis(destination, new_cost));
-                }
-            }
-        }
-        return source;
-    }
-     */
 
     //TESTS
     public boolean sameBasis(BasisVector v){
@@ -180,31 +151,13 @@ public class BasisVector implements Serializable {
         return this.basis.contains(b2);
     }
 
-    /*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BasisVector that = (BasisVector) o;
-        if (!name.equals(that.name)){
-            return false;
-        }
-        for (Basis b :basis) {
-            if(!that.basis.contains(b)){
-                return false;
-            }
-        }
-        return true;
-    }
-*/
-
     //TOSTRING
     public String toString() {
-        String r= name;
+        StringBuilder r= new StringBuilder(name);
         for(Basis two:basis){
-           r+=two.toString();
+           r.append(two.toString());
         }
-        return r;
+        return r.toString();
     }
 
 }

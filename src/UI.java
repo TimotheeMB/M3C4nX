@@ -3,6 +3,7 @@ import java.io.*;
 import java.net.URI;
 import java.util.Map;
 import java.awt.*;
+import java.util.Objects;
 import javax.swing.*;
 
 
@@ -90,7 +91,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
             @Override
             public void windowClosing(WindowEvent e) {
                 File figures = new File("./figures");
-                for(File file:figures.listFiles()){
+                for(File file: Objects.requireNonNull(figures.listFiles())){
                     file.delete();
                 }
                 super.windowClosing(e);
@@ -152,30 +153,30 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
     }
 
     void refresh(){
-        String sumUp="### SUMMARY ###\n";
-        sumUp+="________________\n    ~ OBJECTS ~\n";
+        StringBuilder sumUp= new StringBuilder("### SUMMARY ###\n");
+        sumUp.append("________________\n    ~ OBJECTS ~\n");
         for (Map.Entry<String, Maob> entry : Kernel.maobs.entrySet()) {
             String variableName = entry.getKey();
             Maob value = entry.getValue();
-            sumUp += variableName + " = " + value+"\n";
+            sumUp.append(variableName).append(" = ").append(value).append("\n");
         }
-        sumUp+="________________\n  ~ VARIABLES ~\n";
+        sumUp.append("________________\n  ~ VARIABLES ~\n");
         for (String s:Kernel.toBeVar) {
             if(!s.contains("dot")) {
-                sumUp += s + "\n";
+                sumUp.append(s).append("\n");
             }
         }
-        sumUp+="________________\n       ~ BASIS ~\n";
+        sumUp.append("________________\n       ~ BASIS ~\n");
         for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
-            sumUp += basisName+"\n";
+            sumUp.append(basisName).append("\n");
         }
-        sumUp+="________________\n       ~ SOLIDS ~\n";
+        sumUp.append("________________\n       ~ SOLIDS ~\n");
         for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
             String solidName = entry.getKey();
-            sumUp += solidName +"\n";
+            sumUp.append(solidName).append("\n");
         }
-        summary.setText(sumUp);
+        summary.setText(sumUp.toString());
         figures.repaint();
         this.setVisible(true);
     }
@@ -190,11 +191,11 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
     public static String read() {
         String totalText = terminal.getText();
         int beginningInput = totalText.lastIndexOf(">>")+2;
-        String input ="";
+        StringBuilder input = new StringBuilder();
         for (int i = beginningInput; i < totalText.length() ; i++) {
-            input += totalText.charAt(i);
+            input.append(totalText.charAt(i));
         }
-        return input;
+        return input.toString();
     }
 
 

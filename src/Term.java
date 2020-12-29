@@ -1,8 +1,6 @@
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Objects;
 
 public class Term {
 
@@ -126,16 +124,16 @@ public class Term {
             }
         }
 
-        String r="";
+        StringBuilder r= new StringBuilder();
         for(Map.Entry<String,Integer> entry: powers.entrySet()){
             String element=entry.getKey();
             int power=entry.getValue();
-            r=r+element;
+            r.append(element);
             if(power!=1) {
-                r = r + "^" + power;
+                r.append("^").append(power);
             }
         }
-        return r;
+        return r.toString();
     }
 
 

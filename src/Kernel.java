@@ -121,7 +121,7 @@ public final class Kernel {
         }else if(s.contains("/")){
             tmp = s.split("/");
             Basis basis = Kernel.basis.get(String.valueOf(tmp[1].charAt(1)));
-            BasisVector basisVector = null;
+            BasisVector basisVector;
             if(tmp[1].charAt(0)=='x'){
                 basisVector=basis.x;
             }else if(tmp[1].charAt(0)=='y'){
@@ -160,7 +160,6 @@ public final class Kernel {
 
     static void drawFigures(){
         for (Map.Entry<String, Basis> entry : basis.entrySet()) {
-            String basisName = entry.getKey();
             Basis basis = entry.getValue();
             if(!basis.name.equals("0")) {
                 basis.drawFigure();

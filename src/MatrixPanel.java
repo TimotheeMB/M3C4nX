@@ -30,7 +30,6 @@ public class MatrixPanel extends JPanel {
         int i=0;
         for (Map.Entry<String, Basis> entry : Kernel.basis.entrySet()) {
             String basisName = entry.getKey();
-            Basis value = entry.getValue();
             items[i]=basisName;
             i++;
         }

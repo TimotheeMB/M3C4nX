@@ -1,4 +1,3 @@
-import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Scalar extends Maob{
@@ -9,7 +8,7 @@ public class Scalar extends Maob{
 
     //CONSTRUCTORS
     public Scalar() {
-        terms=new LinkedList<Term>();
+        terms= new LinkedList<>();
 
     }//default
 
@@ -37,11 +36,12 @@ public class Scalar extends Maob{
 
     //ADD
     public void add(Term t){
-        if(t.isNull()) {
-        }else if(terms.contains(t.opposite())) {
-            terms.remove(t.opposite());
-        }else{
-            terms.add(t);
+        if(!t.isNull()) {
+            if (terms.contains(t.opposite())) {
+                terms.remove(t.opposite());
+            } else {
+                terms.add(t);
+            }
         }
     }
 
@@ -157,17 +157,17 @@ public class Scalar extends Maob{
 
     //TOSTRING
     public String toString() {
-        String r="";
+        StringBuilder r= new StringBuilder();
         for (int i = 0; i < terms.size(); i++) {
             Term t = terms.get(i);
             if (t.isPositive()&&i!=0) {
-                r += " + " + t;
+                r.append(" + ").append(t);
             } else if(!t.isPositive()) {
-                r += " - " + t;
+                r.append(" - ").append(t);
             }else{
-                r+= t;
+                r.append(t);
             }
         }
-        return r;
+        return r.toString();
     }
 }

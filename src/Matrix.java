@@ -50,12 +50,12 @@ public class Matrix extends Maob {
     }
 
     @Override
-    public Maob minus(Maob two) throws  NonSenseException {
+    public Maob minus(Maob two) {
         return null;
     }
 
     @Override
-    public Maob expressIn(Basis basis) throws NonSenseException {
+    public Maob expressIn(Basis basis) {
         return null;
     }
 

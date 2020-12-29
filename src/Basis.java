@@ -2,7 +2,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,7 +22,7 @@ public class Basis implements Serializable  {
 
     //CONSTRUCTORS
     public Basis(){
-        successors=new LinkedList<Basis>();
+        successors= new LinkedList<>();
     }
     public Basis(String name) {
         this();
@@ -85,11 +84,11 @@ public class Basis implements Serializable  {
 
     //DIJKSTRA
     public HashMap<Basis, Basis> dijkstra(Basis stop){
-        HashMap<Basis, Basis> came_from = new HashMap<Basis, Basis>();
-        HashMap<Basis, Integer> cost_so_far = new HashMap<Basis, Integer>();
-        PriorityQueue<ValuedBasis> priority = new PriorityQueue<ValuedBasis>(new ValuedBasisComparator());
+        HashMap<Basis, Basis> came_from = new HashMap<>();
+        HashMap<Basis, Integer> cost_so_far = new HashMap<>();
+        PriorityQueue<ValuedBasis> priority = new PriorityQueue<>(new ValuedBasisComparator());
         Basis start = this;
-        Basis source = null;
+        Basis source;
 
         priority.add(new ValuedBasis(start, 0));
         came_from.put(start, start);
@@ -114,13 +113,11 @@ public class Basis implements Serializable  {
 
     //USEFUL
     public LinkedList<Basis> neighbors(){
-        LinkedList<Basis> r=new LinkedList<Basis>();
+        LinkedList<Basis> r= new LinkedList<>();
         if(predecessor!=null){
             r.add(predecessor);
         }
-        for(Basis suc:successors){
-            r.add(suc);
-        }
+        r.addAll(successors);
         return r;
     }
 
@@ -145,7 +142,7 @@ public class Basis implements Serializable  {
             graphics.drawString(angle.toString(), 190, 400);
             graphics.drawString(angle.toString(), 780, 720);
 
-            String common = null,predRight = null,thisRight = null,predUp = null,thisUp = null;
+            String common,predRight,thisRight,predUp,thisUp;
 
             if(this.z.equals(predecessor.z)){
                 common=z.toString();
@@ -176,15 +173,6 @@ public class Basis implements Serializable  {
         }catch(Exception e){UI.print(e.toString());}
     }
 
-/*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Basis basis = (Basis) o;
-        return Objects.equals(this.name, basis.name);
- }
-*/
     //TOSTRING
     public String toString() {
         return name;

@@ -1,4 +1,3 @@
-import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Vector extends Maob{
@@ -8,7 +7,7 @@ public class Vector extends Maob{
 
     //CONSTRUCTORS
     public Vector(){
-        expression = new LinkedList<SimpleVector>();
+        expression = new LinkedList<>();
     }
     public Vector(SimpleVector v1) throws NonSenseException {
         this();
@@ -100,7 +99,7 @@ public class Vector extends Maob{
     public Vector cross(Vector b) throws NonSenseException {
         Vector result = new Vector();
         for (SimpleVector v1 : expression) {
-            for (SimpleVector v2 : ((Vector) b).expression) {
+            for (SimpleVector v2 : b.expression) {
                 Vector toAdd;
                 if (v1.sameBasis(v2)) {
                     toAdd = v1.cross(v2);
@@ -155,18 +154,18 @@ public class Vector extends Maob{
     //TOSTRING
     public String toString() {
         clear();
-        String r = "";
+        StringBuilder r = new StringBuilder();
         if(this.isNull()){
             return "-0->";
         }else {
             for (int i = 0; i < expression.size(); i++) {
                 SimpleVector v = expression.get(i);
-                r += v.toString();
+                r.append(v.toString());
                 if ((i != expression.size() - 1)&&(expression.get(i+1).expression.terms.getFirst().positive||expression.get(i+1).expression.terms.size()>1)) {//si c'est pas le dernier et que le premier term du suivant est positif
-                    r += " + ";
+                    r.append(" + ");
                 }
             }
-            return r;
+            return r.toString();
         }
     }
 }

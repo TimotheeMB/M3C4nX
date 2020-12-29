@@ -10,12 +10,12 @@ public class FiguresPanel extends JPanel{
         super.paintComponent(g);
 
         File[] figures = new File("./figures").listFiles();
-        if (figures.length!=0) {
+        if (figures!=null && figures.length!=0) {
             int gridSize = (int) (Math.sqrt(figures.length) + 0.9);
             int cx = (this.getWidth() / gridSize);
             int cy = (this.getHeight() / gridSize);
-            int x = 0;
-            int y = 0;
+            int x;
+            int y;
 
             for (int i = 0; i < figures.length; i++) {
                 x = (i % gridSize);

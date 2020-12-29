@@ -20,10 +20,9 @@ public class MatrixPanel extends JPanel {
     public JLabel Ebis;
     public JLabel Dbis;
     public JButton OK;
-    UI ui;
 
-    public MatrixPanel(UI ui, New window) {
-        this.ui =ui;
+
+    public MatrixPanel(New window) {
 
         //construct preComponents
         String[] items=new String[Kernel.basis.size()];

@@ -13,6 +13,7 @@ public final class Kernel {
     static HashMap<String,Maob> maobs = new HashMap<>();
     static HashMap<String,Basis> basis = new HashMap<>();
     static HashMap<String,Solid> solids = new HashMap<>();
+    static HashMap<String,Spring> springs = new HashMap<>();
     static LinkedList<String> toBeVar = new LinkedList<>();
 
     static Vector gravity;

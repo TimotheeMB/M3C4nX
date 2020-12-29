@@ -18,15 +18,19 @@ public class New extends JFrame implements ActionListener {
                 break;
             case "matrix":
                 this.setTitle("New Matrix");
-                this.panel = new MatrixPanel(ui,this);
+                this.panel = new MatrixPanel(this);
                 break;
             case "basis":
                 this.setTitle("New Basis");
-                this.panel = new BasisPanel(ui,this);
+                this.panel = new BasisPanel(this);
                 break;
             case "variables":
                 this.setTitle("Declare Variables");
                 this.panel = new VariablesPanel(this);
+                break;
+            case "spring":
+                this.setTitle("New Spring");
+                this.panel = new SpringPanel(this);
                 break;
         }
 
@@ -70,6 +74,14 @@ public class New extends JFrame implements ActionListener {
                 VariablesPanel vp = (VariablesPanel) panel;
                 for( String name: vp.variables.getText().replace(" ","").split(",")){
                     Kernel.addVar(name);
+                }
+                break;
+            case "spring":
+                SpringPanel spp = (SpringPanel) panel;
+                try {
+                    Kernel.springs.put(spp.stiffness.getText(),new Spring((Scalar)Kernel.quickInput(spp.parameter.getText()),(Scalar)Kernel.quickInput(spp.stiffness.getText())));
+                } catch (NonSenseException e) {
+                    e.printStackTrace();
                 }
                 break;
         }

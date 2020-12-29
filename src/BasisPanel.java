@@ -14,13 +14,10 @@ public class BasisPanel extends JPanel{
     public JLabel jcomp9;
     public JTextField angle;
     public JButton OK;
-    UI ui;
 
     static int nameByDefault=1;
 
-    public BasisPanel(UI ui, New window) {
-        this.ui=ui;
-
+    public BasisPanel(New window) {
         //construct components
         name = new JTextField (""+nameByDefault);
         jcomp2 = new JLabel ("   Name of the basis");

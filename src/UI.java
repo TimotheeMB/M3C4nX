@@ -137,7 +137,7 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
                 e2.printStackTrace();
             }
         }else if( e.getSource()==newSpringBut){
-            println("Not available yet");
+            new New("spring",this);
         }else if(e.getSource()==loadBut){
             Kernel.load();
             refresh();
@@ -175,6 +175,11 @@ public class UI extends JFrame implements KeyListener, ActionListener,ComponentL
         for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
             String solidName = entry.getKey();
             sumUp.append(solidName).append("\n");
+        }
+        sumUp.append("________________\n       ~ SPRINGS ~\n");
+        for (Map.Entry<String, Spring> entry : Kernel.springs.entrySet()) {
+            String springName = entry.getKey();
+            sumUp.append(springName).append("\n");
         }
         summary.setText(sumUp.toString());
         figures.repaint();

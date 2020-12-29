@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Solid {
     Basis basis;
     Scalar m;
@@ -18,5 +20,14 @@ public class Solid {
         Scalar rotationalPart = (Scalar) I.dot(omega).dot(omega);
 
         return (Scalar) translationalPart.plus(rotationalPart);
+    }
+
+    Scalar u() throws NonSenseException {
+        if(Kernel.gravity==null){
+            try {
+                Kernel.gravity = (Vector) Kernel.quickInput(JOptionPane.showInputDialog("Enter the value of the gravity"));
+            }catch (Exception e4){}
+        }
+        return (Scalar) m.dot(Kernel.gravity.dot(centreOfGravity));
     }
 }

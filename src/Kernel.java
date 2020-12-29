@@ -15,6 +15,8 @@ public final class Kernel {
     static HashMap<String,Solid> solids = new HashMap<>();
     static LinkedList<String> toBeVar = new LinkedList<>();
 
+    static Vector gravity;
+
     public static void inputOutput(String input){
 
         String[] affectation = affectation(simplify(input));
@@ -70,6 +72,13 @@ public final class Kernel {
                 return Kernel.kineticEnergy();
             }else {
                 return (Kernel.solids.get(s).kineticEnergy());
+            }
+        }else if(s.contains("U")){
+            s = s.replace("U","");
+            if(s.equals("")){
+                return Kernel.u();
+            }else {
+                return (Kernel.solids.get(s).u());
             }
         }else if(s.contains("diff")){
             tmp = s.split("diff");
@@ -164,6 +173,15 @@ public final class Kernel {
         for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
             Solid solid = entry.getValue();
             sum= (Scalar) sum.plus(solid.kineticEnergy());
+        }
+        return sum;
+    }
+
+    static Scalar u() throws NonSenseException {
+        Scalar sum=new Scalar("0");
+        for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
+            Solid solid = entry.getValue();
+            sum= (Scalar) sum.plus(solid.u());
         }
         return sum;
     }

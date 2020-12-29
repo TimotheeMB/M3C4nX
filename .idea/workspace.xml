@@ -22,7 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="add workspace again" />
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="and modify gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kernel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Solid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SolidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SolidPanel.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,20 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Variables">
-      <created>1600940987337</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1600940987337</updated>
-    </task>
-    <task id="LOCAL-00026" summary="simplification">
-      <created>1600941285019</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1600941285019</updated>
     </task>
     <task id="LOCAL-00027" summary="fix display negatif&#10;fix shift">
       <created>1601914198216</created>
@@ -435,7 +426,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609180650121</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="add workspace again">
+      <created>1609181331706</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1609181331706</updated>
+    </task>
+    <task id="LOCAL-00075" summary="and modify gitignore">
+      <created>1609181384475</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1609181384475</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -452,7 +457,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="MVB" />
     <MESSAGE value="Fix expressIn" />
     <MESSAGE value="Reorganize buttons" />
     <MESSAGE value="better save and load" />
@@ -477,7 +481,8 @@
     <MESSAGE value="summary update" />
     <MESSAGE value="powers" />
     <MESSAGE value="add workspace again" />
-    <option name="LAST_COMMIT_MESSAGE" value="add workspace again" />
+    <MESSAGE value="and modify gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="and modify gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

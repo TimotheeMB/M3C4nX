@@ -79,7 +79,11 @@ public final class Kernel {
             if(s.equals("")){
                 return Kernel.u();
             }else {
-                return (Kernel.solids.get(s).u());
+                if(solids.containsKey(s)) {
+                    return (Kernel.solids.get(s).u());
+                }else{
+                    return (Kernel.springs.get(s).u());
+                }
             }
         }else if(s.contains("diff")){
             tmp = s.split("diff");
@@ -182,6 +186,10 @@ public final class Kernel {
         for (Map.Entry<String, Solid> entry : Kernel.solids.entrySet()) {
             Solid solid = entry.getValue();
             sum= (Scalar) sum.plus(solid.u());
+        }
+        for (Map.Entry<String, Spring> entry : Kernel.springs.entrySet()) {
+            Spring spring = entry.getValue();
+            sum= (Scalar) sum.plus(spring.u());
         }
         return sum;
     }

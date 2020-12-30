@@ -3,7 +3,7 @@
 # GENERAL DESCRIPTION
 
 M3C4n'X is the perfect tool for mechanics.
-You can do things like shift wrenches or inertia matrices, express anything in any basis.
+You can perform all the basic operations on scalars, vectors, wrenches, matrices. And more importantly you can compute the kinetic energy and the force function of solids and systems.
 
 You'll see it's pretty cool...
 
@@ -71,6 +71,8 @@ Have a look at the buttons
 |   Shift    |    ```->```     |
 |     Express in a basis  |     ```in```    |
 |     Differentiate with respect to  |   ```diff```      |
+| Compute the kinetic energy |```KE```|
+| Compute the force function |```U```|
 
 ==REMARK :==
 
@@ -81,7 +83,7 @@ You can use affectation, declaration and operation all together.
 You should proceed in the following order:
 ```mermaid
 graph TD;
-id(Declare all variables) --> id1(Create all the basis) --> id2(Declare matrices of inertia and solids) --> id3(Do your computaions)
+id(Declare all variables) --> id1(Create all the basis) --> id2(Declare matrices of inertia and solids)--> id4(Declare springs) --> id3(Do your computaions)
 ```
 
 

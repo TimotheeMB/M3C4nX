@@ -79,7 +79,7 @@ public class New extends JFrame implements ActionListener {
             case "spring":
                 SpringPanel spp = (SpringPanel) panel;
                 try {
-                    Kernel.springs.put(spp.stiffness.getText(),new Spring((Scalar)Kernel.quickInput(spp.parameter.getText()),(Scalar)Kernel.quickInput(spp.stiffness.getText())));
+                    Kernel.springs.put(spp.stiffness.getText(),new Spring((Scalar)Kernel.quickInput(spp.stiffness.getText()),(Scalar)Kernel.quickInput(spp.parameter.getText())));
                 } catch (NonSenseException e) {
                     e.printStackTrace();
                 }

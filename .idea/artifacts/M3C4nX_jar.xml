@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="M3C4nX:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/M3C4nX_jar</output-path>
+    <root id="archive" name="M3C4nX.jar">
+      <element id="module-output" name="M3C4nX" />
+    </root>
+  </artifact>
+</component>

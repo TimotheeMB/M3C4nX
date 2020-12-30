@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="M3C4nX:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -22,15 +27,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="warnings removed">
-      <change afterPath="$PROJECT_DIR$/src/Spring.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SpringPanel.java" afterDir="false" />
+    <list default="true" id="12e5bdcf-9770-4561-ac53-d85caf058cf1" name="Default Changelist" comment="debut de spring">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/M3C4nX_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BasisPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BasisPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.html" beforeDir="false" afterPath="$PROJECT_DIR$/README.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/buttons.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/buttons.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kernel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MatrixPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatrixPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/New.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/New.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +79,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -100,13 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595354714656</updated>
-    </task>
-    <task id="LOCAL-00029" summary="dot &amp; dotdot in variabes">
-      <created>1602170443416</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1602170443416</updated>
     </task>
     <task id="LOCAL-00030" summary="reorganization dijkstra">
       <created>1602229389679</created>
@@ -444,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609252441907</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="debut de spring">
+      <created>1609254723750</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1609254723750</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -461,7 +466,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="better save and load" />
     <MESSAGE value="ca ne marche tjrs pas" />
     <MESSAGE value="models+debut figure de changeent de basxe" />
     <MESSAGE value="figures in progress" />
@@ -486,7 +490,8 @@
     <MESSAGE value="and modify gitignore" />
     <MESSAGE value="new Matrix + u" />
     <MESSAGE value="warnings removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="warnings removed" />
+    <MESSAGE value="debut de spring" />
+    <option name="LAST_COMMIT_MESSAGE" value="debut de spring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
